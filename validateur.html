@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validateur XML S1000D · PPR-Solution</title>
+  <meta name="description" content="Chargez vos modules S1000D, obtenez un rapport détaillé et branchez votre API FastAPI. Mock de démonstration inclus.">
+  <link rel="canonical" href="https://www.ppr-solution.com/validateur.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/favicon/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0f3f91">
+  <meta property="og:title" content="Validateur XML S1000D · PPR-Solution">
+  <meta property="og:description" content="Validateur XML S1000D prêt à brancher à votre API FastAPI. Mock de démonstration inclus.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ppr-solution.com/validateur.html">
+  <meta property="og:image" content="https://www.ppr-solution.com/assets/img/og-default.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Validateur XML S1000D · PPR-Solution">
+  <meta name="twitter:description" content="Contrôlez vos modules S1000D et obtenez un rapport JSON détaillé.">
+  <meta name="twitter:image" content="https://www.ppr-solution.com/assets/img/og-default.jpg">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.ppr-solution.com/#organization",
+          "name": "PPR-Solution",
+          "url": "https://www.ppr-solution.com/"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.ppr-solution.com/#website",
+          "url": "https://www.ppr-solution.com/"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.ppr-solution.com/validateur.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://www.ppr-solution.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Validateur",
+              "item": "https://www.ppr-solution.com/validateur.html"
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">PPR</span>
+        <span>PPR-Solution</span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span class="nav-icon"></span>
+      </button>
+      <nav class="primary-nav" id="primary-navigation" data-nav-menu>
+        <a data-nav-link href="index.html">Accueil</a>
+        <a data-nav-link href="services.html">Services</a>
+        <a data-nav-link href="validateur.html">Validateur</a>
+        <a data-nav-link href="blog.html">Blog</a>
+        <a data-nav-link href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section-hero-light">
+      <div class="container">
+        <div class="hero-light">
+          <div class="hero-content-light">
+            <span class="hero-eyebrow">Validation automatisée</span>
+            <h1>Validateur XML S1000D prêt à connecter</h1>
+            <p>Chargez vos modules, simulez un contrôle complet et remplacez les variables TODO par votre endpoint FastAPI et vos règles métiers.</p>
+            <div class="cta-group">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Analyser un module</h2>
+            <form id="validator-form" class="form" novalidate>
+              <div class="form-field">
+                <label for="xml-file">Module S1000D (XML) <span class="text-muted">(max. 10&nbsp;Mo)</span></label>
+                <input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="file-help">
+                <p id="file-help" class="form-helper">Le fichier est traité en mémoire. Aucune conservation.</p>
+              </div>
+              <div class="form-field">
+                <label>Issue prise en charge</label>
+                <p class="badge" aria-live="polite">Issue 6.0 (fixe)</p>
+                <p class="form-helper">L’API sélectionne automatiquement le schéma adapté. Aucun choix manuel n’est requis.</p>
+              </div>
+              <div class="cta-group">
+                <button type="submit" class="btn btn-primary">Analyser le module</button>
+                <p class="form-helper">Analyse locale via FastAPI `http://localhost:8000/validate`.</p>
+              </div>
+            </form>
+          </article>
+          <article class="card">
+            <h2>Résultats</h2>
+            <div class="result-panel" aria-live="polite">
+              <p class="text-muted">Déposez un fichier ou lancez le mock pour afficher un rapport.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="footer-year"></span> PPR-Solution · Expertise documentaire S1000D</p>
+      <div class="footer-links">
+        <a href="charte-ethique.html">Charte éthique</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/validateur.js" defer></script>
+</body>
+</html>
