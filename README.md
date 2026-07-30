@@ -2,7 +2,17 @@
 
 Site vitrine statique pour présenter l’offre de services S1000D, le validateur XML et les contenus du blog.  
 Technologies : HTML5, CSS3 (vanilla), JavaScript sans dépendances externes.
+## 🚀 Lancer le site en local
 
+```bash
+# Option 1 : Python (la plus simple, aucune dépendance)
+python -m http.server
+
+# Option 2 : Node.js (si npm est installé)
+npx serve .
+```
+
+Le site sera accessible à `http://localhost:8000` avec l'option Python ou `http://localhost:3000` avec npx serve.
 ## Structure des pages
 
 - `index.html` : page d’accueil (services en premier, validateur, contact, blog).
@@ -13,17 +23,6 @@ Technologies : HTML5, CSS3 (vanilla), JavaScript sans dépendances externes.
 - `charte-ethique.html`, `mentions-legales.html`, `confidentialite.html`, `404.html`.
 
 ## Prise en main
-
-```bash
-# Cloner le projet
-git clone https://github.com/votre-compte/ppr-solution.git
-cd ppr-solution/site
-
-# Lancer un serveur local
-npx serve .
-# ou
-python -m http.server
-```
 
 ## Personnaliser le thème
 

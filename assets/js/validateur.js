@@ -12,9 +12,13 @@ function renderSummary(summary = {}) {
     { label: "OK", key: "ok" },
     { label: "Erreurs", key: "error" },
     { label: "Sans schéma", key: "no_schema" },
-    { label: "XML invalide", key: "not_well_formed" },
-    { label: "Exceptions", key: "exception" }
+    { label: "XML invalide", key: "not_well_formed" }
   ];
+
+  const durationInfo =
+    typeof summary.duration_ms === "number"
+      ? `<p class="text-muted">Durée : ${summary.duration_ms} ms</p>`
+      : "";
 
   return `
     <div class="summary-grid">
@@ -29,6 +33,7 @@ function renderSummary(summary = {}) {
         )
         .join("")}
     </div>
+    ${durationInfo}
   `;
 }
 
@@ -41,28 +46,28 @@ function renderResult(payload) {
   const cards =
     files.length > 0
       ? files
-          .map((item) => {
-            const status = (item.status || "info").toLowerCase();
-            const errors =
-              Array.isArray(item.errors) && item.errors.length > 0
-                ? `<ul class="list-bullet">${item.errors.map((err) => `<li>${err}</li>`).join("")}</ul>`
-                : `<p class="text-muted">Aucune erreur signalée.</p>`;
+        .map((item) => {
+          const status = (item.status || "INFO").toLowerCase();
+          const errors =
+            Array.isArray(item.errors) && item.errors.length > 0
+              ? `<ul class="list-bullet">${item.errors.map((err) => `<li>${err}</li>`).join("")}</ul>`
+              : `<p class="text-muted">Aucune erreur signalée.</p>`;
 
-            return `
-              <article class="result-card" data-status="${status}">
-                <header>
-                  <h3>${item.filename || "Fichier analysé"}</h3>
-                  <span class="badge">${item.status || "N/A"}</span>
-                </header>
-                ${
-                  item.schema_used
-                    ? `<p class="text-muted">Schéma utilisé : ${item.schema_used}</p>`
-                    : ""
-                }
-                ${errors}
-              </article>
-            `;
-          })
+          return `
+            <article class="result-card" data-status="${status}">
+              <header>
+                <h3 title="${item.filename || "Fichier analysé"}">${item.filename || "Fichier analysé"}</h3>
+                <span class="badge">${item.status || "N/A"}</span>
+              </header>
+              ${
+                item.schema_used
+                  ? `<p class="text-muted">Schéma utilisé : ${item.schema_used}</p>`
+                  : ""
+              }
+              ${errors}
+            </article>
+          `;
+        })
           .join("")
       : `<p class="text-muted">Aucun résultat à afficher.</p>`;
 

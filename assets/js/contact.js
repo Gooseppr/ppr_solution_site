@@ -1,5 +1,5 @@
-/* TODO: remplacer par l'URL réelle Google Apps Script */
-const GAS_CONTACT_URL = "https://script.google.com/macros/s/XXXXX/exec";
+const GAS_CONTACT_URL =
+  "https://script.google.com/macros/s/AKfycbxF8eVCMlGEck31E88W8FXm_qfdWAm0YPYdAO8k2EGKqXKNt1rFoAss7y06GliI1PDeyg/exec";
 
 const contactForm = document.querySelector("#contact-form-element");
 const statusNode = document.querySelector(".form-status");
@@ -22,35 +22,41 @@ function validateContactForm(data) {
     return "Renseignez une adresse email valide.";
   }
   if (!data.message || data.message.trim().length < 10) {
-    return "Le message doit comporter au moins 10 caracteres.";
+    return "Le message doit comporter au moins 10 caractères.";
+  }
+  if (data.consent !== "on") {
+    return "Merci d’accepter d’être recontacté pour que nous puissions répondre.";
   }
   return null;
 }
 
 async function submitToScript(data) {
-  if (GAS_CONTACT_URL.includes("XXXXX")) {
-    return mockSubmission();
-  }
+  const body = new URLSearchParams();
+  Object.entries(data).forEach(([key, value]) => {
+    body.append(key, value ?? "");
+  });
 
   const response = await fetch(GAS_CONTACT_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+    },
+    body
   });
 
   if (!response.ok) {
     throw new Error(`Erreur ${response.status}`);
   }
 
-  return response.json();
-}
-
-function mockSubmission() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ status: "success", message: "Mock OK" });
-    }, 800);
-  });
+  const json = await response.json().catch(() => ({}));
+  if (json && json.ok) {
+    return json;
+  }
+  if (json && json.error) {
+    throw new Error(json.error);
+  }
+  return json;
 }
 
 async function submitContact(event) {
@@ -59,11 +65,11 @@ async function submitContact(event) {
 
   const formData = new FormData(contactForm);
   const payload = {
-    name: formData.get("name")?.toString().trim(),
-    email: formData.get("email")?.toString().trim(),
-    company: formData.get("company")?.toString().trim(),
-    message: formData.get("message")?.toString().trim(),
-    source: "ppr-solution-site"
+    name: formData.get("name")?.toString().trim() || "",
+    email: formData.get("email")?.toString().trim() || "",
+    company: formData.get("company")?.toString().trim() || "",
+    message: formData.get("message")?.toString().trim() || "",
+    consent: formData.get("consent") ? "on" : "off"
   };
 
   const error = validateContactForm(payload);
@@ -72,19 +78,17 @@ async function submitContact(event) {
     return;
   }
 
-  setStatus("Envoi en cours...");
+  setStatus("Envoi en cours…");
 
   try {
     await submitToScript(payload);
-    setStatus("Message envoye. Nous revenons vers vous rapidement.", "success");
+    setStatus("Message envoyé. Nous revenons vers vous rapidement.", "success");
     contactForm.reset();
   } catch (err) {
-    setStatus("Impossible d'envoyer le message pour le moment.", "error");
+    setStatus("Impossible d’envoyer le message pour le moment.", "error");
   }
 }
 
 if (contactForm) {
   contactForm.addEventListener("submit", submitContact);
 }
-
-window.submitContact = submitContact;
