@@ -4,8 +4,8 @@
   "description": "Solutions S1000D, XML et digitalisation documentaire.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0E1116",
-  "theme_color": "#2563EB",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0f3f91",
   "icons": [
     {
       "src": "assets/favicon/icon-192.png",

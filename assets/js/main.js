@@ -77,60 +77,6 @@ function initNavbar() {
   }
 }
 
-async function mockServiceStatus() {
-  const banner = document.querySelector("[data-service-status]");
-  if (!banner) return;
-
-  const textNode = banner.querySelector("[data-status-text]");
-
-  if (textNode) {
-    textNode.textContent = "Statut service : verification...";
-  }
-
-  try {
-    // TODO: remplacer par un vrai appel HTTP vers votre API de supervision.
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    banner.dataset.status = "ok";
-    if (textNode) {
-      textNode.textContent = "Statut service : operationnel (demo)";
-    }
-  } catch (error) {
-    banner.dataset.status = "down";
-    if (textNode) {
-      textNode.textContent = "Statut service : indisponible (mock)";
-    }
-  }
-}
-
-function renderBlogList(posts) {
-  const container = document.querySelector("[data-blog-list]");
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  posts.forEach((post) => {
-    const card = document.createElement("article");
-    card.className = "blog-card";
-    card.innerHTML = `
-      <div class="blog-meta">
-        <span>${formatDate(post.date)}</span>
-        ${post.reading_time ? `<span>${post.reading_time}</span>` : ""}
-      </div>
-      <h3>${post.title}</h3>
-      <p>${post.summary}</p>
-      <div>
-        ${post.tags
-          .map((tag) => `<span class="tag" aria-label="Etiquette ${tag}">${tag}</span>`)
-          .join("")}
-      </div>
-      <div>
-        <a class="btn btn-ghost" href="article.html?slug=${encodeURIComponent(post.slug)}">Lire l'article</a>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
-
 function updateArticleMeta(post) {
   document.title = `${post.title} - Blog PPR-Solution`;
   const metaMap = [
@@ -200,7 +146,7 @@ function renderArticle(post) {
         name: "PPR-Solution",
         logo: {
           "@type": "ImageObject",
-          url: "https://www.ppr-solution.com/assets/img/og-default.jpg"
+          url: "https://gooseppr.github.io/ppr_solution_site/assets/img/og-default.jpg"
         }
       },
       datePublished: post.date,
@@ -213,39 +159,31 @@ function renderArticle(post) {
   updateArticleMeta(post);
 }
 
-async function handleBlogPages() {
-  const isBlogIndex = Boolean(document.querySelector("[data-blog-list]"));
+async function handleArticlePage() {
   const isArticle = Boolean(document.querySelector("[data-article-content]"));
-
-  if (!isBlogIndex && !isArticle) return;
+  if (!isArticle) return;
 
   try {
     const response = await fetch("blog/posts.json", { cache: "no-cache" });
     const posts = await response.json();
 
-    if (isBlogIndex) {
-      renderBlogList(posts);
-    }
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
 
-    if (isArticle) {
-      const params = new URLSearchParams(window.location.search);
-      const slug = params.get("slug");
-
-      const post = posts.find((item) => item.slug === slug);
-      if (post) {
-        renderArticle(post);
-      } else {
-        const container = document.querySelector("[data-article-content]");
-        if (container) {
-          container.innerHTML =
-            '<p class="text-muted">Article introuvable. Retournez au <a href="blog.html">blog</a>.</p>';
-        }
+    const post = posts.find((item) => item.slug === slug);
+    if (post) {
+      renderArticle(post);
+    } else {
+      const container = document.querySelector("[data-article-content]");
+      if (container) {
+        container.innerHTML =
+          '<p class="text-muted">Article introuvable. Retournez au <a href="blog.html">blog</a>.</p>';
       }
     }
   } catch (error) {
-    const container = document.querySelector("[data-blog-list]");
+    const container = document.querySelector("[data-article-content]");
     if (container) {
-      container.innerHTML = "<p class=\"text-muted\">Impossible de charger les articles pour le moment.</p>";
+      container.innerHTML = "<p class=\"text-muted\">Impossible de charger l'article pour le moment.</p>";
     }
   }
 }
@@ -260,8 +198,7 @@ function updateFooterYear() {
 document.addEventListener("DOMContentLoaded", () => {
   setupSkipLink();
   initNavbar();
-  mockServiceStatus();
-  handleBlogPages();
+  handleArticlePage();
   updateFooterYear();
 });
 

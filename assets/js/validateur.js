@@ -6,6 +6,16 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 Mo
 const formElement = document.querySelector("#validator-form");
 const resultPanel = document.querySelector(".result-panel");
 
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
 function renderSummary(summary = {}) {
   const entries = [
     { label: "Total", key: "total" },
@@ -26,8 +36,8 @@ function renderSummary(summary = {}) {
         .map(
           ({ label, key }) => `
             <div class="summary-item">
-              <span class="summary-label">${label}</span>
-              <span class="summary-value">${summary[key] ?? 0}</span>
+              <span class="summary-label">${escapeHtml(label)}</span>
+              <span class="summary-value">${escapeHtml(summary[key] ?? 0)}</span>
             </div>
           `
         )
@@ -47,21 +57,22 @@ function renderResult(payload) {
     files.length > 0
       ? files
         .map((item) => {
-          const status = (item.status || "INFO").toLowerCase();
+          const status = escapeHtml((item.status || "INFO").toLowerCase());
+          const filename = escapeHtml(item.filename || "Fichier analysé");
           const errors =
             Array.isArray(item.errors) && item.errors.length > 0
-              ? `<ul class="list-bullet">${item.errors.map((err) => `<li>${err}</li>`).join("")}</ul>`
+              ? `<ul class="list-bullet">${item.errors.map((err) => `<li>${escapeHtml(err)}</li>`).join("")}</ul>`
               : `<p class="text-muted">Aucune erreur signalée.</p>`;
 
           return `
             <article class="result-card" data-status="${status}">
               <header>
-                <h3 title="${item.filename || "Fichier analysé"}">${item.filename || "Fichier analysé"}</h3>
-                <span class="badge">${item.status || "N/A"}</span>
+                <h3 title="${filename}">${filename}</h3>
+                <span class="badge">${escapeHtml(item.status || "N/A")}</span>
               </header>
               ${
                 item.schema_used
-                  ? `<p class="text-muted">Schéma utilisé : ${item.schema_used}</p>`
+                  ? `<p class="text-muted">Schéma utilisé : ${escapeHtml(item.schema_used)}</p>`
                   : ""
               }
               ${errors}
@@ -81,7 +92,7 @@ function renderResult(payload) {
 
 function renderError(message) {
   if (!resultPanel) return;
-  resultPanel.innerHTML = `<p class="text-muted">${message}</p>`;
+  resultPanel.innerHTML = `<p class="text-muted">${escapeHtml(message)}</p>`;
 }
 
 function buildFormData(file) {

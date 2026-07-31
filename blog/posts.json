@@ -11,7 +11,7 @@
     "og_image": "assets/img/og-default.jpg",
     "reading_time": "4 min",
     "content_html": "<p>La <strong>S1000D</strong> est un standard international issu de l’aéronautique pour structurer la documentation technique. Elle repose sur une logique modulaire qui facilite la réutilisation et la maintenance des contenus.</p><p>Chaque module de données est identifié par un <em>Data Module Code</em> (DMC) et suit un schéma XML précis. Cette granularité permet de cibler les mises à jour, d’éviter les doublons et de partager un langage commun entre fabricants et opérateurs.</p><p>Pour une adoption réussie, il est essentiel de cartographier vos modules, d’outiller la validation XML et d’impliquer les équipes métiers dans la gouvernance documentaire.</p>",
-    "canonical": "https://www.ppr-solution.com/article.html?slug=quest-ce-que-la-s1000d"
+    "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=quest-ce-que-la-s1000d"
   },
   {
     "slug": "differences-standards-s-series",
@@ -25,7 +25,7 @@
     "og_image": "assets/img/og-default.jpg",
     "reading_time": "5 min",
     "content_html": "<p>Les <strong>S-Series</strong> forment un ensemble cohérent de spécifications pour soutenir le cycle de vie des systèmes complexes. La <strong>S1000D</strong> se concentre sur la documentation technique, la <strong>S2000M</strong> sur le support logistique et la <strong>S3000L</strong> sur les analyses de soutien logistique intégré.</p><p>Comprendre les interactions entre ces standards permet de synchroniser les référentiels de données et d’assurer une continuité de l’information entre ingénierie, maintenance et supply chain.</p><p>Une gouvernance alignée, des identifiants partagés et des workflows de validation transverses sont indispensables pour concrétiser les bénéfices des S-Series.</p>",
-    "canonical": "https://www.ppr-solution.com/article.html?slug=differences-standards-s-series"
+    "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=differences-standards-s-series"
   },
   {
     "slug": "comprendre-xml-documentation-technique",
@@ -39,6 +39,6 @@
     "og_image": "assets/img/og-default.jpg",
     "reading_time": "4 min",
     "content_html": "<p>Le <strong>XML</strong> est un langage de balisage extensible qui permet de structurer les informations avec précision. Dans la documentation technique, il garantit la cohérence des données, facilite les contrôles automatiques et ouvre la voie à la publication multicanal.</p><p>En définissant des schémas (<em>XSD</em>) et des règles métier, il devient possible de détecter rapidement les incohérences, de versionner finement les mises à jour et d’alimenter des portails ou applications de terrain.</p><p>Pour tirer parti du XML, investissez dans des modèles de contenu clairs, des scripts de transformation fiables et un processus de validation outillé.</p>",
-    "canonical": "https://www.ppr-solution.com/article.html?slug=comprendre-xml-documentation-technique"
+    "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=comprendre-xml-documentation-technique"
   }
 ]

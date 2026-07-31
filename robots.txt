@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ppr-solution.com/sitemap.xml
+Sitemap: https://gooseppr.github.io/ppr_solution_site/sitemap.xml

@@ -17,10 +17,12 @@ Le site sera accessible à `http://localhost:8000` avec l'option Python ou `http
 
 - `index.html` : page d’accueil (services en premier, validateur, contact, blog).
 - `services.html` : détails des missions (audit, conversion, accompagnement).
-- `validateur.html` : démonstration du validateur XML (mock et intégration FastAPI).
+- `validateur.html` : démonstration du validateur XML, branchée sur une API réelle (voir ci-dessous).
 - `blog.html` & `article.html` : index et template article (chargés depuis `blog/posts.json`).
-- `contact.html` : formulaire avec mock Google Apps Script.
+- `contact.html` : formulaire branché sur un Google Apps Script réel (voir ci-dessous).
 - `charte-ethique.html`, `mentions-legales.html`, `confidentialite.html`, `404.html`.
+
+⚠️ `mentions-legales.html` contient un modèle d’entreprise individuelle avec des champs `[à compléter]` (nom, SIRET, adresse) : à remplacer avant toute mise en ligne publique.
 
 ## Prise en main
 
@@ -57,38 +59,25 @@ Modifiez-les pour ajuster la palette, les typographies, les rayons ou les ombres
      "og_image": "assets/img/og-default.jpg",
      "reading_time": "4 min",
      "content_html": "<p>Contenu HTML…</p>",
-     "canonical": "https://www.ppr-solution.com/article.html?slug=nouvel-article"
+     "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=nouvel-article"
    }
    ```
 2. L’index du blog se mettra à jour automatiquement.
 3. L’article sera disponible à `article.html?slug=nouvel-article`.
 
-## Brancher l’API FastAPI
+## API de validation
 
-Dans `assets/js/validateur.js`, remplacer les TODO :
+`assets/js/validateur.js` appelle une API de validation XML S1000D réelle hébergée sur Vercel (`API_BASE_URL`). Le comportement serveur (sécurité XXE, conservation des fichiers, limites de débit) n'est pas documenté ici : à vérifier/durcir côté backend avant toute utilisation en production avec des fichiers sensibles.
 
-```js
-const API_BASE_URL = "https://votre-api.example.com"; // TODO
-const API_VALIDATE_ENDPOINT = "/validate";            // TODO
-```
+## Formulaire de contact
 
-Tant que l’URL contient `ppr-solution.com`, un mock local est utilisé. Ajustez la logique selon votre authentification (Bearer, clé API, etc.).
-
-## Connecter Google Apps Script
-
-Dans `assets/js/contact.js` :
-
-```js
-const GAS_CONTACT_URL = "https://script.google.com/macros/s/XXXXX/exec"; // TODO
-```
-
-Le script envoie un POST JSON contenant `name`, `email`, `company`, `message`. Avec `XXXXX`, un mock renvoie un succès de démonstration.
+`assets/js/contact.js` envoie les soumissions à un Google Apps Script réel (`GAS_CONTACT_URL`). Un champ honeypot (`website`, masqué visuellement) est inclus pour limiter le spam automatisé ; toute soumission remplissant ce champ est silencieusement ignorée côté client.
 
 ## Déploiement GitHub Pages
 
 1. Pousser le dossier `site/` dans la branche publiée (`main` ou `gh-pages`).
 2. Activer GitHub Pages (*Settings > Pages*) et pointer vers `/site`.
-3. Pour un domaine personnalisé, ajouter le CNAME et s’assurer que `sitemap.xml` et `robots.txt` sont bien exposés.
+3. Le site est actuellement publié sans domaine personnalisé : canonical, Open Graph, `sitemap.xml` et `robots.txt` pointent vers l'URL GitHub Pages (`https://gooseppr.github.io/ppr_solution_site/`). Si un domaine personnalisé (ex. `www.ppr-solution.com`) est configuré plus tard, remplacer systématiquement cette URL de base dans tous les fichiers HTML, `sitemap.xml`, `robots.txt` et `blog/posts.json`.
 
 ## Accessibilité & SEO
 
@@ -101,7 +90,7 @@ Le script envoie un POST JSON contenant `name`, `email`, `company`, `message`. A
 ## Tests rapides
 
 - Servir en local (`npx serve .`) pour vérifier les menus, CTA et liens.
-- Tester le validateur : déposer un fichier ou déclencher `mockDemo()` dans la console.
-- Vérifier le formulaire de contact : un message mock s’affiche tant que l’URL GAS n’est pas renseignée.
+- Tester le validateur : déposer un fichier XML S1000D réel (Issue 6.0) et vérifier le rapport retourné par l'API.
+- Vérifier le formulaire de contact : soumettre un message réel et confirmer sa réception côté Google Apps Script.
 
 Bon déploiement !

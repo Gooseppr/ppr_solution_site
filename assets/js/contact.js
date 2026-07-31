@@ -17,17 +17,31 @@ function setStatus(message, type = "") {
   }
 }
 
+function setFieldError(fieldId, errorId, message) {
+  const field = document.querySelector(`#${fieldId}`);
+  const errorNode = document.querySelector(`#${errorId}`);
+  if (errorNode) errorNode.textContent = message || "";
+  if (field) {
+    if (message) {
+      field.setAttribute("aria-invalid", "true");
+    } else {
+      field.removeAttribute("aria-invalid");
+    }
+  }
+}
+
 function validateContactForm(data) {
-  if (!data.email || !emailRegex.test(data.email)) {
-    return "Renseignez une adresse email valide.";
-  }
-  if (!data.message || data.message.trim().length < 10) {
-    return "Le message doit comporter au moins 10 caractères.";
-  }
-  if (data.consent !== "on") {
-    return "Merci d’accepter d’être recontacté pour que nous puissions répondre.";
-  }
-  return null;
+  let firstError = null;
+
+  const emailValid = data.email && emailRegex.test(data.email);
+  setFieldError("contact-email", "contact-email-error", emailValid ? "" : "Renseignez une adresse email valide.");
+  if (!emailValid) firstError = firstError || "Renseignez une adresse email valide.";
+
+  const messageValid = data.message && data.message.trim().length >= 10;
+  setFieldError("contact-message", "contact-message-error", messageValid ? "" : "Le message doit comporter au moins 10 caractères.");
+  if (!messageValid) firstError = firstError || "Le message doit comporter au moins 10 caractères.";
+
+  return firstError;
 }
 
 async function submitToScript(data) {
@@ -64,12 +78,20 @@ async function submitContact(event) {
   if (!contactForm) return;
 
   const formData = new FormData(contactForm);
+
+  // Champ honeypot : rempli uniquement par des robots, jamais visible pour un humain.
+  if (formData.get("website")) {
+    setStatus("Message envoyé. Nous revenons vers vous rapidement.", "success");
+    contactForm.reset();
+    return;
+  }
+
   const payload = {
     name: formData.get("name")?.toString().trim() || "",
     email: formData.get("email")?.toString().trim() || "",
     company: formData.get("company")?.toString().trim() || "",
     message: formData.get("message")?.toString().trim() || "",
-    consent: formData.get("consent") ? "on" : "off"
+    marketing: formData.get("marketing") ? "on" : "off"
   };
 
   const error = validateContactForm(payload);

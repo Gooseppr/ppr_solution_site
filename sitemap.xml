@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.ppr-solution.com/index.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/index.html</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/services.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/services.html</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/validateur.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/validateur.html</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/blog.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/blog.html</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/article.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/article.html?slug=quest-ce-que-la-s1000d</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/contact.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/article.html?slug=differences-standards-s-series</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/charte-ethique.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/article.html?slug=comprendre-xml-documentation-technique</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/mentions-legales.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/contact.html</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/confidentialite.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/charte-ethique.html</loc>
   </url>
   <url>
-    <loc>https://www.ppr-solution.com/404.html</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/mentions-legales.html</loc>
+  </url>
+  <url>
+    <loc>https://gooseppr.github.io/ppr_solution_site/confidentialite.html</loc>
   </url>
 </urlset>
