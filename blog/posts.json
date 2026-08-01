@@ -5,13 +5,16 @@
     "description": "Panorama rapide du standard S1000D, de ses objectifs et de sa structure documentaire.",
     "meta_description": "Comprenez les fondamentaux du standard S1000D et pourquoi il structure les publications techniques aéronautiques.",
     "date": "2025-01-15",
-    "tags": ["S1000D", "Documentation"],
+    "tags": [
+      "S1000D",
+      "Documentation"
+    ],
     "summary": "Les bases du standard S1000D, ses principes de modularité et l’intérêt d’une gouvernance rigoureuse.",
     "hero_image": "assets/img/og-default.jpg",
     "og_image": "assets/img/og-default.jpg",
     "reading_time": "4 min",
     "content_html": "<p>La <strong>S1000D</strong> est un standard international issu de l’aéronautique pour structurer la documentation technique. Elle repose sur une logique modulaire qui facilite la réutilisation et la maintenance des contenus.</p><p>Chaque module de données est identifié par un <em>Data Module Code</em> (DMC) et suit un schéma XML précis. Cette granularité permet de cibler les mises à jour, d’éviter les doublons et de partager un langage commun entre fabricants et opérateurs.</p><p>Pour une adoption réussie, il est essentiel de cartographier vos modules, d’outiller la validation XML et d’impliquer les équipes métiers dans la gouvernance documentaire.</p>",
-    "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=quest-ce-que-la-s1000d"
+    "canonical": "https://gooseppr.github.io/ppr_solution_site/blog/quest-ce-que-la-s1000d/"
   },
   {
     "slug": "differences-standards-s-series",
@@ -19,13 +22,16 @@
     "description": "Comparer les standards S-Series pour mieux articuler support logistique et documentations techniques.",
     "meta_description": "Comparatif des standards S-Series : S1000D, S2000M et S3000L, leurs apports et complémentarités.",
     "date": "2025-02-02",
-    "tags": ["S-Series", "Logistique"],
+    "tags": [
+      "S-Series",
+      "Logistique"
+    ],
     "summary": "S1000D, S2000M et S3000L se complètent pour décrire le support, la logistique et la maintenance. Focus sur leurs périmètres.",
     "hero_image": "assets/img/og-default.jpg",
     "og_image": "assets/img/og-default.jpg",
     "reading_time": "5 min",
     "content_html": "<p>Les <strong>S-Series</strong> forment un ensemble cohérent de spécifications pour soutenir le cycle de vie des systèmes complexes. La <strong>S1000D</strong> se concentre sur la documentation technique, la <strong>S2000M</strong> sur le support logistique et la <strong>S3000L</strong> sur les analyses de soutien logistique intégré.</p><p>Comprendre les interactions entre ces standards permet de synchroniser les référentiels de données et d’assurer une continuité de l’information entre ingénierie, maintenance et supply chain.</p><p>Une gouvernance alignée, des identifiants partagés et des workflows de validation transverses sont indispensables pour concrétiser les bénéfices des S-Series.</p>",
-    "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=differences-standards-s-series"
+    "canonical": "https://gooseppr.github.io/ppr_solution_site/blog/differences-standards-s-series/"
   },
   {
     "slug": "comprendre-xml-documentation-technique",
@@ -33,12 +39,15 @@
     "description": "Les principes du XML appliqués aux publications techniques et la structure des schémas associés.",
     "meta_description": "Pourquoi le XML reste clé pour la documentation technique : schémas, validation et transformations.",
     "date": "2025-02-20",
-    "tags": ["XML", "Transformation"],
+    "tags": [
+      "XML",
+      "Transformation"
+    ],
     "summary": "Le XML structure les contenus techniques, facilite la validation automatique et la publication multi-support.",
     "hero_image": "assets/img/og-default.jpg",
     "og_image": "assets/img/og-default.jpg",
     "reading_time": "4 min",
     "content_html": "<p>Le <strong>XML</strong> est un langage de balisage extensible qui permet de structurer les informations avec précision. Dans la documentation technique, il garantit la cohérence des données, facilite les contrôles automatiques et ouvre la voie à la publication multicanal.</p><p>En définissant des schémas (<em>XSD</em>) et des règles métier, il devient possible de détecter rapidement les incohérences, de versionner finement les mises à jour et d’alimenter des portails ou applications de terrain.</p><p>Pour tirer parti du XML, investissez dans des modèles de contenu clairs, des scripts de transformation fiables et un processus de validation outillé.</p>",
-    "canonical": "https://gooseppr.github.io/ppr_solution_site/article.html?slug=comprendre-xml-documentation-technique"
+    "canonical": "https://gooseppr.github.io/ppr_solution_site/blog/comprendre-xml-documentation-technique/"
   }
 ]

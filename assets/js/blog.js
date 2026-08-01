@@ -47,7 +47,7 @@ function render(list){
           ${(p.tags||[]).length ? `<span class="badge">${p.tags[0]}</span>` : ``}
         </div>
         <h3 class="blog-card__title">
-          <a href="article.html?slug=${encodeURIComponent(p.slug)}">${p.title}</a>
+          <a href="blog/${encodeURIComponent(p.slug)}/">${p.title}</a>
         </h3>
         ${p.description ? `<p class="blog-card__excerpt">${p.description}</p>` : `<p class="blog-card__excerpt">&nbsp;</p>`}
       </div>

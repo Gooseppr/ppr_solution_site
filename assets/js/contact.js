@@ -1,3 +1,6 @@
+// TODO (côté serveur / Apps Script, hors dépôt) : le honeypot "website" n'est
+// vérifié que côté client ici. À terme, le rejeter aussi côté serveur et
+// ajouter une protection anti-abus (rate limiting) sur cet endpoint.
 const GAS_CONTACT_URL =
   "https://script.google.com/macros/s/AKfycbxF8eVCMlGEck31E88W8FXm_qfdWAm0YPYdAO8k2EGKqXKNt1rFoAss7y06GliI1PDeyg/exec";
 

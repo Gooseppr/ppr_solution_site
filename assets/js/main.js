@@ -46,32 +46,54 @@ function initNavbar() {
   const menu = document.querySelector("[data-nav-menu]");
   const navLinks = document.querySelectorAll("[data-nav-link]");
 
+  // Pages regroupées sous "Ressources" dans la navigation principale.
+  const RESSOURCES_PAGES = ["blog.html", "article.html", "demonstrations.html", "validateur.html"];
+
   function markActiveNav() {
-    const current = window.location.pathname.split("/").pop() || "index.html";
+    const pathname = window.location.pathname;
+    let current = pathname.split("/").filter(Boolean).pop() || "index.html";
+    // Pages d'article statiques servies comme /blog/<slug>/ (index.html implicite).
+    if (/\/blog\/[^/]+\/?$/.test(pathname) && current !== "blog.html") {
+      current = "article.html";
+    }
     navLinks.forEach((link) => {
       const target = link.getAttribute("href");
       if (!target) return;
       const normalized = target.split("/").pop() || "index.html";
-      if (normalized === current || (normalized === "blog.html" && current === "article.html")) {
-        link.classList.add("is-active");
-      } else {
-        link.classList.remove("is-active");
-      }
+      const isMatch =
+        normalized === current ||
+        (normalized === "ressources.html" && RESSOURCES_PAGES.includes(current));
+      link.classList.toggle("is-active", isMatch);
     });
   }
 
   markActiveNav();
 
   if (toggle && menu) {
-    toggle.addEventListener("click", () => {
-      const isOpen = menu.classList.toggle("open");
+    const toggleLabel = toggle.querySelector(".sr-only");
+
+    function setMenuOpen(isOpen) {
+      menu.classList.toggle("open", isOpen);
       toggle.setAttribute("aria-expanded", String(isOpen));
+      if (toggleLabel) {
+        toggleLabel.textContent = isOpen ? "Fermer le menu" : "Ouvrir le menu";
+      }
+    }
+
+    toggle.addEventListener("click", () => {
+      setMenuOpen(!menu.classList.contains("open"));
     });
 
     menu.addEventListener("click", (event) => {
       if (event.target.matches("a")) {
-        menu.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menu.classList.contains("open")) {
+        setMenuOpen(false);
+        toggle.focus();
       }
     });
   }
