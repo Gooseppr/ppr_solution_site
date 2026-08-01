@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Démonstrations techniques · PPR-Solution</title>
-  <meta name="description" content="Démonstrations et jeux d'essai illustrant nos interventions XML : audit, transformation, automatisation et précontrôle S1000D. Aucun cas client, uniquement des cas fictifs.">
+  <meta name="description" content="Audit XML multi-erreurs, extraction vers Excel, transformation XML A vers XML B, génération PDF/HTML, comparaison de versions, précontrôle S1000D. Aucun cas client, uniquement des démonstrations.">
   <link rel="canonical" href="https://gooseppr.github.io/ppr_solution_site/demonstrations.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#0f3f91">
   <meta property="og:title" content="Démonstrations techniques · PPR-Solution">
-  <meta property="og:description" content="Audit XML, transformation documentaire, automatisation de flux et précontrôle S1000D : nos démonstrations et jeux d'essai.">
+  <meta property="og:description" content="Audit XML, extraction vers Excel, transformation, génération documentaire, comparaison et précontrôle S1000D.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gooseppr.github.io/ppr_solution_site/demonstrations.html">
   <meta property="og:image" content="https://gooseppr.github.io/ppr_solution_site/assets/img/og-default.jpg">
@@ -76,44 +76,80 @@
           <div class="hero-light-content">
             <span class="hero-eyebrow">Preuves techniques</span>
             <h1>Démonstrations</h1>
-            <p>Cette page rassemble nos démonstrations techniques et jeux d'essai. Elle deviendra progressivement notre portfolio technique. Aucun élément présenté ici n'est un projet client réel : il s'agit uniquement de démonstrations, de cas fictifs ou de corpus publics utilisés à des fins pédagogiques.</p>
+            <p>Six démonstrations concrètes, chacune centrée sur une problématique XML réelle. Aucun élément présenté ici n'est un projet client : uniquement des démonstrations techniques, des cas fictifs ou des corpus publics utilisés à des fins pédagogiques.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-panel" id="audit-rejete">
+    <section class="section section-panel" id="audit-multi-erreurs">
       <div class="container">
         <div class="section-title">
-          <h2>A. Audit d'un XML rejeté</h2>
+          <h2>A. Audit XML multi-erreurs</h2>
           <span class="badge-pill">En préparation</span>
         </div>
         <hr class="divider" aria-hidden="true">
-        <p>Un fichier XML valide, une copie volontairement rendue incorrecte, un schéma XSD associé et le rapport d'anomalies correspondant. L'objectif : montrer comment une anomalie est détectée, classée et expliquée.</p>
-        <p class="text-muted"><em>Démonstration technique — jeu d'essai créé spécifiquement pour PPR-Solution. Le contenu de cette démonstration n'est pas encore publié dans le dépôt.</em></p>
+        <p>Un corpus fictif accompagné de son XSD : bien-formé cassé, XSD non respecté, namespaces incorrects, références manquantes. La démonstration montrera la classification des erreurs (warning/error) et le rapport de synthèse produit — le même type de résultat que la prestation <a href="services.html#controle">Contrôle et qualification XML</a>.</p>
+        <p class="text-muted"><em>Démonstration technique — corpus fictif créé spécifiquement pour PPR-Solution. Pas encore publiée dans le dépôt.</em></p>
+      </div>
+    </section>
+
+    <section class="section section-panel section-tight" id="extraction-excel">
+      <div class="container">
+        <div class="section-title">
+          <h2>B. Extraction XML vers Excel</h2>
+          <span class="badge-pill">En préparation</span>
+        </div>
+        <hr class="divider" aria-hidden="true">
+        <p>Un corpus fictif de plusieurs centaines de fichiers XML : extraction XPath de plusieurs informations par fichier, consolidation dans un tableau Excel unique avec statistiques. Cette démonstration illustre que PPR-Solution ne fait pas que valider du XML — elle en exploite le contenu. Correspond à la prestation <a href="services.html#extraction">Extraction et exploitation de données XML</a>.</p>
+        <p class="text-muted"><em>Démonstration technique — corpus fictif. Pas encore publiée dans le dépôt.</em></p>
+      </div>
+    </section>
+
+    <section class="section section-panel section-tight" id="transformation-ab">
+      <div class="container">
+        <div class="section-title">
+          <h2>C. Transformation XML A vers XML B</h2>
+          <span class="badge-pill">En préparation</span>
+        </div>
+        <hr class="divider" aria-hidden="true">
+        <p>Un XSD source, un XSD cible, le mapping entre les deux modèles, la transformation appliquée et la validation du résultat contre le schéma cible. Correspond à la prestation <a href="services.html#transformation">Transformation et conversion XML</a>.</p>
+        <p class="text-muted"><em>Démonstration technique — cas fictif. Pas encore publiée dans le dépôt.</em></p>
       </div>
     </section>
 
     <section class="section section-panel section-tight" id="xml-vers-pdf">
       <div class="container">
         <div class="section-title">
-          <h2>B. XML vers PDF / HTML</h2>
+          <h2>D. XML vers PDF / HTML</h2>
           <span class="badge-pill">En préparation</span>
         </div>
         <hr class="divider" aria-hidden="true">
-        <p>Un XML source, la transformation appliquée, un aperçu PDF et éventuellement HTML, accompagnés d'un rapport de génération. Un aperçu de ce type de transformation est déjà visible sur notre page <a href="services.html#transformation">Transformation et publication documentaire</a>.</p>
-        <p class="text-muted"><em>Démonstration technique — cas fictif. Le rapport de génération détaillé n'est pas encore publié dans le dépôt.</em></p>
+        <p>Un XML source, la transformation XSLT/XSL-FO appliquée, un aperçu PDF et éventuellement HTML, accompagnés d'un rapport de génération. Un premier aperçu de ce type de transformation est déjà visible sur la page <a href="services.html#generation">Génération documentaire à partir de XML</a>.</p>
+        <p class="text-muted"><em>Démonstration technique — cas fictif. Rapport de génération détaillé pas encore publié dans le dépôt.</em></p>
+      </div>
+    </section>
+
+    <section class="section section-panel section-tight" id="comparaison">
+      <div class="container">
+        <div class="section-title">
+          <h2>E. Comparaison XML</h2>
+          <span class="badge-pill">En préparation</span>
+        </div>
+        <hr class="divider" aria-hidden="true">
+        <p>Une version de référence (baseline) et une nouvelle version d'un même corpus : différences structurelles et de valeurs, ajouts, suppressions, éléments nécessitant une décision humaine. Correspond à la prestation <a href="services.html#comparaison">Analyse et comparaison XML</a>.</p>
+        <p class="text-muted"><em>Démonstration technique — cas fictif. Pas encore publiée dans le dépôt.</em></p>
       </div>
     </section>
 
     <section class="section section-panel section-tight" id="s1000d">
       <div class="container">
         <div class="section-title">
-          <h2>C. Précontrôle d'un corpus S1000D</h2>
+          <h2>F. Précontrôle d'un corpus S1000D</h2>
           <span class="badge">Disponible</span>
         </div>
         <hr class="divider" aria-hidden="true">
-        <p>Notre validateur XML S1000D est un outil de démonstration fonctionnel : chargez un module S1000D (Issue 6.0) et obtenez un contrôle structurel en temps réel.</p>
+        <p>Notre validateur XML S1000D est un outil de démonstration fonctionnel, dès aujourd'hui : chargez un module S1000D (Issue 6.0) et obtenez un contrôle structurel en temps réel.</p>
         <p class="text-muted">Un jeu d'essai basé sur un corpus public d'exercice (par exemple le Bike Sample S1000D) est en préparation pour illustrer le précontrôle sans dépendre d'un fichier client. Ce corpus, lorsqu'il sera intégré, restera en lecture seule et sera présenté comme un corpus d'exercice — jamais comme un client, et sans qu'aucune certification de conformité ne soit délivrée.</p>
         <div class="cta-group" style="margin-top: var(--space-2);">
           <a class="btn btn-primary" href="validateur.html">Tester le validateur XML S1000D</a>
@@ -121,35 +157,11 @@
       </div>
     </section>
 
-    <section class="section section-panel section-tight" id="comparaison">
-      <div class="container">
-        <div class="section-title">
-          <h2>D. Comparaison / non-régression</h2>
-          <span class="badge-pill">En préparation</span>
-        </div>
-        <hr class="divider" aria-hidden="true">
-        <p>Une version de référence (baseline), une nouvelle version, les différences structurelles et documentaires identifiées, puis une synthèse permettant une décision éclairée.</p>
-        <p class="text-muted"><em>Démonstration technique — cas fictif. Non encore publiée dans le dépôt.</em></p>
-      </div>
-    </section>
-
-    <section class="section section-panel section-tight" id="flux-metier">
-      <div class="container">
-        <div class="section-title">
-          <h2>E. Flux XML métier</h2>
-          <span class="badge-pill">En préparation</span>
-        </div>
-        <hr class="divider" aria-hidden="true">
-        <p>Un exemple fictif de flux : un fichier accepté, un fichier rejeté, les règles de validation appliquées et le rapport résultant.</p>
-        <p class="text-muted"><em>Démonstration technique — cas fictif. Non encore publiée dans le dépôt.</em></p>
-      </div>
-    </section>
-
     <section class="section section-tight">
       <div class="container">
         <article class="card">
           <h3>Exemple de rapport</h3>
-          <p>Un exemple de rapport téléchargeable sera ajouté ici dès qu'un rapport de démonstration aura été préparé à partir d'un cas de test. Aucun rapport prétendant provenir d'un client réel ne sera publié.</p>
+          <p>Un exemple de rapport téléchargeable (audit multi-erreurs ou extraction Excel) sera ajouté ici dès qu'il aura été préparé à partir d'un cas de test. Aucun rapport prétendant provenir d'un client réel ne sera publié.</p>
           <a class="btn btn-ghost" href="contact.html">Demander un prédiagnostic</a>
         </article>
       </div>
@@ -158,7 +170,7 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="footer-year"></span> PPR-Solution · Contrôle, transformation et automatisation XML</p>
+      <p>© <span id="footer-year"></span> PPR-Solution · Prestations XML et documentation structurée</p>
       <div class="footer-links">
         <a href="a-propos.html">À propos</a>
         <a href="ressources.html">Ressources</a>

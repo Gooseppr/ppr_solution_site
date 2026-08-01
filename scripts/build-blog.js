@@ -176,7 +176,7 @@ ${JSON.stringify(schema, null, 2)}
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="footer-year"></span> PPR-Solution · Contrôle, transformation et automatisation XML</p>
+      <p>© <span id="footer-year"></span> PPR-Solution · Prestations XML et documentation structurée</p>
       <div class="footer-links">
         <a href="../../a-propos.html">À propos</a>
         <a href="../../ressources.html">Ressources</a>

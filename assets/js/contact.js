@@ -93,6 +93,10 @@ async function submitContact(event) {
     name: formData.get("name")?.toString().trim() || "",
     email: formData.get("email")?.toString().trim() || "",
     company: formData.get("company")?.toString().trim() || "",
+    need: formData.get("need")?.toString().trim() || "",
+    format: formData.get("format")?.toString().trim() || "",
+    schemas: formData.get("schemas")?.toString().trim() || "",
+    deadline: formData.get("deadline")?.toString().trim() || "",
     message: formData.get("message")?.toString().trim() || "",
     marketing: formData.get("marketing") ? "on" : "off"
   };

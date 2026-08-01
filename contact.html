@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact · PPR-Solution</title>
-  <meta name="description" content="Contactez PPR-Solution pour cadrer vos besoins S1000D, XML et documentation technique.">
+  <meta name="description" content="Contactez PPR-Solution pour cadrer vos besoins XML : contrôle, extraction, transformation, migration, comparaison, publication ou documentation S1000D.">
   <link rel="canonical" href="https://gooseppr.github.io/ppr_solution_site/contact.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,17 +127,52 @@
               <div class="contact-column info-column">
                 <h3>Informations utiles</h3>
                 <ul class="list-bullet">
-                  <li>Volumes concernés et échéances.</li>
-                  <li>Environnements techniques ou contraintes IT.</li>
-                  <li>Scope attendu : audit, conversion, automation, support.</li>
+                  <li>Volume approximatif de fichiers et échéance.</li>
+                  <li>Schémas disponibles (XSD, DTD, Schematron, BREX…).</li>
+                  <li>Résultat attendu : rapport, fichiers corrigés, extraction, export…</li>
                 </ul>
                 <p class="text-muted">NDA et transfert sécurisé (SFTP) disponibles sur demande.</p>
+              </div>
+            </div>
+            <div class="contact-top">
+              <div class="contact-column">
+                <div class="form-field">
+                  <label for="contact-need">Type de besoin</label>
+                  <select id="contact-need" name="need">
+                    <option value="">Sélectionnez si possible</option>
+                    <option value="controler">Contrôler des XML</option>
+                    <option value="analyser-rejet">Analyser un rejet</option>
+                    <option value="extraire">Extraire des données</option>
+                    <option value="transformer">Transformer des fichiers</option>
+                    <option value="convertir">Convertir vers/depuis XML</option>
+                    <option value="corpus">Traiter un corpus</option>
+                    <option value="migrer">Migrer des XML</option>
+                    <option value="generer">Générer des documents</option>
+                    <option value="comparer">Comparer des versions</option>
+                    <option value="s1000d">S1000D / documentation structurée</option>
+                    <option value="autre">Autre problématique XML</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="contact-format">Format XML / volume approximatif</label>
+                  <input type="text" id="contact-format" name="format" placeholder="Ex. S1000D Issue 6.0, ~2 000 fichiers">
+                </div>
+              </div>
+              <div class="contact-column">
+                <div class="form-field">
+                  <label for="contact-schemas">Schémas disponibles</label>
+                  <input type="text" id="contact-schemas" name="schemas" placeholder="Ex. XSD fourni, BREX du programme, aucun schéma">
+                </div>
+                <div class="form-field">
+                  <label for="contact-deadline">Échéance</label>
+                  <input type="text" id="contact-deadline" name="deadline" placeholder="Ex. sous 2 semaines, pas de contrainte">
+                </div>
               </div>
             </div>
             <div class="contact-bottom">
               <div class="form-field">
                 <label for="contact-message">Message <span class="text-muted">*</span></label>
-                <textarea id="contact-message" name="message" rows="6" required aria-describedby="contact-message-error"></textarea>
+                <textarea id="contact-message" name="message" rows="6" required aria-describedby="contact-message-error" placeholder="Décrivez votre besoin et le résultat attendu."></textarea>
                 <p id="contact-message-error" class="form-helper" role="alert"></p>
               </div>
               <p class="form-helper">Les informations saisies sont utilisées uniquement pour répondre à votre demande. Consultez notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
@@ -161,8 +196,10 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="footer-year"></span> PPR-Solution · Expertise documentaire S1000D</p>
+      <p>© <span id="footer-year"></span> PPR-Solution · Prestations XML et documentation structurée</p>
       <div class="footer-links">
+        <a href="a-propos.html">À propos</a>
+        <a href="ressources.html">Ressources</a>
         <a href="charte-ethique.html">Charte éthique</a>
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="confidentialite.html">Confidentialité</a>

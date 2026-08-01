@@ -1,9 +1,9 @@
 # PPR-Solution · Site statique
 
-Site vitrine statique pour une activité indépendante de prestations XML : diagnostic/audit, transformation documentaire, automatisation de flux, avec une spécialisation forte en S1000D.
+Site vitrine statique pour une activité indépendante de prestations XML : contrôle, traitement de corpus, extraction, transformation, migration, génération documentaire et comparaison, avec une spécialisation forte en S1000D.
 Technologies : HTML5, CSS3 (vanilla), JavaScript sans dépendances externes. Un script Node.js (sans dépendance) génère les pages statiques du blog.
 
-PPR-Solution vend des prestations et des livrables (rapports, fichiers transformés, scripts documentés) — pas un logiciel ni une plateforme SaaS. Le validateur XML S1000D est un démonstrateur technique, pas le produit principal.
+PPR-Solution vend des prestations et des livrables (rapports, fichiers transformés, extractions, exports, scripts documentés) — pas un logiciel ni une plateforme SaaS. L'« atelier XML » interne (contrôles automatisés, XPath/XQuery, XSLT/XSL-FO…) est la capacité de production, pas le produit vendu. Le validateur XML S1000D est un démonstrateur technique, pas le produit principal. XML reste le centre de gravité : les autres formats (CSV, Excel, JSON, SQL, PDF, HTML…) n'apparaissent que lorsqu'ils sont l'entrée ou la sortie d'un traitement XML.
 
 ## 🚀 Lancer le site en local
 
@@ -19,16 +19,21 @@ Le site sera accessible à `http://localhost:8000` avec l'option Python ou `http
 
 ## Structure des pages
 
-- `index.html` : accueil (situations traitées, quatre familles de services, démonstrations, blog).
-- `services.html` : quatre familles de prestations avec blocs « vous fournissez / nous analysons / nous réalisons / vous recevez / limites ».
-  1. Diagnostic, audit et contrôle XML (`#diagnostic`)
-  2. Transformation et publication documentaire (`#transformation`)
-  3. Automatisation et fiabilisation de flux (`#automatisation`)
-  4. Documentation industrielle & S1000D (`#s1000d`)
-  5. Votre XML suit un autre standard ? (`#autres-standards`)
-- `demonstrations.html` : démonstrations techniques et jeux d'essai (aucun cas client réel, uniquement des cas fictifs ou corpus publics marqués comme tels).
+- `index.html` : accueil (sept opérations XML, prestations, démonstrations, blog).
+- `services.html` : sept familles « Travailler sur vos XML » + une famille flagship « Expertise documentaire structurée » :
+  1. Contrôle et qualification XML (`#controle`)
+  2. Traitement et correction de corpus XML (`#corpus`)
+  3. Extraction et exploitation de données XML (`#extraction`)
+  4. Transformation et conversion XML (`#transformation`)
+  5. Migration et restructuration XML (`#migration`)
+  6. Génération documentaire à partir de XML (`#generation`)
+  7. Analyse et comparaison XML (`#comparaison`)
+  8. Documentation structurée et standards XML / S1000D (`#s1000d`)
+  9. Votre XML suit un autre standard ? (`#autres-standards`)
+  10. L'atelier XML PPR-Solution (`#atelier`) — capacité interne, pas un produit vendu.
+- `demonstrations.html` : 6 démonstrations resserrées (A. Audit multi-erreurs, B. Extraction vers Excel, C. Transformation XML A→B, D. XML vers PDF/HTML, E. Comparaison, F. Précontrôle S1000D — seule celle-ci réellement disponible via le validateur). Aucun cas client réel, uniquement des cas fictifs ou corpus publics marqués comme tels.
 - `ressources.html` : page d'agrégation (blog, démonstrations, validateur, futurs rapports d'exemple).
-- `a-propos.html` : positionnement (activité indépendante, pas d'équipe), méthode en 9 étapes, section transfert de fichiers/confidentialité.
+- `a-propos.html` : positionnement (activité indépendante, pas d'équipe), méthode en 12 étapes, section transfert de fichiers/confidentialité.
 - `validateur.html` : démonstrateur du validateur XML S1000D, branché sur une API réelle (voir ci-dessous). Accessible depuis Démonstrations, plus dans le niveau principal de navigation.
 - `blog.html` : index du blog avec recherche/tri (`assets/js/blog.js`), chargé depuis `blog/posts.json`.
 - `blog/<slug>/index.html` : pages statiques générées par article (voir « Générer le blog » ci-dessous).
@@ -90,7 +95,13 @@ Pour ajouter un article :
 2. Lancer `node scripts/build-blog.js` : la page `blog/nouvel-article/index.html` est générée (ou régénérée).
 3. `blog.html` (index avec recherche/tri) se met à jour automatiquement depuis `blog/posts.json`, sans regénération nécessaire.
 
-Ne pas rédiger de nouveaux articles uniquement pour remplir le site : le générateur est prêt, le contenu doit correspondre à de vraies recherches (voir la liste de sujets prioritaires discutée avec le fondateur : validation XML/XSD, transformation documentaire, automatisation, S1000D).
+Ne pas rédiger de nouveaux articles uniquement pour remplir le site : le générateur est prêt, le contenu doit correspondre à de vraies recherches. Sujets éditoriaux prioritaires (architecture prête, contenu à produire progressivement) :
+
+- **XML / validation** : XML bien formé vs XML valide, comprendre un XSD, erreurs XSD fréquentes, contrôler un lot/corpus de fichiers XML, XSD vs DTD vs Schematron.
+- **Extraction** : extraire des données de milliers de fichiers XML, XPath appliqué à un cas concret, XML vers Excel, XML vers JSON.
+- **Transformation / conversion** : XSLT, CSV vers XML, migrer un schéma XML, gérer les namespaces, SAX vs DOM, XML Catalogs, générer un PDF depuis XML.
+- **Comparaison / qualité** : comparer deux XML, éviter les régressions documentaire.
+- **Documentation structurée** : XML vs Word/PDF pour la documentation technique, S1000D (fonctionnement général, Data Modules, XSD, BREX, références et ressources, contrôle avant livraison).
 
 ## API de validation
 
