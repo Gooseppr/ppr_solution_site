@@ -2,6 +2,17 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("ppr-theme");
+        var theme = stored === "light" || stored === "dark"
+          ? stored
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PPR-Solution · Prestations XML, données structurées et documentation technique</title>
   <meta name="description" content="Vos fichiers, corpus ou documents XML à contrôler, exploiter, transformer, corriger, migrer ou publier : PPR-Solution prend en charge le traitement et vous livre les résultats. Expertise forte en S1000D.">
@@ -68,6 +79,10 @@
         <span class="brand-mark">PPR</span>
         <span>PPR-Solution</span>
       </a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème sombre">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path></svg>
+      </button>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
         <span class="sr-only">Ouvrir le menu</span>
         <span class="nav-icon"></span>
@@ -86,7 +101,7 @@
   <main id="main-content">
     <section class="section-hero">
       <div class="container">
-        <div class="hero hero-split">
+        <div class="hero">
           <div class="hero-content">
             <h1>Vos données XML, contrôlées, exploitées et transformées</h1>
             <p>Vous avez des fichiers, corpus ou documents XML à contrôler, exploiter, transformer, convertir, corriger, migrer ou publier : PPR-Solution prend en charge le traitement et vous fournit les résultats et livrables nécessaires. Expertise particulière en documentation structurée et S1000D.</p>
@@ -191,12 +206,11 @@
 
     <section class="section section-tight">
       <div class="container">
-        <div class="section-title">
-          <h2>Votre XML suit un autre standard ?</h2>
-        </div>
-        <hr class="divider" aria-hidden="true">
-        <p>Lorsque votre format repose sur un schéma, une spécification ou des règles documentées, PPR-Solution peut étudier sa structure et mettre en place un contrôle adapté. Nous n'affirmons pas maîtriser toutes les normes XML existantes : nous étudions les formats documentés au cas par cas. S1000D reste notre expertise déjà disponible.</p>
-        <a class="btn btn-ghost" href="services.html#autres-standards">Voir notre approche</a>
+        <article class="card">
+          <h3>Votre XML suit un autre standard ?</h3>
+          <p>Lorsque votre format repose sur un schéma, une spécification ou des règles documentées, PPR-Solution peut étudier sa structure et mettre en place un contrôle adapté. Nous n'affirmons pas maîtriser toutes les normes XML existantes : nous étudions les formats documentés au cas par cas. S1000D reste notre expertise déjà disponible.</p>
+          <a class="btn btn-ghost" href="services.html#autres-standards">Voir notre approche</a>
+        </article>
       </div>
     </section>
 
