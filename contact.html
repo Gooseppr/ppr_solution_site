@@ -88,7 +88,7 @@
     <section class="section-hero-light">
       <div class="container">
         <div class="hero-light">
-          <div class="hero-content-light">
+          <div class="hero-light-content">
             <span class="hero-eyebrow">Contact direct</span>
             <h1>Discutons de vos projets</h1>
           </div>
@@ -108,8 +108,8 @@
               <label for="contact-website">Ne pas remplir ce champ</label>
               <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
             </div>
-            <div class="contact-top">
-              <div class="contact-column">
+            <div class="contact-grid">
+              <div class="contact-fields">
                 <div class="form-field">
                   <label for="contact-name">Nom complet</label>
                   <input type="text" id="contact-name" name="name" autocomplete="name">
@@ -123,19 +123,6 @@
                   <label for="contact-company">Société</label>
                   <input type="text" id="contact-company" name="company" autocomplete="organization">
                 </div>
-              </div>
-              <div class="contact-column info-column">
-                <h3>Informations utiles</h3>
-                <ul class="list-bullet">
-                  <li>Volume approximatif de fichiers et échéance.</li>
-                  <li>Schémas disponibles (XSD, DTD, Schematron, BREX…).</li>
-                  <li>Résultat attendu : rapport, fichiers corrigés, extraction, export…</li>
-                </ul>
-                <p class="text-muted">NDA et transfert sécurisé (SFTP) disponibles sur demande.</p>
-              </div>
-            </div>
-            <div class="contact-top">
-              <div class="contact-column">
                 <div class="form-field">
                   <label for="contact-need">Type de besoin</label>
                   <select id="contact-need" name="need">
@@ -157,8 +144,6 @@
                   <label for="contact-format">Format XML / volume approximatif</label>
                   <input type="text" id="contact-format" name="format" placeholder="Ex. S1000D Issue 6.0, ~2 000 fichiers">
                 </div>
-              </div>
-              <div class="contact-column">
                 <div class="form-field">
                   <label for="contact-schemas">Schémas disponibles</label>
                   <input type="text" id="contact-schemas" name="schemas" placeholder="Ex. XSD fourni, BREX du programme, aucun schéma">
@@ -167,14 +152,23 @@
                   <label for="contact-deadline">Échéance</label>
                   <input type="text" id="contact-deadline" name="deadline" placeholder="Ex. sous 2 semaines, pas de contrainte">
                 </div>
+                <div class="form-field">
+                  <label for="contact-message">Message <span class="text-muted">*</span></label>
+                  <textarea id="contact-message" name="message" rows="3" required aria-describedby="contact-message-error" placeholder="Décrivez votre besoin et le résultat attendu."></textarea>
+                  <p id="contact-message-error" class="form-helper" role="alert"></p>
+                </div>
               </div>
+              <aside class="info-column">
+                <h3>Informations utiles</h3>
+                <ul class="list-bullet">
+                  <li>Volume approximatif de fichiers et échéance.</li>
+                  <li>Schémas disponibles (XSD, DTD, Schematron, BREX…).</li>
+                  <li>Résultat attendu : rapport, fichiers corrigés, extraction, export…</li>
+                </ul>
+                <p class="text-muted">NDA et transfert sécurisé (SFTP) disponibles sur demande.</p>
+              </aside>
             </div>
             <div class="contact-bottom">
-              <div class="form-field">
-                <label for="contact-message">Message <span class="text-muted">*</span></label>
-                <textarea id="contact-message" name="message" rows="6" required aria-describedby="contact-message-error" placeholder="Décrivez votre besoin et le résultat attendu."></textarea>
-                <p id="contact-message-error" class="form-helper" role="alert"></p>
-              </div>
               <p class="form-helper">Les informations saisies sont utilisées uniquement pour répondre à votre demande. Consultez notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
               <div class="form-field checkbox-field">
                 <label>

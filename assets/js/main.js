@@ -46,8 +46,9 @@ function initNavbar() {
   const menu = document.querySelector("[data-nav-menu]");
   const navLinks = document.querySelectorAll("[data-nav-link]");
 
-  // Pages regroupées sous "Ressources" dans la navigation principale.
-  const RESSOURCES_PAGES = ["blog.html", "article.html", "demonstrations.html", "validateur.html"];
+  // Pages regroupées sous "Ressources" dans la navigation principale
+  // (uniquement les pages sans lien direct dans le menu).
+  const RESSOURCES_PAGES = ["blog.html", "article.html", "validateur.html"];
 
   function markActiveNav() {
     const pathname = window.location.pathname;

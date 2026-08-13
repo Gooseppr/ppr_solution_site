@@ -110,16 +110,13 @@ ol {
 }
 
 .section-hero {
-  padding-block: var(--space-6);
+  padding-block: var(--space-4);
 }
 
 .section-hero-light {
-  padding-block: var(--space-1);
-}
-
-.hero-light {
-  padding-block: var(--space-5) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--color-primary-tint);
+  padding-block: var(--space-4);
+  margin-bottom: var(--space-1);
 }
 
 .hero-light-content {
@@ -137,13 +134,14 @@ ol {
 }
 
 .hero-light h1 {
-  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.75rem, 3vw, 2.3rem);
   letter-spacing: -0.3px;
+  margin-bottom: 0.5rem;
 }
 
 .hero-light p {
   color: var(--color-text-muted);
-  font-size: clamp(1rem, 1.5vw, 1.05rem);
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -251,10 +249,7 @@ ol {
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border);
   border-top: 3px solid var(--color-primary);
-  padding: 3.5rem 3.5rem 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  padding: 2.5rem 2.75rem;
 }
 
 .hero-content {
@@ -262,21 +257,27 @@ ol {
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  line-height: 1.15;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  line-height: 1.2;
   font-weight: 700;
   color: var(--color-text);
-  margin: 0 0 1.5rem 0;
-  max-width: 750px;
-  letter-spacing: -0.5px;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.3px;
 }
 
 .hero p {
   color: var(--color-text-muted);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.7;
-  margin: 0 0 2rem 0;
-  max-width: 700px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  max-width: 46rem;
+}
+
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
 }
 
 .cta-group {
@@ -483,6 +484,11 @@ ol {
   color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.card.highlight-card:hover,
+.card.highlight-card:focus-within {
+  background: var(--color-primary-dark);
 }
 
 .navbar {
@@ -1054,21 +1060,7 @@ ol {
 /* Media query pour tablettes et écrans moyens (1024px et moins) */
 @media (max-width: 1024px) {
   .hero {
-    padding: 3rem 2.5rem;
-    gap: 2.5rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-  }
-
-  .hero p {
-    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-  }
-
-  .hero-trust {
-    gap: 2rem;
-    padding-top: 2rem;
+    padding: 2.25rem 2rem;
   }
 
   .btn {
@@ -1092,18 +1084,7 @@ ol {
 /* Media query pour mobiles (768px et moins) */
 @media (max-width: 768px) {
   .hero {
-    padding: 2.5rem 1.75rem;
-    gap: 2rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(1.75rem, 5vw, 2.4rem);
-    margin-bottom: 1.25rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+    padding: 1.75rem 1.5rem;
   }
 
   .cta-group {
@@ -1115,30 +1096,6 @@ ol {
   .btn {
     width: 100%;
     padding: 0.9rem 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  .hero-trust {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding-top: 1.75rem;
-  }
-
-  .trust-item {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(15, 63, 145, 0.08);
-  }
-
-  .trust-item:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-
-  .trust-item h4 {
-    font-size: 1rem;
-  }
-
-  .trust-item p {
     font-size: 0.9rem;
   }
 
@@ -1193,21 +1150,27 @@ ol {
     padding: 1.75rem 1.25rem;
   }
 
-  .hero-light {
-    padding: var(--space-2) 0;
-  }
-
-  .hero-light-content {
-    padding: var(--space-3);
-  }
-
   .contact-card {
     padding: var(--space-3);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-fields {
+    grid-template-columns: 1fr;
   }
 
   .cta-group {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+@media (max-width: 860px) and (min-width: 641px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1221,35 +1184,46 @@ ol {
     scroll-behavior: auto !important;
   }
 }
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0 0 var(--space-3);
+}
+
 .section-panel hr {
   margin-top: 0;
   margin-bottom: var(--space-3);
 }
 .contact-card {
-  padding: var(--space-4);
+  padding: var(--space-3);
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-}
-
-.contact-top {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-3);
-}
-
-.contact-column {
-  display: flex;
-  flex-direction: column;
   gap: var(--space-2);
 }
 
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3);
+}
+
+.contact-fields .form-field:has(textarea) {
+  grid-column: 1 / -1;
+}
+
 .info-column {
-  background: rgba(248, 250, 254, 0.9);
-  border: 1px solid rgba(184, 199, 220, 0.5);
+  background: var(--color-primary-tint);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-3);
 }
@@ -1258,19 +1232,16 @@ ol {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  border-top: 1px solid rgba(184, 199, 220, 0.5);
+  border-top: 1px solid var(--color-border);
   padding-top: var(--space-3);
 }
 /* Hero Trust Items */
 .hero-trust {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  margin-top: 0;
-  padding-top: 2.5rem;
-  border-top: 1px solid rgba(15, 63, 145, 0.12);
-  position: relative;
-  z-index: 2;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0 0 0 2.5rem;
+  border-left: 1px solid var(--color-border);
 }
 
 .trust-item {
@@ -1279,22 +1250,18 @@ ol {
 }
 
 .trust-item h4 {
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.25rem 0;
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.3px;
+  font-size: 0.95rem;
+  letter-spacing: -0.2px;
 }
 
 .trust-item p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-.hero .hero-content {
-  display: block;
+  line-height: 1.5;
 }
 
 .hero .cta-group {
@@ -1303,10 +1270,24 @@ ol {
   gap: 0.85rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .hero-trust {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem 0 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+@media (max-width: 600px) {
   .hero-trust {
     grid-template-columns: 1fr;
-    gap: var(--space-3);
   }
 }
 
