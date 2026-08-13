@@ -47,7 +47,7 @@ function initNavbar() {
   const navLinks = document.querySelectorAll("[data-nav-link]");
 
   // Pages regroupées sous "Ressources" dans la navigation principale.
-  const RESSOURCES_PAGES = ["blog.html", "article.html", "validateur.html"];
+  const RESSOURCES_PAGES = ["blog.html", "article.html", "demonstrations.html", "validateur.html"];
 
   function markActiveNav() {
     const pathname = window.location.pathname;
@@ -97,56 +97,6 @@ function initNavbar() {
       }
     });
   }
-}
-
-const THEME_STORAGE_KEY = "ppr-theme";
-const THEME_COLOR = { light: "#0f3f91", dark: "#171c26" };
-
-function initThemeToggle() {
-  const toggle = document.querySelector("[data-theme-toggle]");
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-
-  function currentTheme() {
-    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", THEME_COLOR[theme]);
-    }
-    if (toggle) {
-      const isDark = theme === "dark";
-      toggle.setAttribute("aria-pressed", String(isDark));
-      toggle.setAttribute("aria-label", isDark ? "Activer le thème clair" : "Activer le thème sombre");
-    }
-  }
-
-  applyTheme(currentTheme());
-
-  if (toggle) {
-    toggle.addEventListener("click", () => {
-      const next = currentTheme() === "dark" ? "light" : "dark";
-      try {
-        localStorage.setItem(THEME_STORAGE_KEY, next);
-      } catch (error) {
-        // Stockage indisponible (navigation privée) : le choix ne persistera pas.
-      }
-      applyTheme(next);
-    });
-  }
-
-  media.addEventListener("change", (event) => {
-    let stored = null;
-    try {
-      stored = localStorage.getItem(THEME_STORAGE_KEY);
-    } catch (error) {
-      stored = null;
-    }
-    if (stored === "light" || stored === "dark") return;
-    applyTheme(event.matches ? "dark" : "light");
-  });
 }
 
 function updateArticleMeta(post) {
@@ -270,7 +220,6 @@ function updateFooterYear() {
 document.addEventListener("DOMContentLoaded", () => {
   setupSkipLink();
   initNavbar();
-  initThemeToggle();
   handleArticlePage();
   updateFooterYear();
 });
