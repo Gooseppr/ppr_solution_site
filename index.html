@@ -88,11 +88,27 @@
       <div class="container">
         <div class="hero">
           <div class="hero-content">
+            <span class="hero-eyebrow">Atelier XML indépendant</span>
             <h1>Vos données XML, contrôlées, exploitées et transformées</h1>
             <p>Vous avez des fichiers, corpus ou documents XML à contrôler, exploiter, transformer, convertir, corriger, migrer ou publier : PPR-Solution prend en charge le traitement et vous fournit les résultats et livrables nécessaires. Expertise particulière en documentation structurée et S1000D.</p>
             <div class="cta-group">
               <a class="btn btn-primary" href="contact.html">Demander un prédiagnostic</a>
               <a class="btn btn-outline" href="demonstrations.html">Voir les démonstrations</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="terminal-panel">
+              <code>&lt;dmodule&gt;</code>
+              <code>&nbsp;&nbsp;&lt;identAndStatusSection&gt;<span class="ok">OK</span>&lt;/identAndStatusSection&gt;</code>
+              <code>&nbsp;&nbsp;&lt;content&gt;<span class="warn">37 anomalies classées</span>&lt;/content&gt;</code>
+              <code>&lt;/dmodule&gt;</code>
+            </div>
+            <div class="flow-lane">
+              <div class="flow-node"><strong>Sources</strong><span>XML, XSD, règles</span></div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-node"><strong>Traitement</strong><span>contrôle + extraction</span></div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-node"><strong>Livrables</strong><span>XLSX, PDF, rapport</span></div>
             </div>
           </div>
           <div class="hero-trust">
@@ -119,54 +135,40 @@
           <h2>Sur quoi peut intervenir PPR-Solution ?</h2>
           <p>XML est le cœur de compétence. Sept opérations, une seule expertise centrale.</p>
         </div>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Contrôler</h3>
-            <p>Fichiers rejetés, XSD non respecté, corpus trop volumineux pour un contrôle manuel.</p>
-            <a class="btn btn-ghost" href="services.html#controle">Voir l'intervention</a>
-          </article>
-          <article class="card">
-            <h3>Qualifier et corriger</h3>
-            <p>Un corpus à analyser, classer et corriger, avec des originaux préservés.</p>
-            <a class="btn btn-ghost" href="services.html#corpus">Voir l'intervention</a>
-          </article>
-          <article class="card">
-            <h3>Exploiter (extraire)</h3>
-            <p>Des informations précises à récupérer dans des milliers de XML.</p>
-            <a class="btn btn-ghost" href="services.html#extraction">Voir l'intervention</a>
-          </article>
-          <article class="card">
-            <h3>Transformer / convertir</h3>
-            <p>XML vers un autre modèle XML, ou vers/depuis CSV, Excel, JSON, SQL.</p>
-            <a class="btn btn-ghost" href="services.html#transformation">Voir l'intervention</a>
-          </article>
-          <article class="card">
-            <h3>Migrer</h3>
-            <p>Changement de version de schéma, de standard, ou données historiques à faire évoluer.</p>
-            <a class="btn btn-ghost" href="services.html#migration">Voir l'intervention</a>
-          </article>
-          <article class="card">
-            <h3>Comparer</h3>
-            <p>Identifier précisément les différences entre deux fichiers, corpus ou versions.</p>
-            <a class="btn btn-ghost" href="services.html#comparaison">Voir l'intervention</a>
-          </article>
-          <article class="card">
-            <h3>Publier</h3>
-            <p>Générer des documents (PDF, HTML) fiables et reproductibles à partir de vos XML.</p>
-            <a class="btn btn-ghost" href="services.html#generation">Voir l'intervention</a>
-          </article>
+        <div class="service-map">
+          <div class="service-row">
+            <span class="num">01</span>
+            <div><h3>Contrôler</h3><p>Fichiers rejetés, XSD non respecté, corpus trop volumineux pour un contrôle manuel.</p></div>
+            <a class="btn btn-ghost" href="services.html#controle">Voir</a>
+          </div>
+          <div class="service-row">
+            <span class="num">02</span>
+            <div><h3>Qualifier et corriger</h3><p>Analyser, classer et corriger un corpus avec conservation des originaux.</p></div>
+            <a class="btn btn-ghost" href="services.html#corpus">Voir</a>
+          </div>
+          <div class="service-row">
+            <span class="num">03</span>
+            <div><h3>Extraire</h3><p>Récupérer des informations précises dans des milliers de XML.</p></div>
+            <a class="btn btn-ghost" href="services.html#extraction">Voir</a>
+          </div>
+          <div class="service-row">
+            <span class="num">04</span>
+            <div><h3>Transformer, migrer, comparer, publier</h3><p>Convertir les modèles, sécuriser les évolutions et produire des livrables PDF, HTML, CSV ou XLSX.</p></div>
+            <a class="btn btn-ghost" href="services.html">Détail</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="services">
+    <section class="section section-rhythm" id="services">
       <div class="container">
-        <div class="section-title">
-          <h2>Nos prestations</h2>
-          <p>PPR-Solution prend en charge vos problématiques XML et vous remet des livrables structurés, contrôlés et traçables.</p>
-        </div>
-        <div class="grid grid-2">
-          <article class="card">
+        <div class="editorial-split">
+          <div class="kicker-column">
+            <span class="hero-eyebrow">Livrables</span>
+            <h2>Un traitement utile se juge à ce qu’il produit.</h2>
+            <p class="text-muted">PPR-Solution prend en charge vos problématiques XML et vous remet des résultats structurés, contrôlés et traçables.</p>
+          </div>
+          <div>
             <h3>Travailler sur vos XML</h3>
             <p>Sept familles d'intervention, toutes centrées sur une problématique XML.</p>
             <ul class="list-check">
@@ -179,13 +181,18 @@
               <li>Analyse et comparaison XML</li>
             </ul>
             <a class="btn btn-ghost" href="services.html">Voir le détail des prestations</a>
-          </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
           <article class="card highlight-card">
             <h3>Expertise documentaire structurée</h3>
             <p>La documentation structurée et le standard S1000D constituent une spécialisation forte de cette activité XML : inventaire de corpus, résolution de schémas, précontrôle avant livraison. Les autres standards documentés (DITA, DocBook, référentiels sectoriels) sont étudiés au cas par cas.</p>
             <a class="btn btn-ghost" href="services.html#s1000d">Voir l'expertise S1000D</a>
           </article>
-        </div>
       </div>
     </section>
 
