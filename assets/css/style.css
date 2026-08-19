@@ -44,6 +44,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
@@ -56,6 +57,11 @@ body {
   background-image: radial-gradient(circle at 20% 20%, rgba(29, 94, 216, 0.08), transparent 50%),
     radial-gradient(circle at 80% 10%, rgba(15, 63, 145, 0.08), transparent 45%);
   min-height: 100vh;
+}
+
+::selection {
+  background: rgba(0, 167, 200, 0.22);
+  color: var(--color-text);
 }
 
 img {
@@ -499,6 +505,16 @@ ol {
 
 .highlight-card p {
   color: rgba(247, 250, 255, 0.85);
+}
+
+.highlight-card .btn-ghost {
+  color: #ffffff;
+}
+
+.highlight-card .btn-ghost:hover,
+.highlight-card .btn-ghost:focus-visible {
+  color: #ffffff;
+  opacity: 0.82;
 }
 
 .navbar {
@@ -1552,8 +1568,9 @@ body {
 }
 
 .section-rhythm {
-  background: var(--color-ink);
-  color: #ecf8ff;
+  background: transparent;
+  border-block: 0;
+  color: var(--color-text);
 }
 
 .section-rhythm h2,
@@ -1564,15 +1581,15 @@ body {
 }
 
 .section-rhythm .text-muted {
-  color: rgba(236, 248, 255, 0.74);
+  color: var(--color-text-muted);
 }
 
 .section-rhythm a:not(.btn) {
-  color: #9ce7ff;
+  color: var(--color-primary);
 }
 
 .section-rhythm .btn-ghost {
-  color: #9ce7ff;
+  color: var(--color-primary);
 }
 
 .editorial-split {
@@ -1583,8 +1600,8 @@ body {
 }
 
 .kicker-column {
-  border-left: 3px solid var(--color-cyan);
-  padding-left: 1.25rem;
+  border-left: 1px solid var(--color-cyan);
+  padding-left: 1.35rem;
 }
 
 .service-map {
@@ -1654,52 +1671,6 @@ body {
 .card:hover,
 .card:focus-within {
   transform: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #06111d;
-    --color-surface: #0c1f32;
-    --color-primary: #88d8ff;
-    --color-secondary: #2bb4ff;
-    --color-text: #eff8ff;
-    --color-text-muted: #b5c3d1;
-    --color-border: #25445f;
-    --color-border-strong: #3c5d78;
-    --color-ivory: #0c1f32;
-  }
-
-  body,
-  .navbar,
-  .site-footer {
-    background-color: var(--color-bg);
-  }
-
-  .hero,
-  .hero-light,
-  .card,
-  .article-body,
-  .section-panel .container,
-  .summary-item,
-  .result-card,
-  .info-column,
-  .blog-card,
-  .contact-proof,
-  .resource-shelf,
-  .proof-tile,
-  .flow-node {
-    background: var(--color-surface);
-    color: var(--color-text);
-  }
-
-  .hero-light::before {
-    opacity: 0.35;
-  }
-
-  .btn-outline {
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-  }
 }
 
 @media (max-width: 960px) {
@@ -1845,7 +1816,8 @@ body {
 }
 
 .section-transform {
-  background: linear-gradient(135deg, #f5f7fb 0%, #e8eef5 100%);
+  background: transparent;
+  border-block: 0;
   padding: var(--space-5) 0 var(--space-4) 0;
 }
 
