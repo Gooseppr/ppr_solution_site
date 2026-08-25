@@ -69,10 +69,10 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="page-demonstrations">
     <section class="section-hero-light">
       <div class="container">
-        <div class="hero-light">
+        <div class="hero-light proof-hero">
           <div class="hero-light-content">
             <span class="hero-eyebrow">Preuves techniques</span>
             <h1>Démonstrations</h1>
@@ -82,11 +82,46 @@
       </div>
     </section>
 
+    <section class="section proof-ledger" aria-labelledby="preuves-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="preuves-title">Preuves disponibles</h2>
+          <p>Une page utile distingue les démonstrations publiées, les maquettes d'exemple et les chantiers à venir.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-item proof-item--ready">
+            <span class="proof-status">Disponible</span>
+            <h3>Validateur XML S1000D</h3>
+            <p>Contrôle structurel en temps réel sur un module S1000D Issue 6.0 chargé par l'utilisateur.</p>
+            <a class="btn btn-ghost" href="validateur.html">Tester l'outil</a>
+          </article>
+          <article class="proof-item">
+            <span class="proof-status">Maquette visible</span>
+            <h3>Rapport d'audit XML</h3>
+            <dl class="mini-report">
+              <div><dt>Total fichiers</dt><dd>128</dd></div>
+              <div><dt>Erreurs XSD</dt><dd>17</dd></div>
+              <div><dt>Namespaces</dt><dd>6 alertes</dd></div>
+            </dl>
+            <p>Format de restitution prévu : synthèse PDF + export CSV/XLSX des anomalies.</p>
+          </article>
+          <article class="proof-item">
+            <span class="proof-status">Maquette visible</span>
+            <h3>Extraction XML vers tableur</h3>
+            <div class="data-table-sample" role="img" aria-label="Exemple de tableau d'extraction XML">
+              <span>DMC</span><span>Issue</span><span>Statut</span>
+              <span>AAA-010</span><span>6.0</span><span>OK</span>
+              <span>AAA-011</span><span>6.0</span><span>À corriger</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <section class="section" id="audit-multi-erreurs">
       <div class="container">
         <div class="section-title">
           <h2>A. Audit XML multi-erreurs</h2>
-          <span class="badge-pill">En préparation</span>
+          <span class="badge-pill">Maquette à publier</span>
         </div>
         <hr class="divider" aria-hidden="true">
         <p>Un corpus fictif accompagné de son XSD : bien-formé cassé, XSD non respecté, namespaces incorrects, références manquantes. La démonstration montrera la classification des erreurs (warning/error) et le rapport de synthèse produit, le même type de résultat que la prestation <a href="services.html#controle">Contrôle et qualification XML</a>.</p>
@@ -98,7 +133,7 @@
       <div class="container">
         <div class="section-title">
           <h2>B. Extraction XML vers Excel</h2>
-          <span class="badge-pill">En préparation</span>
+          <span class="badge-pill">Maquette visible</span>
         </div>
         <hr class="divider" aria-hidden="true">
         <p>Un corpus fictif de plusieurs centaines de fichiers XML : extraction XPath de plusieurs informations par fichier, consolidation dans un tableau Excel unique avec statistiques. Cette démonstration illustre que PPR-Solution ne fait pas que valider du XML : elle en exploite le contenu. Correspond à la prestation <a href="services.html#extraction">Extraction et exploitation de données XML</a>.</p>
@@ -110,7 +145,7 @@
       <div class="container">
         <div class="section-title">
           <h2>C. Transformation XML A vers XML B</h2>
-          <span class="badge-pill">En préparation</span>
+          <span class="badge-pill">Mapping à publier</span>
         </div>
         <hr class="divider" aria-hidden="true">
         <p>Un XSD source, un XSD cible, le mapping entre les deux modèles, la transformation appliquée et la validation du résultat contre le schéma cible. Correspond à la prestation <a href="services.html#transformation">Transformation et conversion XML</a>.</p>
@@ -122,7 +157,7 @@
       <div class="container">
         <div class="section-title">
           <h2>D. XML vers PDF / HTML</h2>
-          <span class="badge-pill">En préparation</span>
+          <span class="badge-pill">Aperçu disponible</span>
         </div>
         <hr class="divider" aria-hidden="true">
         <p>Un XML source, la transformation XSLT/XSL-FO appliquée, un aperçu PDF et éventuellement HTML, accompagnés d'un rapport de génération. Un premier aperçu de ce type de transformation est déjà visible sur la page <a href="services.html#generation">Génération documentaire à partir de XML</a>.</p>
@@ -134,7 +169,7 @@
       <div class="container">
         <div class="section-title">
           <h2>E. Comparaison XML</h2>
-          <span class="badge-pill">En préparation</span>
+          <span class="badge-pill">À cadrer</span>
         </div>
         <hr class="divider" aria-hidden="true">
         <p>Une version de référence (baseline) et une nouvelle version d'un même corpus : différences structurelles et de valeurs, ajouts, suppressions, éléments nécessitant une décision humaine. Correspond à la prestation <a href="services.html#comparaison">Analyse et comparaison XML</a>.</p>
@@ -161,7 +196,7 @@
       <div class="container">
         <article class="card">
           <h3>Exemple de rapport</h3>
-          <p>Un exemple de rapport téléchargeable (audit multi-erreurs ou extraction Excel) sera ajouté ici dès qu'il aura été préparé à partir d'un cas de test. Aucun rapport prétendant provenir d'un client réel ne sera publié.</p>
+          <p>Un exemple de rapport est désormais maquetté plus haut pour montrer le format attendu. La prochaine étape utile est de publier un fichier PDF fictif complet et son export CSV/XLSX, sans donnée client.</p>
           <a class="btn btn-ghost" href="contact.html">Demander un prédiagnostic</a>
         </article>
       </div>

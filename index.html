@@ -86,7 +86,7 @@
   <main id="main-content">
     <section class="section-hero">
       <div class="container">
-        <div class="hero">
+        <div class="hero home-hero">
           <div class="hero-content">
             <span class="hero-eyebrow">Atelier XML indépendant</span>
             <h1>Vos données XML, contrôlées, exploitées et transformées</h1>
@@ -96,6 +96,32 @@
               <a class="btn btn-outline" href="demonstrations.html">Voir les démonstrations</a>
             </div>
           </div>
+          <aside class="xml-proof-card" aria-label="Exemple de synthèse de contrôle XML">
+            <div class="proof-terminal">
+              <div class="proof-terminal__bar">
+                <span>precontrole-s1000d.xml</span>
+                <strong>rapport</strong>
+              </div>
+              <pre><code>&lt;dmStatus&gt;
+  &lt;issueInfo issueNumber="006" /&gt;
+  &lt;language languageIsoCode="fr" /&gt;
+&lt;/dmStatus&gt;</code></pre>
+            </div>
+            <dl class="proof-stats">
+              <div>
+                <dt>Structure</dt>
+                <dd>XML bien formé</dd>
+              </div>
+              <div>
+                <dt>Schéma</dt>
+                <dd>Issue 6.0 détectée</dd>
+              </div>
+              <div>
+                <dt>Livrable</dt>
+                <dd>Rapport CSV/PDF</dd>
+              </div>
+            </dl>
+          </aside>
           <div class="hero-trust">
             <div class="trust-item">
               <h4>Réactivité</h4>
@@ -198,32 +224,26 @@
           <p>Du fichier XML brut à une publication PDF conforme.</p>
         </div>
 
-        <div class="transform-showcase">
-          <div class="transform-item">
+        <div class="evidence-strip">
+          <figure class="evidence-shot">
             <img src="assets/img/exemple_xml.png" alt="Exemple de données XML structurées S1000D" loading="lazy">
-            <span class="transform-label">Données XML</span>
+            <figcaption>Données XML source</figcaption>
+          </figure>
+          <div class="evidence-report" aria-label="Étapes de transformation">
+            <span class="report-kicker">Chaîne contrôlée</span>
+            <ol>
+              <li>Lecture XML et résolution des références.</li>
+              <li>Validation XSD/BREX ou règles métier documentées.</li>
+              <li>Transformation XSLT/XSL-FO et journal de génération.</li>
+            </ol>
           </div>
-
-          <div class="transform-arrow">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Flèche simple et épaisse -->
-              <g transform="translate(50, 50)">
-                <!-- Ligne horizontale -->
-                <line x1="-28" y1="0" x2="22" y2="0" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-                <!-- Pointe de flèche -->
-                <polygon points="28,0 15,8 15,-8" fill="currentColor"/>
-              </g>
-            </svg>
-          </div>
-
-          <div class="transform-item">
+          <figure class="evidence-shot">
             <img src="assets/img/exemple_pdf.png" alt="Exemple de publication PDF générée" loading="lazy">
-            <span class="transform-label">Publication PDF</span>
-          </div>
-        </div>
-        <p class="text-muted" style="text-align: center; margin-top: var(--space-2);">Exemple illustratif du type de transformation réalisée (module XML source vers publication PDF).</p>
+            <figcaption>Publication PDF produite</figcaption>
+          </figure>
+        </div>        <p class="text-muted" style="text-align: center; margin-top: var(--space-2);">Exemple illustratif du type de transformation réalisée (module XML source vers publication PDF).</p>
 
-        <div class="transform-benefits-card">
+        <div class="delivery-matrix">
           <div class="benefits-content">
             <h3 class="benefits-title">Notre approche couvre</h3>
             <ul class="benefits-grid">
