@@ -2067,7 +2067,6 @@ body {
 .proof-hero,
 .services-hero,
 .contact-hero,
-.resources-hero,
 .blog-hero,
 .tool-hero,
 .method-hero {
@@ -2185,7 +2184,6 @@ body {
   border-left: 4px solid var(--color-cyan);
 }
 
-.page-resources main,
 .page-about main {
   background: transparent;
 }
@@ -2272,5 +2270,16 @@ body {
 
   .home-hero .proof-terminal pre {
     max-height: 9rem;
+  }
+}
+
+.trust-stats dd {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .home-hero .trust-stats {
+    display: grid;
   }
 }

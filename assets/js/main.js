@@ -48,7 +48,6 @@ function initNavbar() {
 
   // Pages regroupées dans la navigation principale.
   const DEMONSTRATION_PAGES = ["demonstrations.html", "validateur.html"];
-  const RESSOURCES_PAGES = ["blog.html", "article.html"];
 
   function markActiveNav() {
     const pathname = window.location.pathname;
@@ -63,8 +62,7 @@ function initNavbar() {
       const normalized = target.split("/").pop() || "index.html";
       const isMatch =
         normalized === current ||
-        (normalized === "demonstrations.html" && DEMONSTRATION_PAGES.includes(current)) ||
-        (normalized === "ressources.html" && RESSOURCES_PAGES.includes(current));
+        (normalized === "demonstrations.html" && DEMONSTRATION_PAGES.includes(current));
       link.classList.toggle("is-active", isMatch);
     });
   }

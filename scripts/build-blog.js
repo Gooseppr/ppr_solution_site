@@ -133,7 +133,6 @@ ${JSON.stringify(schema, null, 2)}
         <a data-nav-link href="../../index.html">Accueil</a>
         <a data-nav-link href="../../services.html">Services</a>
         <a data-nav-link href="../../demonstrations.html">Démonstrations</a>
-        <a data-nav-link href="../../ressources.html">Ressources</a>
         <a data-nav-link href="../../a-propos.html">À propos</a>
         <a data-nav-link href="../../contact.html">Contact</a>
       </nav>
@@ -179,7 +178,7 @@ ${JSON.stringify(schema, null, 2)}
       <p>© <span id="footer-year"></span> PPR-Solution · Prestations XML et documentation structurée</p>
       <div class="footer-links">
         <a href="../../a-propos.html">À propos</a>
-        <a href="../../ressources.html">Ressources</a>
+        <a href="../../blog.html">Blog</a>
         <a href="../../charte-ethique.html">Charte éthique</a>
         <a href="../../mentions-legales.html">Mentions légales</a>
         <a href="../../confidentialite.html">Confidentialité</a>

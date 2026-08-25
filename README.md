@@ -32,7 +32,6 @@ Le site sera accessible à `http://localhost:8000` avec l'option Python ou `http
   9. Votre XML suit un autre standard ? (`#autres-standards`)
   10. L'atelier XML PPR-Solution (`#atelier`) — capacité interne, pas un produit vendu.
 - `demonstrations.html` : 6 démonstrations resserrées (A. Audit multi-erreurs, B. Extraction vers Excel, C. Transformation XML A→B, D. XML vers PDF/HTML, E. Comparaison, F. Précontrôle S1000D — seule celle-ci réellement disponible via le validateur). Aucun cas client réel, uniquement des cas fictifs ou corpus publics marqués comme tels.
-- `ressources.html` : page d'agrégation (blog, démonstrations, validateur, futurs rapports d'exemple).
 - `a-propos.html` : positionnement (activité indépendante, pas d'équipe), méthode en 12 étapes, section transfert de fichiers/confidentialité.
 - `validateur.html` : démonstrateur du validateur XML S1000D, branché sur une API réelle (voir ci-dessous). Accessible depuis Démonstrations, plus dans le niveau principal de navigation.
 - `blog.html` : index du blog avec recherche/tri (`assets/js/blog.js`), chargé depuis `blog/posts.json`.
@@ -45,8 +44,8 @@ Le site sera accessible à `http://localhost:8000` avec l'option Python ou `http
 
 ## Navigation
 
-Nav principale : Accueil / Services / Démonstrations / Ressources / À propos / Contact.
-Le blog et le validateur ne sont plus des entrées de premier niveau ; ils sont accessibles depuis Ressources et Démonstrations, et le lien « Ressources » de la nav s'active aussi sur `blog.html`, `blog/<slug>/`, `article.html` et `validateur.html` (voir `markActiveNav` dans `assets/js/main.js`).
+Nav principale : Accueil / Services / Démonstrations / À propos / Contact.
+Le blog est accessible depuis les appels à l'action éditoriaux et le footer. Le validateur reste accessible depuis Démonstrations.
 
 ## Personnaliser le thème
 
