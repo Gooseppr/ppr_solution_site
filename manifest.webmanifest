@@ -1,11 +1,11 @@
 {
   "name": "PPR-Solution",
   "short_name": "PPR-Solution",
-  "description": "Solutions S1000D, XML et digitalisation documentaire.",
+  "description": "Prestations XML, données structurées et documentation technique.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f5f7fb",
-  "theme_color": "#0f3f91",
+  "background_color": "#F7F9FC",
+  "theme_color": "#124C8C",
   "icons": [
     {
       "src": "assets/favicon/icon-192.png",

@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Comprendre le rôle d’un BREX dans un contrôle S1000D · Blog PPR-Solution</title><meta name="description" content="Comprendre le rôle d’un BREX S1000D : règles métier, validation complémentaire et limites par rapport au XSD."><link rel="canonical" href="https://gooseppr.github.io/ppr_solution_site/blog/brex-s1000d-controle-xml/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;650;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../assets/css/style.css"><link rel="icon" href="../../assets/favicon/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="../../assets/favicon/icon-192.png"><link rel="manifest" href="../../manifest.webmanifest"><meta property="og:title" content="Comprendre le rôle d’un BREX dans un contrôle S1000D · Blog PPR-Solution"><meta property="og:description" content="Comprendre le rôle d’un BREX S1000D : règles métier, validation complémentaire et limites par rapport au XSD."><meta property="og:type" content="article"><meta property="og:url" content="https://gooseppr.github.io/ppr_solution_site/blog/brex-s1000d-controle-xml/"><meta property="og:image" content="https://gooseppr.github.io/ppr_solution_site/assets/img/og-default.jpg"><meta name="theme-color" content="#124C8C"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://gooseppr.github.io/ppr_solution_site/#organization",
+      "name": "PPR-Solution",
+      "url": "https://gooseppr.github.io/ppr_solution_site/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://gooseppr.github.io/ppr_solution_site/blog/brex-s1000d-controle-xml/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://gooseppr.github.io/ppr_solution_site/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://gooseppr.github.io/ppr_solution_site/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Comprendre le rôle d’un BREX dans un contrôle S1000D",
+          "item": "https://gooseppr.github.io/ppr_solution_site/blog/brex-s1000d-controle-xml/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Comprendre le rôle d’un BREX dans un contrôle S1000D",
+      "description": "Comprendre le rôle d’un BREX S1000D : règles métier, validation complémentaire et limites par rapport au XSD.",
+      "author": {
+        "@type": "Organization",
+        "name": "PPR-Solution"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "PPR-Solution",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://gooseppr.github.io/ppr_solution_site/assets/img/og-default.jpg"
+        }
+      },
+      "datePublished": "2026-08-25",
+      "dateModified": "2026-08-25",
+      "mainEntityOfPage": "https://gooseppr.github.io/ppr_solution_site/blog/brex-s1000d-controle-xml/"
+    }
+  ]
+}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a><header class="navbar"><div class="container nav-inner"><a class="brand" href="../../index.html"><span class="brand-mark">PPR</span><span>PPR-Solution</span></a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Ouvrir le menu</span><span class="nav-icon"></span></button><nav class="primary-nav" id="primary-navigation" data-nav-menu><a data-nav-link href="../../services.html">Prestations</a><a data-nav-link href="../../demonstrations.html">Démonstrations</a><a data-nav-link href="../../blog.html">Blog</a><a data-nav-link href="../../a-propos.html">À propos</a><a class="btn btn-primary nav-cta" href="../../contact.html">Contact</a></nav></div></header><main id="main-content"><section class="section-hero"><div class="container article-shell"><div><p class="breadcrumbs"><a href="../../index.html">Accueil</a> · <a href="../../blog.html">Blog</a> · <span aria-current="page">Comprendre le rôle d’un BREX dans un contrôle S1000D</span></p><p class="eyebrow">S1000D</p><h1>Comprendre le rôle d’un BREX dans un contrôle S1000D</h1><p class="lead">Le BREX complète le schéma XML avec des règles métier propres à un programme documentaire S1000D.</p><p class="meta">Publié le 25 août 2026 · Mis à jour le 25 août 2026 · 7 min</p></div><aside class="article-aside"><p class="eyebrow">Sommaire</p><ol><li>Contexte</li><li>Méthode</li><li>Livrables</li></ol></aside></div></section><section class="section-tight"><div class="container article-shell"><article class="article-body"><p class="lead">Dans S1000D, le XSD vérifie la structure XML. Le BREX ajoute des règles propres au programme, au client ou à l’organisation documentaire.</p><h2>XSD et BREX ne contrôlent pas la même chose</h2><p>Un module peut être valide au sens XSD et rester non conforme à une règle métier : structure autorisée, valeur interdite, référence absente ou pratique documentaire non acceptée.</p><pre class="code-block"><code>DATA MODULE
+  ↓
+VALIDATION XSD
+  ↓
+RÈGLES BREX
+  ↓
+RÉFÉRENCES
+  ↓
+SYNTHÈSE</code></pre><h2>Ne pas parler de certification</h2><p>Un précontrôle technique peut signaler des anomalies et aider à préparer une livraison. Il ne remplace pas une certification officielle ni une validation métier complète.</p><hr class="rule"><h2>Prestation associée</h2><p>Ce sujet correspond aux prestations de contrôle, extraction, transformation ou documentation XML selon le contexte.</p><p><a class="btn" href="../../services.html">Voir les prestations</a></p><h2>Démonstration associée</h2><p><a href="../../demonstrations.html">Voir les démonstrations techniques →</a></p><h2>Articles liés</h2><ul><li><a href="../extraction-xml-vers-excel/">Extraire des données XML vers Excel ou CSV</a></li></ul></article><aside class="article-aside"><p class="eyebrow">Tags</p><p>S1000D · BREX · XML · Documentation</p></aside></div></section></main><footer class="site-footer"><div class="container footer-grid"><div><strong>PPR-Solution</strong><p class="muted">Prestations XML & données structurées</p><p class="muted">© <span id="footer-year"></span> PPR-Solution</p></div><div><h3>Navigation</h3><div class="footer-links"><a href="../../services.html">Prestations</a><a href="../../demonstrations.html">Démonstrations</a><a href="../../blog.html">Blog</a><a href="../../a-propos.html">À propos</a><a href="../../contact.html">Contact</a></div></div><div><h3>Informations</h3><div class="footer-links"><a href="../../confidentialite.html">Confidentialité</a><a href="../../mentions-legales.html">Mentions légales</a><a href="../../charte-ethique.html">Charte éthique</a></div></div></div></footer><script src="../../assets/js/main.js" defer></script></body></html>

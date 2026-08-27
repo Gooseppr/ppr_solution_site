@@ -10,25 +10,16 @@
     <loc>https://gooseppr.github.io/ppr_solution_site/demonstrations.html</loc>
   </url>
   <url>
-    <loc>https://gooseppr.github.io/ppr_solution_site/a-propos.html</loc>
-  </url>
-  <url>
-    <loc>https://gooseppr.github.io/ppr_solution_site/validateur.html</loc>
-  </url>
-  <url>
     <loc>https://gooseppr.github.io/ppr_solution_site/blog.html</loc>
   </url>
   <url>
-    <loc>https://gooseppr.github.io/ppr_solution_site/blog/quest-ce-que-la-s1000d/</loc>
-  </url>
-  <url>
-    <loc>https://gooseppr.github.io/ppr_solution_site/blog/differences-standards-s-series/</loc>
-  </url>
-  <url>
-    <loc>https://gooseppr.github.io/ppr_solution_site/blog/comprendre-xml-documentation-technique/</loc>
+    <loc>https://gooseppr.github.io/ppr_solution_site/a-propos.html</loc>
   </url>
   <url>
     <loc>https://gooseppr.github.io/ppr_solution_site/contact.html</loc>
+  </url>
+  <url>
+    <loc>https://gooseppr.github.io/ppr_solution_site/validateur.html</loc>
   </url>
   <url>
     <loc>https://gooseppr.github.io/ppr_solution_site/charte-ethique.html</loc>
@@ -38,5 +29,17 @@
   </url>
   <url>
     <loc>https://gooseppr.github.io/ppr_solution_site/confidentialite.html</loc>
+  </url>
+  <url>
+    <loc>https://gooseppr.github.io/ppr_solution_site/blog/validation-corpus-xml-xsd/</loc>
+  </url>
+  <url>
+    <loc>https://gooseppr.github.io/ppr_solution_site/blog/transformation-xml-modele-cible/</loc>
+  </url>
+  <url>
+    <loc>https://gooseppr.github.io/ppr_solution_site/blog/extraction-xml-vers-excel/</loc>
+  </url>
+  <url>
+    <loc>https://gooseppr.github.io/ppr_solution_site/blog/brex-s1000d-controle-xml/</loc>
   </url>
 </urlset>

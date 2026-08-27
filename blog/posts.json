@@ -1,53 +1,50 @@
 [
   {
-    "slug": "quest-ce-que-la-s1000d",
-    "title": "Qu’est-ce que la S1000D ?",
-    "description": "Panorama rapide du standard S1000D, de ses objectifs et de sa structure documentaire.",
-    "meta_description": "Comprenez les fondamentaux du standard S1000D et pourquoi il structure les publications techniques aéronautiques.",
-    "date": "2025-01-15",
-    "tags": [
-      "S1000D",
-      "Documentation"
-    ],
-    "summary": "Les bases du standard S1000D, ses principes de modularité et l’intérêt d’une gouvernance rigoureuse.",
-    "hero_image": "assets/img/og-default.jpg",
-    "og_image": "assets/img/og-default.jpg",
-    "reading_time": "4 min",
-    "content_html": "<p>La <strong>S1000D</strong> est un standard international issu de l’aéronautique pour structurer la documentation technique. Elle repose sur une logique modulaire qui facilite la réutilisation et la maintenance des contenus.</p><p>Chaque module de données est identifié par un <em>Data Module Code</em> (DMC) et suit un schéma XML précis. Cette granularité permet de cibler les mises à jour, d’éviter les doublons et de partager un langage commun entre fabricants et opérateurs.</p><p>Pour une adoption réussie, il est essentiel de cartographier vos modules, d’outiller la validation XML et d’impliquer les équipes métiers dans la gouvernance documentaire.</p>",
-    "canonical": "https://gooseppr.github.io/ppr_solution_site/blog/quest-ce-que-la-s1000d/"
+    "slug": "validation-corpus-xml-xsd",
+    "title": "Valider plusieurs milliers de fichiers XML contre un XSD",
+    "description": "Méthode pour qualifier un corpus XML volumineux, classer les erreurs et produire un rapport exploitable.",
+    "meta_description": "Comment valider un corpus XML volumineux contre un XSD, classer les anomalies et préparer des livrables exploitables.",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "category": "XML",
+    "tags": ["XML", "XSD", "Validation", "Corpus"],
+    "reading_time": "7 min",
+    "content_html": "<p class=\"lead\">Valider un fichier XML isolé est une opération simple. Valider plusieurs milliers de fichiers demande une méthode : inventaire, parsing, validation, classification et restitution.</p><h2>Commencer par l’inventaire</h2><p>Avant la validation, il faut connaître le périmètre réel : extensions, encodages, tailles, doublons, fichiers vides et familles de schémas attendues.</p><pre class=\"code-block\"><code>CORPUS XML\n  ↓\nINVENTAIRE\n  ↓\nPARSING\n  ↓\nVALIDATION XSD\n  ↓\nCLASSIFICATION\n  ↓\nRAPPORT</code></pre><h2>Classer les erreurs</h2><p>Un rapport utile distingue les erreurs bloquantes, les warnings et les décisions métier. Un XML non well-formed ne se traite pas comme une valeur invalide ou une référence manquante.</p><h2>Livrables utiles</h2><ul><li>rapport de synthèse ;</li><li>CSV/XLSX des anomalies ;</li><li>liste des fichiers valides ;</li><li>liste des rejets ;</li><li>journal de traitement.</li></ul><div class=\"note\"><strong>À retenir</strong><p>La validation n’est pas seulement un oui/non. Pour un corpus, la valeur vient de la classification et de la traçabilité.</p></div>"
   },
   {
-    "slug": "differences-standards-s-series",
-    "title": "Les différences entre S-Series (S1000D, S2000M, S3000L)",
-    "description": "Comparer les standards S-Series pour mieux articuler support logistique et documentations techniques.",
-    "meta_description": "Comparatif des standards S-Series : S1000D, S2000M et S3000L, leurs apports et complémentarités.",
-    "date": "2025-02-02",
-    "tags": [
-      "S-Series",
-      "Logistique"
-    ],
-    "summary": "S1000D, S2000M et S3000L se complètent pour décrire le support, la logistique et la maintenance. Focus sur leurs périmètres.",
-    "hero_image": "assets/img/og-default.jpg",
-    "og_image": "assets/img/og-default.jpg",
-    "reading_time": "5 min",
-    "content_html": "<p>Les <strong>S-Series</strong> forment un ensemble cohérent de spécifications pour soutenir le cycle de vie des systèmes complexes. La <strong>S1000D</strong> se concentre sur la documentation technique, la <strong>S2000M</strong> sur le support logistique et la <strong>S3000L</strong> sur les analyses de soutien logistique intégré.</p><p>Comprendre les interactions entre ces standards permet de synchroniser les référentiels de données et d’assurer une continuité de l’information entre ingénierie, maintenance et supply chain.</p><p>Une gouvernance alignée, des identifiants partagés et des workflows de validation transverses sont indispensables pour concrétiser les bénéfices des S-Series.</p>",
-    "canonical": "https://gooseppr.github.io/ppr_solution_site/blog/differences-standards-s-series/"
+    "slug": "transformation-xml-modele-cible",
+    "title": "Transformer un modèle XML vers un autre",
+    "description": "Concevoir un mapping source → cible, gérer les rejets et valider le XML produit.",
+    "meta_description": "Méthode pour transformer un modèle XML vers un autre : mapping, transformation, validation cible et gestion des rejets.",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "category": "XML",
+    "tags": ["XML", "XSLT", "Mapping", "Transformation"],
+    "reading_time": "8 min",
+    "content_html": "<p class=\"lead\">Une transformation XML fiable commence par le mapping. Le script n’est que l’exécution d’une décision de correspondance entre source et cible.</p><h2>Définir le mapping</h2><table class=\"mapping-table\"><tbody><tr><td><code>part/@id</code></td><td>→</td><td><code>item/code</code></td></tr><tr><td><code>part/label</code></td><td>→</td><td><code>item/name</code></td></tr><tr><td><code>part/state</code></td><td>→</td><td><code>item/status</code></td></tr></tbody></table><h2>Valider la cible</h2><p>Un XML cible généré doit être validé contre son propre schéma. Les rejets doivent être visibles, jamais absorbés silencieusement.</p><pre class=\"code-block\"><code>SOURCE.XML + SOURCE.XSD\n  ↓\nMAPPING\n  ↓\nTRANSFORMATION\n  ↓\nTARGET.XML + TARGET.XSD\n  ↓\nVALIDATION</code></pre><h2>Livrables</h2><p>Les livrables utiles sont le XML cible, le mapping, le rapport de transformation et la liste des cas non convertis automatiquement.</p>"
   },
   {
-    "slug": "comprendre-xml-documentation-technique",
-    "title": "Comprendre le XML en documentation technique",
-    "description": "Les principes du XML appliqués aux publications techniques et la structure des schémas associés.",
-    "meta_description": "Pourquoi le XML reste clé pour la documentation technique : schémas, validation et transformations.",
-    "date": "2025-02-20",
-    "tags": [
-      "XML",
-      "Transformation"
-    ],
-    "summary": "Le XML structure les contenus techniques, facilite la validation automatique et la publication multi-support.",
-    "hero_image": "assets/img/og-default.jpg",
-    "og_image": "assets/img/og-default.jpg",
-    "reading_time": "4 min",
-    "content_html": "<p>Le <strong>XML</strong> est un langage de balisage extensible qui permet de structurer les informations avec précision. Dans la documentation technique, il garantit la cohérence des données, facilite les contrôles automatiques et ouvre la voie à la publication multicanal.</p><p>En définissant des schémas (<em>XSD</em>) et des règles métier, il devient possible de détecter rapidement les incohérences, de versionner finement les mises à jour et d’alimenter des portails ou applications de terrain.</p><p>Pour tirer parti du XML, investissez dans des modèles de contenu clairs, des scripts de transformation fiables et un processus de validation outillé.</p>",
-    "canonical": "https://gooseppr.github.io/ppr_solution_site/blog/comprendre-xml-documentation-technique/"
+    "slug": "extraction-xml-vers-excel",
+    "title": "Extraire des données XML vers Excel ou CSV",
+    "description": "Utiliser XPath et un mapping pour consolider des informations dispersées dans un corpus XML.",
+    "meta_description": "Comment extraire des données XML vers Excel ou CSV avec XPath, mapping et consolidation contrôlée.",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "category": "XML",
+    "tags": ["XML", "XPath", "Excel", "CSV"],
+    "reading_time": "6 min",
+    "content_html": "<p class=\"lead\">L’extraction transforme un corpus XML en données exploitables ailleurs. Elle exige un mapping explicite et un contrôle des valeurs absentes ou ambiguës.</p><h2>Identifier les chemins XPath</h2><p>Chaque colonne attendue doit correspondre à un chemin source ou à une règle calculée.</p><table class=\"mapping-table\"><tbody><tr><td><code>/product/id</code></td><td>→</td><td><code>product_id</code></td></tr><tr><td><code>/product/manufacturer</code></td><td>→</td><td><code>manufacturer</code></td></tr><tr><td><code>/product/status</code></td><td>→</td><td><code>status</code></td></tr></tbody></table><h2>Contrôler la consolidation</h2><p>Les valeurs manquantes, les doublons et les différences de namespace doivent être signalés dans le rapport d’extraction.</p><h2>Formats de sortie</h2><ul><li>XLSX pour lecture humaine ;</li><li>CSV pour import ;</li><li>JSON pour intégration ;</li><li>SQL lorsque la structure cible est définie.</li></ul>"
+  },
+  {
+    "slug": "brex-s1000d-controle-xml",
+    "title": "Comprendre le rôle d’un BREX dans un contrôle S1000D",
+    "description": "Le BREX complète le schéma XML avec des règles métier propres à un programme documentaire S1000D.",
+    "meta_description": "Comprendre le rôle d’un BREX S1000D : règles métier, validation complémentaire et limites par rapport au XSD.",
+    "date": "2026-08-25",
+    "updated": "2026-08-25",
+    "category": "S1000D",
+    "tags": ["S1000D", "BREX", "XML", "Documentation"],
+    "reading_time": "7 min",
+    "content_html": "<p class=\"lead\">Dans S1000D, le XSD vérifie la structure XML. Le BREX ajoute des règles propres au programme, au client ou à l’organisation documentaire.</p><h2>XSD et BREX ne contrôlent pas la même chose</h2><p>Un module peut être valide au sens XSD et rester non conforme à une règle métier : structure autorisée, valeur interdite, référence absente ou pratique documentaire non acceptée.</p><pre class=\"code-block\"><code>DATA MODULE\n  ↓\nVALIDATION XSD\n  ↓\nRÈGLES BREX\n  ↓\nRÉFÉRENCES\n  ↓\nSYNTHÈSE</code></pre><h2>Ne pas parler de certification</h2><p>Un précontrôle technique peut signaler des anomalies et aider à préparer une livraison. Il ne remplace pas une certification officielle ni une validation métier complète.</p>"
   }
 ]
