@@ -6,6 +6,10 @@ const GAS_CONTACT_URL =
 
 const contactForm = document.querySelector("#contact-form-element");
 const statusNode = document.querySelector(".form-status");
+const submitButton = contactForm?.querySelector('button[type="submit"]');
+const submitButtonDefaultLabel = submitButton ? submitButton.textContent : "";
+
+let isSubmitting = false;
 
 const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
@@ -33,16 +37,33 @@ function setFieldError(fieldId, errorId, message) {
   }
 }
 
+function clearFieldErrors() {
+  setFieldError("contact-email", "contact-email-error", "");
+  setFieldError("contact-message", "contact-message-error", "");
+}
+
+function setSubmitting(submitting) {
+  isSubmitting = submitting;
+  if (!submitButton) return;
+  submitButton.disabled = submitting;
+  submitButton.setAttribute("aria-busy", submitting ? "true" : "false");
+  submitButton.textContent = submitting ? "Envoi en cours…" : submitButtonDefaultLabel;
+}
+
 function validateContactForm(data) {
   let firstError = null;
 
   const emailValid = data.email && emailRegex.test(data.email);
   setFieldError("contact-email", "contact-email-error", emailValid ? "" : "Renseignez une adresse email valide.");
-  if (!emailValid) firstError = firstError || "Renseignez une adresse email valide.";
+  if (!emailValid && !firstError) {
+    firstError = { message: "Renseignez une adresse email valide.", fieldId: "contact-email" };
+  }
 
   const messageValid = data.message && data.message.trim().length >= 10;
   setFieldError("contact-message", "contact-message-error", messageValid ? "" : "Le message doit comporter au moins 10 caractères.");
-  if (!messageValid) firstError = firstError || "Le message doit comporter au moins 10 caractères.";
+  if (!messageValid && !firstError) {
+    firstError = { message: "Le message doit comporter au moins 10 caractères.", fieldId: "contact-message" };
+  }
 
   return firstError;
 }
@@ -78,7 +99,7 @@ async function submitToScript(data) {
 
 async function submitContact(event) {
   event.preventDefault();
-  if (!contactForm) return;
+  if (!contactForm || isSubmitting) return;
 
   const formData = new FormData(contactForm);
 
@@ -103,18 +124,23 @@ async function submitContact(event) {
 
   const error = validateContactForm(payload);
   if (error) {
-    setStatus(error, "error");
+    setStatus(error.message, "error");
+    document.querySelector(`#${error.fieldId}`)?.focus();
     return;
   }
 
+  setSubmitting(true);
   setStatus("Envoi en cours…");
 
   try {
     await submitToScript(payload);
     setStatus("Message envoyé. Nous revenons vers vous rapidement.", "success");
     contactForm.reset();
+    clearFieldErrors();
   } catch (err) {
-    setStatus("Impossible d’envoyer le message pour le moment.", "error");
+    setStatus("Impossible d’envoyer le message pour le moment. Vérifiez votre connexion et réessayez.", "error");
+  } finally {
+    setSubmitting(false);
   }
 }
 

@@ -1,17 +1,3 @@
-const DATE_FORMATTER = new Intl.DateTimeFormat("fr-FR", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric"
-});
-
-function formatDate(dateString) {
-  try {
-    return DATE_FORMATTER.format(new Date(dateString));
-  } catch (error) {
-    return dateString;
-  }
-}
-
 function setupSkipLink() {
   const skipLink = document.querySelector(".skip-link");
   const main = document.querySelector("#main-content");
@@ -75,5 +61,3 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   updateFooterYear();
 });
-
-window.formatDate = formatDate;

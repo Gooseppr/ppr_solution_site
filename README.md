@@ -19,7 +19,7 @@ Puis ouvrir `http://localhost:8000`. Le site fonctionne aussi directement en `fi
 - `index.html` : accueil éditorial centré sur les problèmes XML, avec démonstration phare et méthode.
 - `services.html` : catalogue de prestations XML avec situations, interventions et livrables.
 - `demonstrations.html` : cas techniques fictifs et inspectables, dont le validateur S1000D secondaire.
-- `blog.html` : index statique du blog, sans filtrage JavaScript inutile.
+- `blog.html` : bibliothèque éditoriale statique, enrichie par une recherche et des filtres progressifs via `assets/js/blog.js`.
 - `blog/<slug>/index.html` : articles indexables générés depuis `blog/posts.json`.
 - `a-propos.html` : activité indépendante, méthode, confidentialité et limites assumées.
 - `contact.html` : formulaire de cadrage branché sur `assets/js/contact.js`.

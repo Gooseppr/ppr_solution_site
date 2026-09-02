@@ -5,6 +5,10 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 Mo
 
 const formElement = document.querySelector("#validator-form");
 const resultPanel = document.querySelector(".result-panel");
+const submitButton = formElement?.querySelector('button[type="submit"]');
+const submitButtonDefaultLabel = submitButton ? submitButton.textContent : "";
+
+let isValidating = false;
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -14,6 +18,41 @@ function escapeHtml(value) {
     '"': "&quot;",
     "'": "&#39;"
   }[char]));
+}
+
+function setSubmitting(submitting) {
+  isValidating = submitting;
+  if (!submitButton) return;
+  submitButton.disabled = submitting;
+  submitButton.setAttribute("aria-busy", submitting ? "true" : "false");
+  submitButton.textContent = submitting ? "Analyse en cours…" : submitButtonDefaultLabel;
+}
+
+function setFileError(message) {
+  const field = document.querySelector("#xml-file");
+  const errorNode = document.querySelector("#xml-file-error");
+  if (errorNode) errorNode.textContent = message || "";
+  if (field) {
+    if (message) field.setAttribute("aria-invalid", "true");
+    else field.removeAttribute("aria-invalid");
+  }
+}
+
+function focusResults() {
+  const heading = document.querySelector("#validator-results-title");
+  if (heading) heading.focus();
+}
+
+function renderIdle() {
+  if (!resultPanel) return;
+  resultPanel.dataset.resultState = "idle";
+  resultPanel.innerHTML = `<p class="muted">Déposez un fichier pour afficher le rapport de contrôle.</p>`;
+}
+
+function renderLoading() {
+  if (!resultPanel) return;
+  resultPanel.dataset.resultState = "loading";
+  resultPanel.innerHTML = `<p class="muted">Analyse en cours…</p>`;
 }
 
 function renderSummary(summary = {}) {
@@ -27,7 +66,7 @@ function renderSummary(summary = {}) {
 
   const durationInfo =
     typeof summary.duration_ms === "number"
-      ? `<p class="text-muted">Durée : ${summary.duration_ms} ms</p>`
+      ? `<p class="muted">Durée : ${summary.duration_ms} ms</p>`
       : "";
 
   return `
@@ -62,7 +101,7 @@ function renderResult(payload) {
           const errors =
             Array.isArray(item.errors) && item.errors.length > 0
               ? `<ul class="list-bullet">${item.errors.map((err) => `<li>${escapeHtml(err)}</li>`).join("")}</ul>`
-              : `<p class="text-muted">Aucune erreur signalée.</p>`;
+              : `<p class="muted">Aucune erreur signalée.</p>`;
 
           return `
             <article class="result-card" data-status="${status}">
@@ -72,7 +111,7 @@ function renderResult(payload) {
               </header>
               ${
                 item.schema_used
-                  ? `<p class="text-muted">Schéma utilisé : ${escapeHtml(item.schema_used)}</p>`
+                  ? `<p class="muted">Schéma utilisé : ${escapeHtml(item.schema_used)}</p>`
                   : ""
               }
               ${errors}
@@ -80,19 +119,23 @@ function renderResult(payload) {
           `;
         })
           .join("")
-      : `<p class="text-muted">Aucun résultat à afficher.</p>`;
+      : `<p class="muted">Aucun résultat à afficher.</p>`;
 
+  resultPanel.dataset.resultState = "success";
   resultPanel.innerHTML = `
     ${summaryBlock}
     <div class="result-stack">
       ${cards}
     </div>
   `;
+  focusResults();
 }
 
 function renderError(message) {
   if (!resultPanel) return;
-  resultPanel.innerHTML = `<p class="text-muted">${escapeHtml(message)}</p>`;
+  resultPanel.dataset.resultState = "error";
+  resultPanel.innerHTML = `<p class="form-status" data-status="error">${escapeHtml(message)}</p>`;
+  focusResults();
 }
 
 function buildFormData(file) {
@@ -117,34 +160,41 @@ async function callValidationAPI(formData) {
 
 async function handleUpload(event) {
   event.preventDefault();
-  if (!formElement) return;
+  if (!formElement || isValidating) return;
 
   const fileInput = formElement.querySelector('input[type="file"]');
+  setFileError("");
 
   if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-    renderError("Ajoutez un fichier XML avant de lancer la validation.");
+    setFileError("Ajoutez un fichier XML avant de lancer la validation.");
+    fileInput?.focus();
     return;
   }
 
   const file = fileInput.files[0];
 
   if (file.size > MAX_FILE_SIZE) {
-    renderError("Le fichier dépasse la limite de 10 Mo.");
+    setFileError("Le fichier dépasse la limite de 10 Mo.");
+    fileInput.focus();
     return;
   }
 
   if (!file.name.toLowerCase().endsWith(".xml")) {
-    renderError("Seuls les fichiers .xml sont acceptés.");
+    setFileError("Seuls les fichiers .xml sont acceptés.");
+    fileInput.focus();
     return;
   }
 
-  renderError("Analyse en cours…");
+  setSubmitting(true);
+  renderLoading();
 
   try {
     const payload = await callValidationAPI(buildFormData(file));
     renderResult(payload);
   } catch (error) {
     renderError(`Une erreur est survenue : ${error.message}`);
+  } finally {
+    setSubmitting(false);
   }
 }
 

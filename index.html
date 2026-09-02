@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;650;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <noscript><style>@media (max-width: 760px) { .nav-inner { flex-wrap: wrap; } .nav-toggle { display: none; } .primary-nav { position: static; width: 100%; display: flex; flex-direction: column; align-items: stretch; border: 0; padding: 0 0 1rem; } }</style></noscript>
   <link rel="icon" href="assets/favicon/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/favicon/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
@@ -37,67 +38,90 @@
   </header>
 
   <main id="main-content">
-    <section class="section-hero">
+    <section class="section-hero home-intro">
       <div class="container home-hero">
-        <div>
+        <div class="home-hero-copy">
           <p class="eyebrow">Atelier XML indépendant</p>
           <h1>Contrôler, transformer et exploiter vos données XML</h1>
           <p class="lead">PPR-Solution prend en charge des problématiques XML concrètes : validation, qualification de corpus, extraction, transformation, migration, comparaison et génération documentaire.</p>
-          <p>La documentation structurée et S1000D constituent une expertise particulière, sans remplacer le positionnement principal : XML et données structurées.</p>
+          <p class="hero-detail">Documentation structurée et S1000D complètent cette expertise, sans remplacer le cœur du métier : XML et données structurées.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="contact.html">Décrire mon besoin</a>
             <a class="btn" href="demonstrations.html">Voir les démonstrations</a>
           </div>
         </div>
-        <div class="home-visual" aria-label="Mini flux technique XML">
-          <div class="flow-panel">
-            <header><span class="file-name">source.xml</span><span class="status-label">entrée</span></header>
-            <pre class="code-block"><code>&lt;product&gt;
-  &lt;id&gt;P-482&lt;/id&gt;
-  &lt;status&gt;legacy&lt;/status&gt;
-&lt;/product&gt;</code></pre>
+        <figure class="xml-figure">
+          <figcaption class="sr-only">Exemple technique d’un fichier XML transformé et validé.</figcaption>
+          <div class="xml-window">
+            <div class="xml-window-bar">
+              <span class="file-name">target.xml</span>
+              <span class="status-label status-ok"><span aria-hidden="true">✓</span> Validé</span>
+            </div>
+            <div class="xml-code" role="region" aria-label="Exemple XML transformé">
+              <ol>
+                <li><code><span class="syntax-declaration">&lt;?xml</span> <span class="syntax-attribute-pair"><span class="syntax-attribute">version</span>=<span class="syntax-string">&quot;1.0&quot;</span></span> <span class="syntax-attribute-pair"><span class="syntax-attribute">encoding</span>=<span class="syntax-string">&quot;UTF-8&quot;</span></span><span class="syntax-declaration">?&gt;</span></code></li>
+                <li><code><span class="syntax-tag">&lt;item&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;code&gt;</span><span class="syntax-value">P-482</span><span class="syntax-tag">&lt;/code&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;state&gt;</span><span class="syntax-value">archived</span><span class="syntax-tag">&lt;/state&gt;</span></code></li>
+                <li><code><span class="syntax-tag">&lt;/item&gt;</span></code></li>
+              </ol>
+            </div>
           </div>
-          <div class="flow-panel">
-            <header><span class="file-name">mapping.xpath</span><span class="status-label">règles</span></header>
-            <table class="mapping-table">
-              <tbody>
-                <tr><td><code>/product/id</code></td><td>→</td><td><code>/item/code</code></td></tr>
-                <tr><td><code>/product/status</code></td><td>→</td><td><code>/item/state</code></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="flow-panel">
-            <header><span class="file-name">target.xml</span><span class="status-label status-ok">validé</span></header>
-            <pre class="code-block"><code>&lt;item&gt;
-  &lt;code&gt;P-482&lt;/code&gt;
-  &lt;state&gt;archived&lt;/state&gt;
-&lt;/item&gt;</code></pre>
-          </div>
+          <ol class="hero-process" aria-label="Flux de transformation">
+            <li><span>Sources</span><strong>XML + XSD</strong></li>
+            <li><span>Traitement</span><strong>Mapping + transformation</strong></li>
+            <li><span>Livrables</span><strong>XML + rapport</strong></li>
+          </ol>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-tight capabilities-section">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Formats et capacités</p><h2>Du corpus source au livrable exploitable</h2></div>
+          <p>Une intervention est cadrée sur un échantillon, testée, traitée, contrôlée puis livrée avec les éléments nécessaires à son exploitation.</p>
+        </div>
+        <div class="capability-list">
+          <article class="capability-row">
+            <span class="service-num">01</span>
+            <div><h3>Contrôler un corpus</h3><p>Identifier les XML non conformes, les erreurs XSD, les namespaces incohérents et les anomalies à qualifier.</p></div>
+            <span class="format-list">XML · XSD</span>
+            <a href="services.html#controle">Découvrir le contrôle</a>
+          </article>
+          <article class="capability-row">
+            <span class="service-num">02</span>
+            <div><h3>Exploiter les données</h3><p>Extraire des informations dispersées dans plusieurs XML vers des formats directement utilisables.</p></div>
+            <span class="format-list">CSV · XLSX · JSON · SQL</span>
+            <a href="services.html#extraction">Découvrir l’extraction</a>
+          </article>
+          <article class="capability-row">
+            <span class="service-num">03</span>
+            <div><h3>Transformer ou migrer</h3><p>Passer d’un modèle XML à un autre ou faire évoluer un corpus après un changement de schéma.</p></div>
+            <span class="format-list">XML · XSLT · mapping</span>
+            <a href="services.html#transformation">Découvrir la transformation</a>
+          </article>
+          <article class="capability-row">
+            <span class="service-num">04</span>
+            <div><h3>Produire des livrables</h3><p>Générer des rapports, fichiers corrigés, extractions, mappings, journaux ou publications.</p></div>
+            <span class="format-list">PDF · HTML · XML · CSV</span>
+            <a href="services.html#generation">Découvrir la génération</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section-tight">
-      <div class="container">
-        <p class="eyebrow">Situations</p>
-        <h2>Dans quelles situations intervenir ?</h2>
-        <div class="situation-row"><span class="service-num">01</span><h3>Contrôler un corpus</h3><p>Identifier les XML non conformes, les erreurs XSD, les namespaces incohérents et les anomalies à qualifier.</p><a href="services.html#controle">Voir →</a></div>
-        <div class="situation-row"><span class="service-num">02</span><h3>Exploiter les données</h3><p>Extraire des informations dispersées dans plusieurs XML vers CSV, XLSX, JSON ou SQL.</p><a href="services.html#extraction">Voir →</a></div>
-        <div class="situation-row"><span class="service-num">03</span><h3>Transformer ou migrer</h3><p>Passer d’un modèle XML à un autre, ou faire évoluer un corpus après changement de schéma.</p><a href="services.html#transformation">Voir →</a></div>
-        <div class="situation-row"><span class="service-num">04</span><h3>Produire des livrables</h3><p>Générer des rapports, fichiers corrigés, extractions, mappings, journaux ou publications PDF/HTML.</p><a href="services.html#generation">Voir →</a></div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="section demo-home-section">
       <div class="container demo-feature">
-        <div>
+        <div class="demo-copy">
           <p class="eyebrow">Démonstration phare</p>
           <h2>Transformation XML A → XML B</h2>
           <p class="lead">Un jeu de données fictif illustre le passage d’un XML source vers un modèle cible, avec mapping, transformation, validation cible et livrables.</p>
           <p class="muted">Démonstration réalisée sur un jeu de données fictif, sans donnée client.</p>
           <div class="cta-row"><a class="btn btn-primary" href="demonstrations.html#transformation-xml">Voir la démonstration complète</a></div>
         </div>
-        <div class="technical-panel">
+        <div class="technical-panel demo-technical-panel">
+          <p class="panel-label">Chaîne de traitement</p>
           <div class="pipeline" aria-label="Pipeline transformation XML">
             <span>SOURCE.XML + SOURCE.XSD</span>
             <span>MAPPING source → cible</span>
@@ -114,29 +138,27 @@
       </div>
     </section>
 
-    <section class="section-tight">
-      <div class="container">
-        <p class="eyebrow">Livrables</p>
-        <h2>Ce que peut produire une intervention</h2>
-        <div class="table-wrap">
-          <table class="deliverables-table">
-            <tbody>
-              <tr><th>Rapport d’audit</th><td>PDF</td></tr>
-              <tr><th>Liste d’anomalies</th><td>XLSX / CSV</td></tr>
-              <tr><th>Extraction</th><td>XLSX / CSV / JSON</td></tr>
-              <tr><th>Données exploitables</th><td>SQL / JSON</td></tr>
-              <tr><th>Mapping</th><td>source → cible</td></tr>
-              <tr><th>Corpus traité</th><td>XML</td></tr>
-              <tr><th>Publication</th><td>PDF / HTML</td></tr>
-              <tr><th>Journal de traitement</th><td>CSV / XLSX</td></tr>
-            </tbody>
-          </table>
+    <section class="section-tight deliverables-section">
+      <div class="container editorial-grid">
+        <div>
+          <p class="eyebrow">Résultats et livrables</p>
+          <h2>Des sorties claires, vérifiables et réutilisables</h2>
+        </div>
+        <div class="deliverable-grid">
+          <div><strong>Rapport d’audit</strong><span>PDF</span></div>
+          <div><strong>Liste d’anomalies</strong><span>XLSX / CSV</span></div>
+          <div><strong>Extraction</strong><span>XLSX / CSV / JSON</span></div>
+          <div><strong>Données exploitables</strong><span>SQL / JSON</span></div>
+          <div><strong>Mapping</strong><span>source → cible</span></div>
+          <div><strong>Corpus traité</strong><span>XML</span></div>
+          <div><strong>Publication</strong><span>PDF / HTML</span></div>
+          <div><strong>Journal de traitement</strong><span>CSV / XLSX</span></div>
         </div>
       </div>
     </section>
 
-    <section class="section-tight">
-      <div class="container editorial-grid">
+    <section class="section s1000d-section">
+      <div class="container editorial-grid s1000d-layout">
         <div>
           <p class="eyebrow">Spécialisation</p>
           <h2>Documentation structurée et S1000D</h2>
@@ -148,53 +170,24 @@
       </div>
     </section>
 
-    <section class="section-tight">
-      <div class="container">
-        <p class="eyebrow">Méthode</p>
-        <h2>Une intervention cadrée en cinq étapes</h2>
-        <ol class="method-steps">
-          <li><strong>Cadrer</strong><p>Sources, contraintes, règles et livrables attendus.</p></li>
-          <li><strong>Tester</strong><p>Échantillon réduit et validation de l’approche.</p></li>
-          <li><strong>Traiter</strong><p>Contrôle, extraction, transformation ou migration.</p></li>
-          <li><strong>Contrôler</strong><p>Vérification technique et analyse humaine.</p></li>
-          <li><strong>Livrer</strong><p>Fichiers, rapports, exports et documentation.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container editorial-grid">
-        <div><p class="eyebrow">Indépendance</p><h2>Un interlocuteur unique</h2></div>
-        <div>
-          <p>PPR-Solution est une activité indépendante en cours de développement. Le même interlocuteur suit le cadrage, le traitement, le contrôle et la livraison.</p>
-          <p>Un échantillon anonymisé suffit souvent pour qualifier la faisabilité. NDA et transfert adapté peuvent être convenus lorsque les fichiers sont sensibles.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container">
-        <p class="eyebrow">Blog</p>
-        <h2>Derniers articles du Blog</h2>
-        <div class="blog-list">
-          <article class="blog-item"><p class="meta">XML · 25 août 2026</p><h3><a href="blog/validation-corpus-xml-xsd/">Valider plusieurs milliers de fichiers XML contre un XSD</a></h3><p>Une méthode pour qualifier un corpus, classer les erreurs et produire un rapport exploitable.</p></article>
-          <article class="blog-item"><p class="meta">XML · 25 août 2026</p><h3><a href="blog/transformation-xml-modele-cible/">Transformer un modèle XML vers un autre</a></h3><p>Comment concevoir le mapping, gérer les rejets et valider la cible.</p></article>
-          <article class="blog-item"><p class="meta">S1000D · 25 août 2026</p><h3><a href="blog/brex-s1000d-controle-xml/">Comprendre le rôle d’un BREX dans un contrôle S1000D</a></h3><p>Ce que le BREX complète par rapport au schéma XML.</p></article>
-        </div>
-      </div>
-    </section>
-
     <section class="section final-cta">
-      <div class="container editorial-grid">
-        <div><h2>Vous avez un corpus XML à contrôler ou transformer ?</h2></div>
-        <div><p>Quelques fichiers représentatifs suffisent souvent pour déterminer la faisabilité, la méthode et les livrables possibles.</p><div class="cta-row"><a class="btn" href="contact.html">Décrire mon besoin</a></div></div>
+      <div class="container final-cta-layout">
+        <div>
+          <p class="eyebrow">Premier échange</p>
+          <h2>Vous avez un corpus XML à contrôler ou transformer ?</h2>
+        </div>
+        <div class="final-cta-copy">
+          <p>Quelques fichiers représentatifs suffisent souvent pour déterminer la faisabilité, la méthode et les livrables possibles.</p>
+          <p>Le même interlocuteur suit le cadrage, le traitement, le contrôle et la livraison. Un échantillon anonymisé, un NDA et un transfert adapté peuvent être convenus pour les fichiers sensibles.</p>
+          <div class="cta-row"><a class="btn" href="contact.html">Décrire mon besoin</a></div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div><strong>PPR-Solution</strong><p class="muted">Prestations XML & données structurées</p><p class="muted">© <span id="footer-year"></span> PPR-Solution</p></div>
+      <div><strong>PPR-Solution</strong><p class="muted">Prestations XML & données structurées</p><p class="muted">© <span id="footer-year">2026</span> PPR-Solution</p></div>
       <div><h3>Navigation</h3><div class="footer-links"><a href="services.html">Prestations</a><a href="demonstrations.html">Démonstrations</a><a href="blog.html">Blog</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a></div></div>
       <div><h3>Informations</h3><div class="footer-links"><a href="confidentialite.html">Confidentialité</a><a href="mentions-legales.html">Mentions légales</a><a href="charte-ethique.html">Charte éthique</a></div></div>
     </div>
