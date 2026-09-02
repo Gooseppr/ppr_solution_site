@@ -13,7 +13,10 @@
       <form id="validator-form" class="form" novalidate>
         <div class="form-field file-drop">
           <label for="xml-file">Module S1000D XML <span class="muted">(max. 10 Mo)</span></label>
-          <input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="file-help xml-file-error">
+          <div class="file-input-control">
+            <input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="xml-file-name file-help xml-file-error">
+            <div class="file-input-visual"><span class="file-input-button" aria-hidden="true">Sélectionner un fichier XML</span><span id="xml-file-name" data-file-name aria-live="polite">Aucun fichier sélectionné</span></div>
+          </div>
           <p id="file-help" class="form-helper">Issue 6.0 prise en charge. Le schéma est sélectionné automatiquement lorsque le module peut être identifié.</p>
           <p id="xml-file-error" class="form-helper field-error" role="alert"></p>
         </div>

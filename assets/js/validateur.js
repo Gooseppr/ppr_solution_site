@@ -7,8 +7,16 @@ const formElement = document.querySelector("#validator-form");
 const resultPanel = document.querySelector(".result-panel");
 const submitButton = formElement?.querySelector('button[type="submit"]');
 const submitButtonDefaultLabel = submitButton ? submitButton.textContent : "";
+const fileInput = formElement?.querySelector('input[type="file"]');
+const fileNameNode = document.querySelector("[data-file-name]");
 
 let isValidating = false;
+
+function updateFileName() {
+  if (!fileNameNode) return;
+  const selectedFile = fileInput?.files?.[0];
+  fileNameNode.textContent = selectedFile ? selectedFile.name : "Aucun fichier sélectionné";
+}
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -200,4 +208,5 @@ async function handleUpload(event) {
 
 if (formElement) {
   formElement.addEventListener("submit", handleUpload);
+  fileInput?.addEventListener("change", updateFileName);
 }

@@ -33,29 +33,15 @@
   </header>
 
   <main id="main-content">
-    <section class="section-hero demos-intro">
-      <div class="container demo-page-intro">
-        <div>
-          <p class="eyebrow">Démonstrations techniques</p>
-          <h1>Explorer quatre traitements XML concrets</h1>
-        </div>
-        <div>
-          <p class="lead">Chaque cas permet d’examiner le problème, les données d’entrée, le traitement, les résultats et les livrables.</p>
-          <p>Les jeux de données sont fictifs et créés pour illustrer les prestations de PPR-Solution. Ils ne correspondent pas à des missions clients.</p>
-          <a class="text-link" href="#demo-explorer">Parcourir les cas disponibles ↓</a>
-        </div>
-      </div>
-    </section>
-
     <section class="section-tight demo-explorer-section" id="demo-explorer" aria-labelledby="demo-explorer-title">
       <div class="container">
-        <div class="section-heading demo-explorer-heading">
+        <header class="demo-explorer-intro">
           <div>
-            <p class="eyebrow">Explorateur</p>
-            <h2 id="demo-explorer-title" tabindex="-1">Choisir une démonstration</h2>
+            <p class="eyebrow">Démonstrations techniques</p>
+            <h1 id="demo-explorer-title" tabindex="-1">Quatre traitements XML, preuves à l’appui</h1>
           </div>
-          <p>Sélectionnez un cas pour consulter ses preuves techniques. Les filtres peuvent être combinés.</p>
-        </div>
+          <div><p class="lead">Examinez les données d’entrée, le traitement, les résultats et les livrables de chaque cas.</p><p>Les jeux de données sont fictifs et créés pour illustrer les prestations de PPR-Solution. Ils ne correspondent pas à des missions clients.</p></div>
+        </header>
 
         <form class="demo-filter-bar" data-demo-filters hidden>
           <div class="demo-filter-field">
@@ -96,11 +82,15 @@
             <div class="demo-card-kicker"><span class="service-num">01 · Transformation</span><span class="status-label">Données fictives</span></div>
             <h3>Transformation XML A → XML B</h3>
             <p><strong>Problème :</strong> transformer un modèle source vers un modèle cible sans perte silencieuse.</p>
+            <div class="technical-preview mapping-preview" role="img" aria-label="Aperçu du mapping : part identifiant vers item code, part état vers item statut">
+              <span class="technical-preview-label">Mapping source → cible</span>
+              <code><span>part/@id</span><b aria-hidden="true">→</b><span>item/code</span></code>
+              <code><span>part/state</span><b aria-hidden="true">→</b><span>item/status</span></code>
+            </div>
             <dl class="demo-card-meta">
               <div><dt>Entrée</dt><dd>XML + XSD</dd></div>
               <div><dt>Sortie</dt><dd>XML + rapport PDF</dd></div>
             </dl>
-            <p class="demo-card-files"><span>Livrables</span> Mapping CSV, XML cible, rapport de transformation</p>
             <a class="demo-card-action" href="#transformation-xml" data-demo-open="transformation-xml">Examiner la transformation →</a>
           </article>
 
@@ -108,11 +98,14 @@
             <div class="demo-card-kicker"><span class="service-num">02 · Audit et contrôle</span><span class="status-label">Données fictives</span></div>
             <h3>Audit XML multi-erreurs</h3>
             <p><strong>Problème :</strong> qualifier les anomalies d’un corpus avant sa livraison.</p>
+            <div class="technical-preview audit-preview" role="img" aria-label="Aperçu du corpus fictif : 96 fichiers valides, 10 avertissements métier et 17 erreurs XSD">
+              <span class="technical-preview-label">Qualification du corpus</span>
+              <span><strong>96</strong> valides</span><span><strong>10</strong> warnings</span><span><strong>17</strong> erreurs XSD</span>
+            </div>
             <dl class="demo-card-meta">
               <div><dt>Entrée</dt><dd>Corpus XML + XSD</dd></div>
               <div><dt>Sortie</dt><dd>PDF + XLSX + CSV</dd></div>
             </dl>
-            <p class="demo-card-files"><span>Livrables</span> Rapport d’audit, listes d’anomalies, échantillon XML limité</p>
             <a class="demo-card-action" href="#audit-xml" data-demo-open="audit-xml">Examiner l’audit →</a>
           </article>
 
@@ -120,11 +113,15 @@
             <div class="demo-card-kicker"><span class="service-num">03 · Extraction</span><span class="status-label">Données fictives</span></div>
             <h3>Extraction XML vers Excel / CSV</h3>
             <p><strong>Problème :</strong> consolider des informations réparties dans plusieurs fichiers XML.</p>
+            <div class="technical-preview mapping-preview" role="img" aria-label="Aperçu du mapping : XPath produit identifiant vers colonne product_id, fabricant vers colonne manufacturer">
+              <span class="technical-preview-label">XPath → colonnes</span>
+              <code><span>/product/id</span><b aria-hidden="true">→</b><span>product_id</span></code>
+              <code><span>/product/manufacturer</span><b aria-hidden="true">→</b><span>manufacturer</span></code>
+            </div>
             <dl class="demo-card-meta">
               <div><dt>Entrée</dt><dd>XML</dd></div>
               <div><dt>Sortie</dt><dd>XLSX + CSV + JSON</dd></div>
             </dl>
-            <p class="demo-card-files"><span>Livrables</span> Extraction XLSX, CSV et JSON</p>
             <a class="demo-card-action" href="#extraction-xml" data-demo-open="extraction-xml">Examiner l’extraction →</a>
           </article>
 
@@ -132,11 +129,14 @@
             <div class="demo-card-kicker"><span class="service-num">04 · Publication</span><span class="status-label">Données fictives</span></div>
             <h3>XML → PDF / HTML</h3>
             <p><strong>Problème :</strong> produire une publication lisible à partir de données structurées.</p>
+            <figure class="technical-preview publication-preview">
+              <img src="assets/img/exemple_pdf.png" width="835" height="1182" alt="Miniature de la publication PDF fictive générée à partir du XML" loading="lazy">
+              <figcaption><span class="technical-preview-label">Chaîne de publication</span><code>XML → XSLT → PDF / HTML</code></figcaption>
+            </figure>
             <dl class="demo-card-meta">
               <div><dt>Entrée</dt><dd>XML</dd></div>
               <div><dt>Sortie</dt><dd>PDF + HTML</dd></div>
             </dl>
-            <p class="demo-card-files"><span>Livrables</span> Publication PDF et HTML</p>
             <a class="demo-card-action" href="#publication-xml" data-demo-open="publication-xml">Examiner la publication →</a>
           </article>
         </div>

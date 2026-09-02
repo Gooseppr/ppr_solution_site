@@ -78,18 +78,28 @@ function renderToc(headings) {
 }
 
 function postDataAttributes(post) {
-  return `data-blog-post data-slug="${escapeHtml(post.slug)}" data-title="${escapeHtml(post.title)}" data-description="${escapeHtml(post.description)}" data-category="${escapeHtml(post.category || "Blog")}" data-tags="${escapeHtml((post.tags || []).join("|"))}" data-date="${escapeHtml(post.date)}" data-reading-time="${escapeHtml(post.reading_time || "Lecture")}"`;
+  return `data-blog-post data-slug="${escapeHtml(post.slug)}" data-title="${escapeHtml(post.title)}" data-description="${escapeHtml(post.description)}" data-category="${escapeHtml(post.category || "Blog")}" data-tags="${escapeHtml((post.tags || []).join("|"))}" data-date="${escapeHtml(post.date)}" data-reading-time="${escapeHtml(post.reading_time || "Lecture")}" data-preview="${escapeHtml(JSON.stringify(post.preview || {}))}"`;
 }
 
 function renderTags(tags = []) {
   return `<ul class="blog-tag-list" aria-label="Sujets">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>`;
 }
 
+function renderPostPreview(preview = {}) {
+  const label = escapeHtml(preview.label || "Aperçu technique");
+  if (preview.kind === "mapping") {
+    const rows = preview.items.map((item) => `<li><code>${escapeHtml(item.from)}</code><span aria-hidden="true">→</span><code>${escapeHtml(item.to)}</code></li>`).join("");
+    return `<div class="blog-technical-preview blog-preview-mapping"><p>${label}</p><ul>${rows}</ul></div>`;
+  }
+  const steps = preview.items.map((item) => `<li><code>${escapeHtml(item)}</code></li>`).join("");
+  return `<div class="blog-technical-preview blog-preview-flow"><p>${label}</p><ol>${steps}</ol></div>`;
+}
+
 function renderPostCard(post, featured = false) {
   const headingTag = featured ? "h2" : "h3";
   const className = featured ? "blog-featured" : "blog-card";
   const label = featured ? `<p class="eyebrow">Article mis en avant</p>` : "";
-  return `<article class="${className}" ${postDataAttributes(post)}>${label}<p class="meta">${escapeHtml(post.category || "Blog")} · <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time> · ${escapeHtml(post.reading_time || "Lecture")}</p><${headingTag}><a href="blog/${escapeHtml(post.slug)}/">${escapeHtml(post.title)}</a></${headingTag}><p>${escapeHtml(post.description)}</p>${renderTags(post.tags)}<a class="blog-read-link" href="blog/${escapeHtml(post.slug)}/">Lire l’article complet →</a></article>`;
+  return `<article class="${className}" ${postDataAttributes(post)}>${label}<p class="meta">${escapeHtml(post.category || "Blog")} · <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time> · ${escapeHtml(post.reading_time || "Lecture")}</p><${headingTag}><a href="blog/${escapeHtml(post.slug)}/">${escapeHtml(post.title)}</a></${headingTag}><p>${escapeHtml(post.description)}</p>${renderPostPreview(post.preview)}${renderTags(post.tags)}<a class="blog-read-link" href="blog/${escapeHtml(post.slug)}/">Lire l’article complet →</a></article>`;
 }
 
 function usefulValues(posts, key) {
@@ -145,7 +155,7 @@ function renderBlog(posts) {
   const categoryControl = renderSelect({ id: "blog-category", label: "Catégorie", dataAttribute: "data-blog-category", allLabel: "Toutes les catégories", values: categories });
   const tagControl = renderSelect({ id: "blog-tag", label: "Sujet", dataAttribute: "data-blog-tag", allLabel: "Tous les sujets", values: tags });
 
-  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: "Blog PPR-Solution · XML, données structurées et S1000D", description: "Analyses, méthodes et retours techniques autour de XML, des données structurées et de S1000D.", canonical: `${BASE_URL}/blog.html`, prefix: "", type: "website" })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("")}<main id="main-content"><section class="section-hero blog-intro"><div class="container blog-hero-layout"><div><p class="eyebrow">Bibliothèque XML</p><h1>Analyses et méthodes XML</h1></div><div><p class="lead">Validation, extraction, transformation et documentation structurée : quatre articles techniques directement reliés aux prestations et démonstrations.</p><a class="text-link" href="#blog-library">Explorer les articles ↓</a></div></div></section><section class="section-tight blog-library-section" id="blog-library" aria-labelledby="blog-library-title"><div class="container"><div class="blog-library-header"><div><p class="eyebrow">Bibliothèque éditoriale</p><h2 id="blog-library-title">Tous les articles</h2></div><p>Recherchez une méthode, un format ou un sujet technique.</p></div><form class="blog-controls" data-blog-controls hidden><div class="blog-control-field blog-search-field"><label for="blog-search">Rechercher</label><input id="blog-search" type="search" placeholder="XML, XSD, mapping…" autocomplete="off" data-blog-search></div>${categoryControl}${tagControl}<div class="blog-control-field"><label for="blog-sort">Trier</label><select id="blog-sort" data-blog-sort><option value="newest">Plus récent</option><option value="oldest">Plus ancien</option><option value="title-asc">Titre A–Z</option><option value="title-desc">Titre Z–A</option></select></div><div class="blog-control-status"><p id="blog-result-count" role="status" aria-live="polite"><strong>${posts.length}</strong> articles</p><button class="btn btn-text" type="button" data-blog-reset hidden>Réinitialiser</button></div></form><p class="blog-data-status" data-blog-data-status role="status" hidden></p><div class="blog-empty-state" data-blog-empty role="status" hidden><p class="eyebrow">Aucun résultat</p><h3>Aucun article ne correspond à cette recherche.</h3><p>Modifiez les critères ou affichez toute la bibliothèque.</p><button class="btn" type="button" data-blog-empty-reset>Afficher tous les articles</button></div><div data-blog-results><div data-blog-featured>${renderPostCard(featured, true)}</div><div class="blog-card-grid" data-blog-grid>${cards}</div></div></div></section></main>${footer("")}<script src="assets/js/main.js" defer></script><script src="assets/js/blog.js" defer></script></body></html>`;
+  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: "Blog PPR-Solution · XML, données structurées et S1000D", description: "Analyses, méthodes et retours techniques autour de XML, des données structurées et de S1000D.", canonical: `${BASE_URL}/blog.html`, prefix: "", type: "website" })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("")}<main id="main-content"><section class="section-tight blog-library-section" id="blog-library" aria-labelledby="blog-library-title"><div class="container"><header class="blog-library-intro"><div><p class="eyebrow">Bibliothèque XML</p><h1 id="blog-library-title">Analyses et méthodes XML</h1></div><p class="lead">Validation, extraction, transformation et documentation structurée : des articles techniques reliés aux prestations et démonstrations.</p></header><form class="blog-controls" data-blog-controls hidden><div class="blog-control-primary"><div class="blog-control-field blog-search-field"><label for="blog-search">Rechercher</label><input id="blog-search" type="search" placeholder="XML, XSD, mapping…" autocomplete="off" data-blog-search></div><div class="blog-control-field blog-sort-field"><label for="blog-sort">Trier</label><select id="blog-sort" data-blog-sort><option value="newest">Plus récent</option><option value="oldest">Plus ancien</option><option value="title-asc">Titre A–Z</option><option value="title-desc">Titre Z–A</option></select></div></div><details class="blog-filter-details"><summary>Filtres <span>Catégorie et sujet</span></summary><div class="blog-filter-grid">${categoryControl}${tagControl}</div></details><div class="blog-control-status"><p id="blog-result-count" role="status" aria-live="polite"><strong>${posts.length}</strong> articles</p><button class="btn btn-text" type="button" data-blog-reset hidden>Réinitialiser</button></div></form><p class="blog-data-status" data-blog-data-status role="status" hidden></p><div class="blog-empty-state" data-blog-empty role="status" hidden><p class="eyebrow">Aucun résultat</p><h2>Aucun article ne correspond à cette recherche.</h2><p>Modifiez les critères ou affichez toute la bibliothèque.</p><button class="btn" type="button" data-blog-empty-reset>Afficher tous les articles</button></div><div data-blog-results><div data-blog-featured>${renderPostCard(featured, true)}</div><div class="blog-card-grid" data-blog-grid>${cards}</div></div></div></section></main>${footer("")}<script src="assets/js/main.js" defer></script><script src="assets/js/blog.js" defer></script></body></html>`;
 }
 
 function renderSitemap(posts) {
@@ -170,6 +180,9 @@ function validatePosts(posts) {
     ["service_url", "service_label", "demo_url", "demo_label"].forEach((field) => {
       if (!post[field]) throw new Error(`Article ${post.slug} : association ${field} manquante.`);
     });
+    if (!post.preview || !["flow", "mapping"].includes(post.preview.kind) || !post.preview.label || !Array.isArray(post.preview.items) || !post.preview.items.length) {
+      throw new Error(`Article ${post.slug} : aperçu technique invalide.`);
+    }
     slugs.add(post.slug);
   });
 }

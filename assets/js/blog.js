@@ -39,8 +39,29 @@ function initBlogLibrary() {
       tags: (element.dataset.tags || "").split("|").filter(Boolean),
       date: element.dataset.date,
       reading_time: element.dataset.readingTime,
+      preview: parsePreview(element.dataset.preview),
       _index: index
     }));
+  }
+
+  function parsePreview(value) {
+    try {
+      return normalizePreview(JSON.parse(value || "{}"));
+    } catch (_error) {
+      return { kind: "flow", label: "Aperçu technique", items: [] };
+    }
+  }
+
+  function normalizePreview(preview) {
+    const kind = preview && preview.kind === "mapping" ? "mapping" : "flow";
+    const items = Array.isArray(preview?.items) ? preview.items.slice(0, 3) : [];
+    return {
+      kind,
+      label: String(preview?.label || "Aperçu technique"),
+      items: kind === "mapping"
+        ? items.map((item) => ({ from: String(item?.from || ""), to: String(item?.to || "") })).filter((item) => item.from && item.to)
+        : items.map((item) => String(item || "")).filter(Boolean)
+    };
   }
 
   function normalizePosts(payload) {
@@ -57,6 +78,7 @@ function initBlogLibrary() {
         tags: post.tags.map((tag) => String(tag)),
         date: String(post.date),
         reading_time: String(post.reading_time || "Lecture"),
+        preview: normalizePreview(post.preview),
         _index: index
       };
     });
@@ -72,6 +94,36 @@ function initBlogLibrary() {
       list.append(item);
     });
     return list;
+  }
+
+  function createPreview(preview) {
+    const container = document.createElement("div");
+    container.className = `blog-technical-preview blog-preview-${preview.kind}`;
+    const label = document.createElement("p");
+    label.textContent = preview.label;
+    container.append(label);
+
+    const list = document.createElement(preview.kind === "mapping" ? "ul" : "ol");
+    preview.items.forEach((item) => {
+      const row = document.createElement("li");
+      if (preview.kind === "mapping") {
+        const source = document.createElement("code");
+        const arrow = document.createElement("span");
+        const target = document.createElement("code");
+        source.textContent = item.from;
+        arrow.textContent = "→";
+        arrow.setAttribute("aria-hidden", "true");
+        target.textContent = item.to;
+        row.append(source, arrow, target);
+      } else {
+        const code = document.createElement("code");
+        code.textContent = item;
+        row.append(code);
+      }
+      list.append(row);
+    });
+    container.append(list);
+    return container;
   }
 
   function createPost(post, featured) {
@@ -105,7 +157,7 @@ function initBlogLibrary() {
     readLink.href = `blog/${post.slug}/`;
     readLink.textContent = "Lire l’article complet →";
 
-    article.append(meta, heading, description, createTagList(post.tags), readLink);
+    article.append(meta, heading, description, createPreview(post.preview), createTagList(post.tags), readLink);
     return article;
   }
 

@@ -51,27 +51,31 @@
           </div>
         </div>
         <figure class="xml-figure">
-          <figcaption class="sr-only">Exemple technique d’un fichier XML transformé et validé.</figcaption>
+          <figcaption class="sr-only">Manifeste XML d’une intervention, de ses sources à ses livrables.</figcaption>
           <div class="xml-window">
             <div class="xml-window-bar">
-              <span class="file-name">target.xml</span>
+              <span class="file-name">intervention.xml</span>
               <span class="status-label status-ok"><span aria-hidden="true">✓</span> Validé</span>
             </div>
-            <div class="xml-code" role="region" aria-label="Exemple XML transformé">
+            <div class="xml-code" role="region" aria-label="Manifeste XML d’une intervention validée">
               <ol>
                 <li><code><span class="syntax-declaration">&lt;?xml</span> <span class="syntax-attribute-pair"><span class="syntax-attribute">version</span>=<span class="syntax-string">&quot;1.0&quot;</span></span> <span class="syntax-attribute-pair"><span class="syntax-attribute">encoding</span>=<span class="syntax-string">&quot;UTF-8&quot;</span></span><span class="syntax-declaration">?&gt;</span></code></li>
-                <li><code><span class="syntax-tag">&lt;item&gt;</span></code></li>
-                <li><code>  <span class="syntax-tag">&lt;code&gt;</span><span class="syntax-value">P-482</span><span class="syntax-tag">&lt;/code&gt;</span></code></li>
-                <li><code>  <span class="syntax-tag">&lt;state&gt;</span><span class="syntax-value">archived</span><span class="syntax-tag">&lt;/state&gt;</span></code></li>
-                <li><code><span class="syntax-tag">&lt;/item&gt;</span></code></li>
+                <li><code><span class="syntax-tag">&lt;intervention</span> <span class="syntax-attribute-pair"><span class="syntax-attribute">statut</span>=<span class="syntax-string">&quot;validé&quot;</span></span><span class="syntax-tag">&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;sources&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;formats&gt;</span><span class="syntax-value">XML · XSD</span><span class="syntax-tag">&lt;/formats&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;corpus&gt;</span><span class="syntax-value">documentation structurée</span><span class="syntax-tag">&lt;/corpus&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;/sources&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;traitements&gt;</span></code></li>
+                <li><code>    <span class="syntax-value">contrôler · extraire</span></code></li>
+                <li><code>    <span class="syntax-value">transformer · migrer</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;/traitements&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;livrables&gt;</span></code></li>
+                <li><code>    <span class="syntax-value">XML · XLSX · JSON · SQL · PDF</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;/livrables&gt;</span></code></li>
+                <li><code><span class="syntax-tag">&lt;/intervention&gt;</span></code></li>
               </ol>
             </div>
           </div>
-          <ol class="hero-process" aria-label="Flux de transformation">
-            <li><span>Sources</span><strong>XML + XSD</strong></li>
-            <li><span>Traitement</span><strong>Mapping + transformation</strong></li>
-            <li><span>Livrables</span><strong>XML + rapport</strong></li>
-          </ol>
         </figure>
       </div>
     </section>
