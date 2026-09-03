@@ -1,0 +1,14 @@
+flowchart LR
+    accTitle: Chaîne de structuration documentaire
+    accDescr: Un document ou contenu source est analysé, structuré en XML selon un modèle, contrôlé puis publié en PDF et HTML.
+
+    A["Document source<br/>DOCX / PDF / contenus"]:::neutral --> B["Analyse"]:::action
+    B --> C["Structuration XML"]:::structure
+    C --> D["Contrôle"]:::warning
+    D --> E["Publication<br/>PDF / HTML"]:::success
+
+    classDef neutral fill:#edf2f7,stroke:#74879a,stroke-width:1.5px,color:#132435;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.5px,color:#132435;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.5px,color:#132435;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:1.5px,color:#132435;
+    classDef success fill:#e9f5ee,stroke:#247a45,stroke-width:1.5px,color:#132435;

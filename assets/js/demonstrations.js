@@ -1,6 +1,7 @@
 function initDemoExplorer() {
   const explorer = document.querySelector("#demo-explorer");
   const filterForm = document.querySelector("[data-demo-filters]");
+  const filterHeading = document.querySelector("[data-demo-filter-heading]");
   const typeFilter = document.querySelector('[data-demo-filter="type"]');
   const outputFilter = document.querySelector('[data-demo-filter="output"]');
   const summaries = Array.from(document.querySelectorAll("[data-demo-summary]"));
@@ -88,6 +89,7 @@ function initDemoExplorer() {
 
   document.documentElement.classList.add("demos-enhanced");
   filterForm.hidden = false;
+  if (filterHeading) filterHeading.hidden = false;
   casePrompt.hidden = false;
   openActions.forEach((action) => {
     action.setAttribute("aria-controls", action.dataset.demoOpen);

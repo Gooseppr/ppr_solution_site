@@ -1,0 +1,12 @@
+flowchart TB
+    accTitle: Méthode de l'atelier documentaire
+    accDescr: Les entrées (documents, XML, données) passent par un traitement de scripts et mappings, un contrôle humain des exceptions, avant de produire les livrables finaux.
+
+    A["Entrées<br/>DOCX · PDF · XML · données"]:::neutral --> B["Traitement<br/>scripts · mappings · règles"]:::action
+    B --> C["Contrôle<br/>schémas · exceptions · décisions"]:::warning
+    C --> D["Sorties<br/>XML · rapports · publications"]:::success
+
+    classDef neutral fill:#edf2f7,stroke:#74879a,stroke-width:1.5px,color:#132435;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.5px,color:#132435;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:1.5px,color:#132435;
+    classDef success fill:#e9f5ee,stroke:#247a45,stroke-width:1.5px,color:#132435;

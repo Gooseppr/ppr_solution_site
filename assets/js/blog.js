@@ -1,7 +1,6 @@
 function initBlogLibrary() {
   const controls = document.querySelector("[data-blog-controls]");
   const results = document.querySelector("[data-blog-results]");
-  const featuredRegion = document.querySelector("[data-blog-featured]");
   const grid = document.querySelector("[data-blog-grid]");
   const searchInput = document.querySelector("[data-blog-search]");
   const categorySelect = document.querySelector("[data-blog-category]");
@@ -14,7 +13,7 @@ function initBlogLibrary() {
   const dataStatus = document.querySelector("[data-blog-data-status]");
   const pagination = document.querySelector("[data-blog-pagination]");
 
-  if (!controls || !results || !featuredRegion || !grid || !searchInput || !sortSelect || !countNode || !resetButton || !emptyState || !emptyReset || !dataStatus || !pagination) return;
+  if (!controls || !results || !grid || !searchInput || !sortSelect || !countNode || !resetButton || !emptyState || !emptyReset || !dataStatus || !pagination) return;
 
   const PAGE_SIZE = 6;
 
@@ -129,18 +128,12 @@ function initBlogLibrary() {
     return container;
   }
 
-  function createPost(post, featured) {
+  function createPost(post) {
     const article = document.createElement("article");
-    article.className = featured ? "blog-featured" : "blog-card";
+    article.className = "blog-card";
     const link = document.createElement("a");
     link.className = "article-card-link";
     link.href = `blog/${post.slug}/`;
-    if (featured) {
-      const label = document.createElement("p");
-      label.className = "eyebrow";
-      label.textContent = "Article mis en avant";
-      link.append(label);
-    }
 
     const meta = document.createElement("p");
     meta.className = "meta";
@@ -149,7 +142,7 @@ function initBlogLibrary() {
     time.textContent = dateFormatter.format(new Date(`${post.date}T00:00:00Z`));
     meta.append(document.createTextNode(`${post.category} · `), time, document.createTextNode(` · ${post.reading_time}`));
 
-    const heading = document.createElement(featured ? "h2" : "h3");
+    const heading = document.createElement("h3");
     heading.textContent = post.title;
 
     const description = document.createElement("p");
@@ -236,7 +229,6 @@ function initBlogLibrary() {
     resetButton.hidden = !controlsActive;
     emptyState.hidden = visiblePosts.length !== 0;
     results.hidden = visiblePosts.length === 0;
-    featuredRegion.replaceChildren();
     grid.replaceChildren();
     pagination.replaceChildren();
     pagination.hidden = true;
@@ -245,8 +237,7 @@ function initBlogLibrary() {
     const pageCount = Math.ceil(visiblePosts.length / PAGE_SIZE);
     currentPage = Math.min(currentPage, pageCount);
     const pagePosts = visiblePosts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
-    featuredRegion.append(createPost(pagePosts[0], true));
-    pagePosts.slice(1).forEach((post) => grid.append(createPost(post, false)));
+    pagePosts.forEach((post) => grid.append(createPost(post)));
 
     if (pageCount > 1) {
       const list = document.createElement("ol");
@@ -260,7 +251,7 @@ function initBlogLibrary() {
         button.addEventListener("click", () => {
           currentPage = pageNumber;
           render();
-          featuredRegion.querySelector(".article-card-link")?.focus();
+          grid.querySelector(".article-card-link")?.focus();
         });
         item.append(button);
         list.append(item);

@@ -1,0 +1,15 @@
+{
+  "name": "ppr-solution-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Générateur statique et outillage de build pour le site PPR-Solution (blog, diagrammes Mermaid).",
+  "scripts": {
+    "build:blog": "node scripts/build-blog.js",
+    "build:diagrams": "node scripts/build-diagrams.js",
+    "build:icons": "node scripts/build-icons.js"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "10.9.1",
+    "lucide-static": "^0.469.0"
+  }
+}

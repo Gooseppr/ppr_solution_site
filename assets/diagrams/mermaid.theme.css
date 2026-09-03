@@ -1,0 +1,12 @@
+/* Ajustements appliqués aux SVG générés en complément de mermaid.config.json. */
+.label {
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: #132435;
+}
+.edgeLabel {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.85em;
+}
+.node .label {
+  font-weight: 500;
+}

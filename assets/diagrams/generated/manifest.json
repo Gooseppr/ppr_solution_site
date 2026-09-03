@@ -1,0 +1,14 @@
+[
+  {
+    "name": "atelier-documentaire",
+    "output": "assets\\diagrams\\generated\\atelier-documentaire.svg",
+    "width": 255,
+    "height": 370
+  },
+  {
+    "name": "documentation-structuree",
+    "output": "assets\\diagrams\\generated\\documentation-structuree.svg",
+    "width": 780,
+    "height": 67
+  }
+]
