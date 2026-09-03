@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PPR-Solution · Prestations XML et données structurées</title>
-  <meta name="description" content="PPR-Solution est une activité indépendante spécialisée dans les traitements XML : contrôle, extraction, transformation, migration, comparaison et publication documentaire.">
+  <title>PPR-Solution · Structuration et transformation documentaire</title>
+  <meta name="description" content="Transformer des contenus et données hétérogènes en documentation structurée, contrôlée et exploitable : structuration, conversion, migration et publication.">
   <link rel="canonical" href="https://gooseppr.github.io/ppr_solution_site/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,8 @@
   <link rel="apple-touch-icon" href="assets/favicon/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#124C8C">
-  <meta property="og:title" content="PPR-Solution · Prestations XML et données structurées">
-  <meta property="og:description" content="Contrôler, extraire, transformer, migrer, comparer et publier des données XML avec des livrables clairs.">
+  <meta property="og:title" content="PPR-Solution · Structuration et transformation documentaire">
+  <meta property="og:description" content="Des contenus hétérogènes vers une documentation structurée, contrôlée et exploitable.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gooseppr.github.io/ppr_solution_site/">
   <meta property="og:image" content="https://gooseppr.github.io/ppr_solution_site/assets/img/og-default.jpg">
@@ -40,76 +40,80 @@
   <main id="main-content">
     <section class="section-hero home-intro">
       <div class="container home-hero">
+        <p class="eyebrow">Atelier documentaire technique</p>
+        <h1>Transformer vos contenus en documentation structurée</h1>
+        <div class="home-hero-content">
         <div class="home-hero-copy">
-          <p class="eyebrow">Atelier XML indépendant</p>
-          <h1>Contrôler, transformer et exploiter vos données XML</h1>
-          <p class="lead">PPR-Solution prend en charge des problématiques XML concrètes : validation, qualification de corpus, extraction, transformation, migration, comparaison et génération documentaire.</p>
-          <p class="hero-detail">Documentation structurée et S1000D complètent cette expertise, sans remplacer le cœur du métier : XML et données structurées.</p>
+          <p class="lead">Structuration, conversion, migration, contrôle et publication de vos contenus techniques.</p>
+          <p class="hero-detail">À partir de documents, de données ou de corpus XML, selon un modèle fourni ou défini avec vous.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="contact.html">Décrire mon besoin</a>
             <a class="btn" href="demonstrations.html">Voir les démonstrations</a>
           </div>
         </div>
         <figure class="xml-figure">
-          <figcaption class="sr-only">Manifeste XML d’une intervention, de ses sources à ses livrables.</figcaption>
+          <figcaption class="sr-only">Manifeste d’un projet transformant des sources hétérogènes en documentation structurée et contrôlée.</figcaption>
           <div class="xml-window">
             <div class="xml-window-bar">
               <span class="file-name">intervention.xml</span>
-              <span class="status-label status-ok"><span aria-hidden="true">✓</span> Validé</span>
             </div>
-            <div class="xml-code" role="region" aria-label="Manifeste XML d’une intervention validée">
+            <div class="xml-code" role="region" aria-label="Manifeste XML d’un projet de documentation structurée">
               <ol>
                 <li><code><span class="syntax-declaration">&lt;?xml</span> <span class="syntax-attribute-pair"><span class="syntax-attribute">version</span>=<span class="syntax-string">&quot;1.0&quot;</span></span> <span class="syntax-attribute-pair"><span class="syntax-attribute">encoding</span>=<span class="syntax-string">&quot;UTF-8&quot;</span></span><span class="syntax-declaration">?&gt;</span></code></li>
-                <li><code><span class="syntax-tag">&lt;intervention</span> <span class="syntax-attribute-pair"><span class="syntax-attribute">statut</span>=<span class="syntax-string">&quot;validé&quot;</span></span><span class="syntax-tag">&gt;</span></code></li>
+                <li><code><span class="syntax-tag">&lt;projet</span> <span class="syntax-attribute-pair"><span class="syntax-attribute">type</span>=<span class="syntax-string">&quot;documentation-structuree&quot;</span></span><span class="syntax-tag">&gt;</span></code></li>
                 <li><code>  <span class="syntax-tag">&lt;sources&gt;</span></code></li>
-                <li><code>    <span class="syntax-tag">&lt;formats&gt;</span><span class="syntax-value">XML · XSD</span><span class="syntax-tag">&lt;/formats&gt;</span></code></li>
-                <li><code>    <span class="syntax-tag">&lt;corpus&gt;</span><span class="syntax-value">documentation structurée</span><span class="syntax-tag">&lt;/corpus&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;format&gt;</span><span class="syntax-value">DOCX · PDF</span><span class="syntax-tag">&lt;/format&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;format&gt;</span><span class="syntax-value">XML existant</span><span class="syntax-tag">&lt;/format&gt;</span></code></li>
                 <li><code>  <span class="syntax-tag">&lt;/sources&gt;</span></code></li>
-                <li><code>  <span class="syntax-tag">&lt;traitements&gt;</span></code></li>
-                <li><code>    <span class="syntax-value">contrôler · extraire</span></code></li>
-                <li><code>    <span class="syntax-value">transformer · migrer</span></code></li>
-                <li><code>  <span class="syntax-tag">&lt;/traitements&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;structure&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;modele&gt;</span><span class="syntax-value">fourni</span><span class="syntax-tag">&lt;/modele&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;modele&gt;</span><span class="syntax-value">défini avec le client</span><span class="syntax-tag">&lt;/modele&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;regles&gt;</span><span class="syntax-value">schéma · métier</span><span class="syntax-tag">&lt;/regles&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;publication&gt;</span><span class="syntax-value">PDF · HTML</span><span class="syntax-tag">&lt;/publication&gt;</span></code></li>
+                <li><code>  <span class="syntax-tag">&lt;/structure&gt;</span></code></li>
                 <li><code>  <span class="syntax-tag">&lt;livrables&gt;</span></code></li>
-                <li><code>    <span class="syntax-value">XML · XLSX · JSON · SQL · PDF</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;format&gt;</span><span class="syntax-value">XML contrôlé</span><span class="syntax-tag">&lt;/format&gt;</span></code></li>
+                <li><code>    <span class="syntax-tag">&lt;format&gt;</span><span class="syntax-value">données extraites</span><span class="syntax-tag">&lt;/format&gt;</span></code></li>
                 <li><code>  <span class="syntax-tag">&lt;/livrables&gt;</span></code></li>
-                <li><code><span class="syntax-tag">&lt;/intervention&gt;</span></code></li>
+                <li><code><span class="syntax-tag">&lt;/projet&gt;</span></code></li>
               </ol>
             </div>
           </div>
         </figure>
+        </div>
       </div>
     </section>
 
     <section class="section-tight capabilities-section">
       <div class="container">
         <div class="section-heading">
-          <div><p class="eyebrow">Formats et capacités</p><h2>Du corpus source au livrable exploitable</h2></div>
-          <p>Une intervention est cadrée sur un échantillon, testée, traitée, contrôlée puis livrée avec les éléments nécessaires à son exploitation.</p>
+          <div><p class="eyebrow">Sources et besoins</p><h2>Structurer avant de transformer</h2></div>
+          <p>Le point de départ peut être un document, un ensemble de contenus ou un corpus XML. Le modèle cible est fourni ou défini avec le client à partir de règles explicites.</p>
         </div>
         <div class="capability-list">
           <article class="capability-row">
             <span class="service-num">01</span>
-            <div><h3>Contrôler un corpus</h3><p>Identifier les XML non conformes, les erreurs XSD, les namespaces incohérents et les anomalies à qualifier.</p></div>
-            <span class="format-list">XML · XSD</span>
-            <a href="services.html#controle">Découvrir le contrôle</a>
+            <div><h3>Structurer une documentation</h3><p>Passer de DOCX, PDF ou contenus existants vers une structure documentaire définie et contrôlable.</p></div>
+            <span class="format-list">DOCX · PDF → XML</span>
+            <a href="services.html#structuration">Voir la structuration</a>
           </article>
           <article class="capability-row">
             <span class="service-num">02</span>
-            <div><h3>Exploiter les données</h3><p>Extraire des informations dispersées dans plusieurs XML vers des formats directement utilisables.</p></div>
-            <span class="format-list">CSV · XLSX · JSON · SQL</span>
-            <a href="services.html#extraction">Découvrir l’extraction</a>
+            <div><h3>Transformer ou migrer</h3><p>Appliquer un mapping, changer de modèle ou restructurer un corpus historique sans masquer les exceptions.</p></div>
+            <span class="format-list">XML A → XML B</span>
+            <a href="services.html#transformation">Voir la transformation</a>
           </article>
           <article class="capability-row">
             <span class="service-num">03</span>
-            <div><h3>Transformer ou migrer</h3><p>Passer d’un modèle XML à un autre ou faire évoluer un corpus après un changement de schéma.</p></div>
-            <span class="format-list">XML · XSLT · mapping</span>
-            <a href="services.html#transformation">Découvrir la transformation</a>
+            <div><h3>Contrôler et qualifier</h3><p>Vérifier la structure, classer les anomalies et tracer les décisions humaines nécessaires.</p></div>
+            <span class="format-list">XML · XSD · règles</span>
+            <a href="services.html#controle">Voir le contrôle</a>
           </article>
           <article class="capability-row">
             <span class="service-num">04</span>
-            <div><h3>Produire des livrables</h3><p>Générer des rapports, fichiers corrigés, extractions, mappings, journaux ou publications.</p></div>
-            <span class="format-list">PDF · HTML · XML · CSV</span>
-            <a href="services.html#generation">Découvrir la génération</a>
+            <div><h3>Exploiter et publier</h3><p>Extraire les données utiles ou produire des publications lisibles à partir d’une source structurée.</p></div>
+            <span class="format-list">XLSX · JSON · SQL · PDF · HTML</span>
+            <a href="services.html#extraction">Voir les livrables</a>
           </article>
         </div>
       </div>
@@ -119,24 +123,24 @@
       <div class="container demo-feature">
         <div class="demo-copy">
           <p class="eyebrow">Démonstration phare</p>
-          <h2>Transformation XML A → XML B</h2>
-          <p class="lead">Un jeu de données fictif illustre le passage d’un XML source vers un modèle cible, avec mapping, transformation, validation cible et livrables.</p>
+          <h2>D’un document source à une publication contrôlée</h2>
+          <p class="lead">Un parcours fictif illustre l’analyse d’un contenu non structuré, sa structuration XML, son contrôle puis sa publication.</p>
           <p class="muted">Démonstration réalisée sur un jeu de données fictif, sans donnée client.</p>
-          <div class="cta-row"><a class="btn btn-primary" href="demonstrations.html#transformation-xml">Voir la démonstration complète</a></div>
+          <div class="cta-row"><a class="btn btn-primary" href="demonstrations.html#publication-xml">Voir la démonstration complète</a></div>
         </div>
         <div class="technical-panel demo-technical-panel">
           <p class="panel-label">Chaîne de traitement</p>
-          <div class="pipeline" aria-label="Pipeline transformation XML">
-            <span>SOURCE.XML + SOURCE.XSD</span>
-            <span>MAPPING source → cible</span>
-            <span>TRANSFORMATION</span>
-            <span>TARGET.XML + TARGET.XSD</span>
-            <span>VALIDATION + RAPPORT</span>
+          <div class="pipeline" aria-label="DOCX, analyse, structuration XML, contrôle puis publication PDF et HTML">
+            <span>DOCX / CONTENUS</span>
+            <span>ANALYSE</span>
+            <span>STRUCTURATION XML</span>
+            <span>CONTRÔLE</span>
+            <span>PDF / HTML</span>
           </div>
           <ul class="file-list">
-            <li><span class="file-name">mapping-source-target.csv</span><span class="file-kind">CSV</span></li>
-            <li><span class="file-name">target.xml</span><span class="file-kind">XML</span></li>
-            <li><span class="file-name">rapport-transformation.pdf</span><span class="file-kind">PDF</span></li>
+            <li><span class="file-name">modele-documentaire.xsd</span><span class="file-kind">XSD</span></li>
+            <li><span class="file-name">documentation-structuree.xml</span><span class="file-kind">XML</span></li>
+            <li><span class="file-name">publication-controlee.pdf</span><span class="file-kind">PDF</span></li>
           </ul>
         </div>
       </div>
@@ -178,7 +182,7 @@
       <div class="container final-cta-layout">
         <div>
           <p class="eyebrow">Premier échange</p>
-          <h2>Vous avez un corpus XML à contrôler ou transformer ?</h2>
+          <h2>Vous avez des contenus à structurer ou à rendre exploitables ?</h2>
         </div>
         <div class="final-cta-copy">
           <p>Quelques fichiers représentatifs suffisent souvent pour déterminer la faisabilité, la méthode et les livrables possibles.</p>
@@ -191,7 +195,7 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div><strong>PPR-Solution</strong><p class="muted">Prestations XML & données structurées</p><p class="muted">© <span id="footer-year">2026</span> PPR-Solution</p></div>
+      <div><strong>PPR-Solution</strong><p class="muted">Documentation structurée & données exploitables</p><p class="muted">© <span id="footer-year">2026</span> PPR-Solution</p></div>
       <div><h3>Navigation</h3><div class="footer-links"><a href="services.html">Prestations</a><a href="demonstrations.html">Démonstrations</a><a href="blog.html">Blog</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a></div></div>
       <div><h3>Informations</h3><div class="footer-links"><a href="confidentialite.html">Confidentialité</a><a href="mentions-legales.html">Mentions légales</a><a href="charte-ethique.html">Charte éthique</a></div></div>
     </div>

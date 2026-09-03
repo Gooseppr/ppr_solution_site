@@ -6,7 +6,7 @@
     "meta_description": "Comment valider un corpus XML volumineux contre un XSD, classer les anomalies et préparer des livrables exploitables.",
     "date": "2026-08-25",
     "updated": "2026-08-25",
-    "category": "XML",
+    "category": "Qualité des données",
     "tags": [
       "XML",
       "XSD",
@@ -32,7 +32,7 @@
     "meta_description": "Méthode pour transformer un modèle XML vers un autre : mapping, transformation, validation cible et gestion des rejets.",
     "date": "2026-08-25",
     "updated": "2026-08-25",
-    "category": "XML",
+    "category": "Transformation documentaire",
     "tags": [
       "XML",
       "XSLT",
@@ -61,7 +61,7 @@
     "meta_description": "Comment extraire des données XML vers Excel ou CSV avec XPath, mapping et consolidation contrôlée.",
     "date": "2026-08-25",
     "updated": "2026-08-25",
-    "category": "XML",
+    "category": "Données structurées",
     "tags": [
       "XML",
       "XPath",
@@ -74,7 +74,7 @@
     "demo_url": "demonstrations.html#extraction-xml",
     "demo_label": "Extraction XML vers Excel et CSV",
     "preview": {
-      "kind": "mapping",
+      "kind": "table",
       "label": "XPath → colonne",
       "items": [
         {"from": "/product/id", "to": "product_id"},
@@ -90,7 +90,7 @@
     "meta_description": "Comprendre le rôle d’un BREX S1000D : règles métier, validation complémentaire et limites par rapport au XSD.",
     "date": "2026-08-25",
     "updated": "2026-08-25",
-    "category": "S1000D",
+    "category": "Documentation structurée",
     "tags": [
       "S1000D",
       "BREX",

@@ -1,33 +1,19 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Validateur XML S1000D · Démonstrateur secondaire</title><meta name="description" content="Démonstrateur secondaire : chargez un module S1000D Issue 6.0 pour obtenir un contrôle structurel indicatif."><link rel="canonical" href="https://gooseppr.github.io/ppr_solution_site/validateur.html"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;650;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/style.css"><link rel="icon" href="assets/favicon/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="assets/favicon/icon-192.png"><link rel="manifest" href="manifest.webmanifest"></head><body><a class="skip-link" href="#main-content">Aller au contenu</a><header class="navbar"><div class="container nav-inner"><a class="brand" href="index.html"><span class="brand-mark">PPR</span><span>PPR-Solution</span></a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Ouvrir le menu</span><span class="nav-icon"></span></button><nav class="primary-nav" id="primary-navigation" data-nav-menu><a data-nav-link href="services.html">Prestations</a><a data-nav-link href="demonstrations.html">Démonstrations</a><a data-nav-link href="blog.html">Blog</a><a data-nav-link href="a-propos.html">À propos</a><a class="btn btn-primary nav-cta" href="contact.html">Contact</a></nav></div></header><main id="main-content">
-  <section class="section-tight validator-intro"><div class="container">
-    <p class="breadcrumbs"><a href="demonstrations.html">Démonstrations</a> · <span aria-current="page">Validateur S1000D</span></p>
-    <p class="eyebrow">Démonstrateur secondaire</p>
-    <h1>Validateur XML S1000D</h1>
-    <p class="lead">Contrôle structurel indicatif d’un module S1000D Issue 6.0. Cet outil illustre une capacité de validation automatisée ; il ne remplace pas un audit complet de corpus ni une certification de conformité.</p>
-  </div></section>
-
-  <section class="section-tight"><div class="container grid-2">
-    <article class="tool-panel">
+  <section class="validator-intro"><div class="container validator-intro-layout"><div><p class="breadcrumbs"><a href="demonstrations.html">Démonstrations</a> · <span aria-current="page">Validateur S1000D</span></p><p class="eyebrow">Démonstrateur secondaire</p><h1>Validateur XML S1000D</h1></div><p class="lead">Contrôle structurel indicatif d’un module Issue 6.0. Il ne remplace ni un audit de corpus ni une certification.</p></div></section>
+  <section class="validator-section"><div class="container validator-workspace">
+    <article class="tool-panel validator-upload-panel">
       <h2>Analyser un module</h2>
-      <p class="form-helper validator-privacy"><strong>Confidentialité :</strong> le fichier est envoyé à un service de démonstration pour analyse. N’utilisez pas ce validateur public pour des documents confidentiels ; pour une mission réelle, un canal de transfert adapté peut être convenu.</p>
+      <p class="form-helper validator-privacy"><strong>Confidentialité :</strong> le fichier est envoyé au service de démonstration. N’utilisez pas ce validateur public pour des documents confidentiels ; un canal adapté peut être convenu pour une mission réelle.</p>
       <form id="validator-form" class="form" novalidate>
         <div class="form-field file-drop">
           <label for="xml-file">Module S1000D XML <span class="muted">(max. 10 Mo)</span></label>
-          <div class="file-input-control">
-            <input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="xml-file-name file-help xml-file-error">
-            <div class="file-input-visual"><span class="file-input-button" aria-hidden="true">Sélectionner un fichier XML</span><span id="xml-file-name" data-file-name aria-live="polite">Aucun fichier sélectionné</span></div>
-          </div>
-          <p id="file-help" class="form-helper">Issue 6.0 prise en charge. Le schéma est sélectionné automatiquement lorsque le module peut être identifié.</p>
+          <div class="file-input-control"><input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="xml-file-name file-help xml-file-error"><div class="file-input-visual"><span class="file-input-button" aria-hidden="true">Sélectionner un fichier XML</span><span id="xml-file-name" data-file-name aria-live="polite">Aucun fichier sélectionné</span></div></div>
+          <p id="file-help" class="form-helper">Issue 6.0 prise en charge ; le schéma est sélectionné lorsque le module peut être identifié.</p>
           <p id="xml-file-error" class="form-helper field-error" role="alert"></p>
         </div>
         <button type="submit" class="btn btn-primary">Analyser le module</button>
       </form>
     </article>
-    <article class="tool-panel" aria-labelledby="validator-results-title">
-      <h2 id="validator-results-title" tabindex="-1">Résultats</h2>
-      <div class="result-panel" aria-live="polite" data-result-state="idle">
-        <p class="muted">Déposez un fichier pour afficher le rapport de contrôle.</p>
-      </div>
-    </article>
+    <article class="tool-panel validator-result-panel" aria-labelledby="validator-results-title"><h2 id="validator-results-title" tabindex="-1">Résultats</h2><div class="result-panel" aria-live="polite" data-result-state="idle"><p class="muted">Le rapport apparaîtra ici après sélection d’un fichier.</p></div></article>
   </div></section>
-</main><footer class="site-footer"><div class="container footer-grid"><div><strong>PPR-Solution</strong><p class="muted">Prestations XML & données structurées</p><p class="muted">© <span id="footer-year"></span> PPR-Solution</p></div><div><h3>Navigation</h3><div class="footer-links"><a href="services.html">Prestations</a><a href="demonstrations.html">Démonstrations</a><a href="blog.html">Blog</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a></div></div><div><h3>Informations</h3><div class="footer-links"><a href="confidentialite.html">Confidentialité</a><a href="mentions-legales.html">Mentions légales</a><a href="charte-ethique.html">Charte éthique</a></div></div></div></footer><script src="assets/js/main.js" defer></script><script src="assets/js/validateur.js" defer></script></body></html>
+</main><footer class="site-footer"><div class="container footer-grid"><div><strong>PPR-Solution</strong><p class="muted">Documentation structurée &amp; données exploitables</p><p class="muted">© <span id="footer-year"></span> PPR-Solution</p></div><div><h3>Navigation</h3><div class="footer-links"><a href="services.html">Prestations</a><a href="demonstrations.html">Démonstrations</a><a href="blog.html">Blog</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a></div></div><div><h3>Informations</h3><div class="footer-links"><a href="confidentialite.html">Confidentialité</a><a href="mentions-legales.html">Mentions légales</a><a href="charte-ethique.html">Charte éthique</a></div></div></div></footer><script src="assets/js/main.js" defer></script><script src="assets/js/validateur.js" defer></script></body></html>

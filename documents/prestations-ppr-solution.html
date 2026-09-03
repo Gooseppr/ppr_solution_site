@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Présentation détaillée des prestations · PPR-Solution</title>
+  <style>
+    @page { size: A4; margin: 16mm; }
+    :root { --ink:#10243a; --blue:#19589b; --line:#b8c7d8; --soft:#edf3f8; --amber:#805500; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); font:10.5pt/1.48 Arial, sans-serif; }
+    header { border-block-end:3px solid var(--blue); padding-block-end:8mm; margin-block-end:9mm; }
+    h1 { margin:3mm 0; font-size:27pt; line-height:1.05; }
+    h2 { margin:8mm 0 3mm; font-size:17pt; page-break-after:avoid; }
+    h3 { margin:0 0 2mm; font-size:12pt; }
+    p { margin:0 0 3mm; }
+    .eyebrow, .meta, dt { color:var(--blue); font:700 8pt/1.3 "Courier New", monospace; letter-spacing:.04em; text-transform:uppercase; }
+    .lead { max-width:155mm; font-size:13pt; }
+    .process { display:flex; gap:2mm; align-items:stretch; margin:6mm 0; padding:0; list-style:none; }
+    .process li { position:relative; flex:1; padding:3mm; background:var(--soft); border-inline-start:2px solid var(--blue); font:700 8pt/1.35 "Courier New", monospace; }
+    .process li:not(:last-child)::after { content:"→"; position:absolute; inset-inline-end:-3mm; inset-block-start:50%; z-index:1; color:var(--blue); }
+    .catalog { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+    .service { break-inside:avoid; padding:4mm; border:1px solid var(--line); border-radius:2mm; }
+    .service .number { display:block; margin-block-end:2mm; color:var(--blue); font:700 8pt "Courier New", monospace; }
+    dl { display:grid; grid-template-columns:25mm 1fr; gap:1.5mm 3mm; margin:0; }
+    dd { margin:0; }
+    .specialty, .limits { break-inside:avoid; padding:5mm; background:var(--soft); border-inline-start:3px solid var(--blue); }
+    .limits { border-color:var(--amber); }
+    footer { margin-block-start:10mm; padding-block-start:4mm; border-block-start:1px solid var(--line); color:#445b72; font-size:8pt; }
+    a { color:var(--blue); }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">PPR-Solution · Atelier documentaire technique</p>
+    <h1>Structurer, transformer et publier des contenus techniques</h1>
+    <p class="lead">Transformer des contenus et données hétérogènes en documentation structurée, contrôlée et exploitable.</p>
+    <p class="meta">Version 1.0 · 3 septembre 2026</p>
+  </header>
+  <main>
+    <h2>Une chaîne de traitement documentée</h2>
+    <p>Le point de départ peut être un document DOCX, un PDF, des contenus dispersés ou un corpus XML. Le modèle cible est fourni ou défini avec le client à partir des règles disponibles. PPR-Solution n’invente pas seul des exigences métier ou réglementaires.</p>
+    <ol class="process" aria-label="Sources, cadrage, structuration, contrôle puis livrables"><li>Sources</li><li>Cadrage</li><li>Structuration</li><li>Contrôle</li><li>Livrables</li></ol>
+    <h2>Prestations</h2>
+    <div class="catalog">
+      <section class="service"><span class="number">PARCOURS</span><h3>Structuration d’une documentation</h3><dl><dt>Sources</dt><dd>DOCX, PDF, contenus existants.</dd><dt>Action</dt><dd>Analyse, modèle fourni ou défini ensemble, balisage et règles.</dd><dt>Sorties</dt><dd>XML structuré, règles documentées, publication si prévue.</dd></dl></section>
+      <section class="service"><span class="number">01</span><h3>Contrôle et qualification XML</h3><dl><dt>Sources</dt><dd>XML, XSD, DTD, Schematron.</dd><dt>Action</dt><dd>Parsing, validation et classement des anomalies.</dd><dt>Sorties</dt><dd>Rapport, anomalies CSV/XLSX, décisions à prendre.</dd></dl></section>
+      <section class="service"><span class="number">02</span><h3>Traitement de corpus</h3><dl><dt>Sources</dt><dd>Corpus XML et règles explicites.</dd><dt>Action</dt><dd>Inventaire, correction, isolement des rejets, revalidation.</dd><dt>Sorties</dt><dd>XML corrigés, rejets isolés, journal.</dd></dl></section>
+      <section class="service"><span class="number">03</span><h3>Extraction et exploitation</h3><dl><dt>Sources</dt><dd>XML, schémas et besoins de consolidation.</dd><dt>Action</dt><dd>Mapping, XPath/XQuery et normalisation.</dd><dt>Sorties</dt><dd>XLSX, CSV, JSON ou structure SQL simple.</dd></dl></section>
+      <section class="service"><span class="number">04</span><h3>Transformation et conversion</h3><dl><dt>Sources</dt><dd>XML source, modèle cible et schémas.</dd><dt>Action</dt><dd>Mapping, transformation XSLT ou scriptée, validation cible.</dd><dt>Sorties</dt><dd>XML cible, mapping, rapport et rejets.</dd></dl></section>
+      <section class="service"><span class="number">05</span><h3>Migration et restructuration</h3><dl><dt>Sources</dt><dd>Corpus historique et schémas v1/v2.</dd><dt>Action</dt><dd>Analyse des écarts, migration et traitement des exceptions.</dd><dt>Sorties</dt><dd>Corpus migré, rapport et journal des rejets.</dd></dl></section>
+      <section class="service"><span class="number">06</span><h3>Génération documentaire</h3><dl><dt>Sources</dt><dd>XML et modèle de publication.</dd><dt>Action</dt><dd>XSLT, XSL-FO si pertinent et contrôle du rendu.</dd><dt>Sorties</dt><dd>PDF, HTML et rapport de génération.</dd></dl></section>
+      <section class="service"><span class="number">07</span><h3>Analyse et comparaison</h3><dl><dt>Sources</dt><dd>Fichiers, versions de corpus ou schémas.</dd><dt>Action</dt><dd>Comparaison structurelle, valeurs et analyse d’impact.</dd><dt>Sorties</dt><dd>Rapport de différences et exports.</dd></dl></section>
+    </div>
+    <h2>Spécialisation S1000D</h2>
+    <section class="specialty"><p>S1000D est traité comme une spécialisation documentaire XML : inventaire de modules, schémas, références, DMC, ICN, PMC, DML et règles BREX lorsqu’elles sont disponibles.</p><p><strong>Positionnement :</strong> précontrôle ou audit technique, jamais certification officielle.</p></section>
+    <h2>Cadre et limites</h2>
+    <section class="limits"><p>Chaque intervention est cadrée sur un échantillon, les règles réellement disponibles et les livrables attendus. L’automatisation traite le volume ; le contrôle humain qualifie les exceptions, les rejets et les décisions. PPR-Solution ne se substitue pas à une validation juridique, réglementaire ou métier.</p></section>
+  </main>
+  <footer><strong>PPR-Solution</strong> · Documentation structurée et données exploitables · <a href="https://gooseppr.github.io/ppr_solution_site/">gooseppr.github.io/ppr_solution_site</a></footer>
+</body>
+</html>

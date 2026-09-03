@@ -1,37 +1,34 @@
-function initServiceNav() {
-  const links = document.querySelectorAll("[data-service-nav]");
-  if (!links.length || !("IntersectionObserver" in window)) return;
+function initServiceCatalogTracking() {
+  const downloadLink = document.querySelector("[data-service-catalog-download]");
+  if (!downloadLink) return;
 
-  const linkByTarget = new Map();
-  links.forEach((link) => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (target) linkByTarget.set(target, link);
-  });
-  if (!linkByTarget.size) return;
+  downloadLink.addEventListener("click", () => {
+    const eventData = {
+      event: "service_catalog_download",
+      document: "prestations-ppr-solution.pdf",
+      page: "services"
+    };
 
-  function setActive(target) {
-    links.forEach((link) => {
-      link.classList.remove("is-active");
-      link.removeAttribute("aria-current");
+    window.dispatchEvent(new CustomEvent("ppr:analytics", { detail: eventData }));
+    if (Array.isArray(window.dataLayer)) window.dataLayer.push(eventData);
+
+    const endpoint = document.querySelector('meta[name="ppr-analytics-endpoint"]')?.content.trim();
+    if (!endpoint) return;
+
+    const payload = new URLSearchParams({
+      event: eventData.event,
+      document: eventData.document,
+      page: eventData.page
     });
-    const active = linkByTarget.get(target);
-    if (active) {
-      active.classList.add("is-active");
-      active.setAttribute("aria-current", "true");
+
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon(endpoint, payload)) return;
+    } catch (_error) {
+      // Le téléchargement reste prioritaire si la mesure est indisponible.
     }
-  }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) setActive(visible[0].target);
-    },
-    { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
-  );
-
-  linkByTarget.forEach((_link, target) => observer.observe(target));
+    fetch(endpoint, { method: "POST", body: payload, keepalive: true }).catch(() => {});
+  });
 }
 
-document.addEventListener("DOMContentLoaded", initServiceNav);
+document.addEventListener("DOMContentLoaded", initServiceCatalogTracking);

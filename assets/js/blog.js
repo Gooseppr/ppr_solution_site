@@ -12,8 +12,11 @@ function initBlogLibrary() {
   const emptyState = document.querySelector("[data-blog-empty]");
   const emptyReset = document.querySelector("[data-blog-empty-reset]");
   const dataStatus = document.querySelector("[data-blog-data-status]");
+  const pagination = document.querySelector("[data-blog-pagination]");
 
-  if (!controls || !results || !featuredRegion || !grid || !searchInput || !sortSelect || !countNode || !resetButton || !emptyState || !emptyReset || !dataStatus) return;
+  if (!controls || !results || !featuredRegion || !grid || !searchInput || !sortSelect || !countNode || !resetButton || !emptyState || !emptyReset || !dataStatus || !pagination) return;
+
+  const PAGE_SIZE = 6;
 
   const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
     day: "2-digit",
@@ -53,12 +56,12 @@ function initBlogLibrary() {
   }
 
   function normalizePreview(preview) {
-    const kind = preview && preview.kind === "mapping" ? "mapping" : "flow";
+    const kind = preview && ["mapping", "table"].includes(preview.kind) ? preview.kind : "flow";
     const items = Array.isArray(preview?.items) ? preview.items.slice(0, 3) : [];
     return {
       kind,
       label: String(preview?.label || "Aperçu technique"),
-      items: kind === "mapping"
+      items: ["mapping", "table"].includes(kind)
         ? items.map((item) => ({ from: String(item?.from || ""), to: String(item?.to || "") })).filter((item) => item.from && item.to)
         : items.map((item) => String(item || "")).filter(Boolean)
     };
@@ -103,10 +106,10 @@ function initBlogLibrary() {
     label.textContent = preview.label;
     container.append(label);
 
-    const list = document.createElement(preview.kind === "mapping" ? "ul" : "ol");
+    const list = document.createElement(["mapping", "table"].includes(preview.kind) ? "ul" : "ol");
     preview.items.forEach((item) => {
       const row = document.createElement("li");
-      if (preview.kind === "mapping") {
+      if (["mapping", "table"].includes(preview.kind)) {
         const source = document.createElement("code");
         const arrow = document.createElement("span");
         const target = document.createElement("code");
@@ -129,11 +132,14 @@ function initBlogLibrary() {
   function createPost(post, featured) {
     const article = document.createElement("article");
     article.className = featured ? "blog-featured" : "blog-card";
+    const link = document.createElement("a");
+    link.className = "article-card-link";
+    link.href = `blog/${post.slug}/`;
     if (featured) {
       const label = document.createElement("p");
       label.className = "eyebrow";
       label.textContent = "Article mis en avant";
-      article.append(label);
+      link.append(label);
     }
 
     const meta = document.createElement("p");
@@ -144,20 +150,17 @@ function initBlogLibrary() {
     meta.append(document.createTextNode(`${post.category} · `), time, document.createTextNode(` · ${post.reading_time}`));
 
     const heading = document.createElement(featured ? "h2" : "h3");
-    const titleLink = document.createElement("a");
-    titleLink.href = `blog/${post.slug}/`;
-    titleLink.textContent = post.title;
-    heading.append(titleLink);
+    heading.textContent = post.title;
 
     const description = document.createElement("p");
     description.textContent = post.description;
 
-    const readLink = document.createElement("a");
-    readLink.className = "blog-read-link";
-    readLink.href = `blog/${post.slug}/`;
-    readLink.textContent = "Lire l’article complet →";
+    const readLabel = document.createElement("span");
+    readLabel.className = "blog-read-label";
+    readLabel.textContent = "Lire l’article →";
 
-    article.append(meta, heading, description, createPreview(post.preview), createTagList(post.tags), readLink);
+    link.append(meta, heading, description, createPreview(post.preview), createTagList(post.tags), readLabel);
+    article.append(link);
     return article;
   }
 
@@ -203,6 +206,7 @@ function initBlogLibrary() {
   }
 
   let posts = readFallbackPosts();
+  let currentPage = 1;
 
   function filteredAndSortedPosts() {
     const query = normalizeText(searchInput.value);
@@ -234,9 +238,36 @@ function initBlogLibrary() {
     results.hidden = visiblePosts.length === 0;
     featuredRegion.replaceChildren();
     grid.replaceChildren();
+    pagination.replaceChildren();
+    pagination.hidden = true;
     if (!visiblePosts.length) return;
-    featuredRegion.append(createPost(visiblePosts[0], true));
-    visiblePosts.slice(1).forEach((post) => grid.append(createPost(post, false)));
+
+    const pageCount = Math.ceil(visiblePosts.length / PAGE_SIZE);
+    currentPage = Math.min(currentPage, pageCount);
+    const pagePosts = visiblePosts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+    featuredRegion.append(createPost(pagePosts[0], true));
+    pagePosts.slice(1).forEach((post) => grid.append(createPost(post, false)));
+
+    if (pageCount > 1) {
+      const list = document.createElement("ol");
+      for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = String(pageNumber);
+        button.setAttribute("aria-label", `Afficher la page ${pageNumber}`);
+        if (pageNumber === currentPage) button.setAttribute("aria-current", "page");
+        button.addEventListener("click", () => {
+          currentPage = pageNumber;
+          render();
+          featuredRegion.querySelector(".article-card-link")?.focus();
+        });
+        item.append(button);
+        list.append(item);
+      }
+      pagination.append(list);
+      pagination.hidden = false;
+    }
   }
 
   function reset() {
@@ -244,6 +275,7 @@ function initBlogLibrary() {
     if (categorySelect) categorySelect.value = "all";
     if (tagSelect) tagSelect.value = "all";
     sortSelect.value = "newest";
+    currentPage = 1;
     render();
     searchInput.focus();
   }
@@ -254,10 +286,15 @@ function initBlogLibrary() {
   }
 
   controls.addEventListener("submit", (event) => event.preventDefault());
-  searchInput.addEventListener("input", render);
-  if (categorySelect) categorySelect.addEventListener("change", render);
-  if (tagSelect) tagSelect.addEventListener("change", render);
-  sortSelect.addEventListener("change", render);
+  function updateFromControls() {
+    currentPage = 1;
+    render();
+  }
+
+  searchInput.addEventListener("input", updateFromControls);
+  if (categorySelect) categorySelect.addEventListener("change", updateFromControls);
+  if (tagSelect) tagSelect.addEventListener("change", updateFromControls);
+  sortSelect.addEventListener("change", updateFromControls);
   resetButton.addEventListener("click", reset);
   emptyReset.addEventListener("click", reset);
 
