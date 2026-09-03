@@ -1,0 +1,22 @@
+flowchart LR
+    accTitle: Traitement de l'audit d'un corpus XML
+    accDescr: Le corpus est inventorié et parsé, contrôlé contre le schéma et les règles complémentaires, puis les anomalies sont classées dans un rapport exploitable.
+
+    A["`**Corpus XML**
+    128 fichiers`"]:::terminal --> B["`**Inventaire**
+    familles · encodages`"]:::action
+    B --> C["`**Parsing**
+    XML bien formé`"]:::action
+    C --> D["`**Validation**
+    XSD`"]:::structure
+    D --> E["`**Règles**
+    références · valeurs`"]:::structure
+    E --> F["`**Classification**
+    42 occurrences`"]:::warning
+    F --> G["`**Rapport**
+    32 fichiers à examiner`"]:::terminal
+
+    classDef terminal fill:#124c8c,stroke:#0a3b70,stroke-width:2px,color:#ffffff,font-weight:700;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:2.25px,color:#132435,font-weight:500;

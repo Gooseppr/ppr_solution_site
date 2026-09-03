@@ -84,36 +84,37 @@
       </div>
     </section>
 
-    <section class="section-tight capabilities-section">
+    <section class="section-tight capabilities-section" aria-labelledby="source-livrables-title">
       <div class="container">
         <div class="section-heading">
-          <div><p class="eyebrow">Sources et besoins</p><h2>Structurer avant de transformer</h2></div>
-          <p>Le point de départ peut être un document, un ensemble de contenus ou un corpus XML. Le modèle cible est fourni ou défini avec le client à partir de règles explicites.</p>
+          <div><p class="eyebrow">Parcours documentaire</p><h2 id="source-livrables-title">De vos sources aux livrables</h2></div>
+          <p>Chaque intervention relie un besoin concret, un traitement explicite et des sorties vérifiables. Le modèle cible est fourni ou défini avec le client.</p>
         </div>
-        <div class="capability-list">
+        <div class="capability-list" aria-label="Quatre parcours documentaires">
+          <div class="capability-row capability-row-header" aria-hidden="true"><span></span><span>Sources et besoin</span><span>Traitement</span><span>Livrables</span></div>
           <article class="capability-row">
             <span class="service-num">01</span>
-            <div><h3>Structurer une documentation</h3><p>Passer de DOCX, PDF ou contenus existants vers une structure documentaire définie et contrôlable.</p></div>
-            <span class="format-list">DOCX · PDF → XML</span>
-            <a href="services.html#structuration">Voir la structuration</a>
+            <div><h3>Documents à structurer</h3><p>DOCX, PDF ou contenus existants à organiser selon un modèle documentaire.</p></div>
+            <div><strong class="capability-label">Traitement</strong><p>Analyse, balisage et contrôle de la structure.</p></div>
+            <div><strong class="capability-label">Livrables</strong><p class="format-list">XML contrôlé · règles · PDF / HTML</p><a href="services.html#structuration">Voir la structuration</a></div>
           </article>
           <article class="capability-row">
             <span class="service-num">02</span>
-            <div><h3>Transformer ou migrer</h3><p>Appliquer un mapping, changer de modèle ou restructurer un corpus historique sans masquer les exceptions.</p></div>
-            <span class="format-list">XML A → XML B</span>
-            <a href="services.html#transformation">Voir la transformation</a>
+            <div><h3>Corpus à contrôler</h3><p>Fichiers XML, schémas et règles disponibles à qualifier ou corriger.</p></div>
+            <div><strong class="capability-label">Traitement</strong><p>Parsing, validation, classement et correction traçable.</p></div>
+            <div><strong class="capability-label">Livrables</strong><p class="format-list">Rapport · anomalies · XML corrigés</p><a href="services.html#controle">Voir le contrôle</a></div>
           </article>
           <article class="capability-row">
             <span class="service-num">03</span>
-            <div><h3>Contrôler et qualifier</h3><p>Vérifier la structure, classer les anomalies et tracer les décisions humaines nécessaires.</p></div>
-            <span class="format-list">XML · XSD · règles</span>
-            <a href="services.html#controle">Voir le contrôle</a>
+            <div><h3>Modèle à transformer</h3><p>XML source, cible attendue et règles de correspondance à mettre en œuvre.</p></div>
+            <div><strong class="capability-label">Traitement</strong><p>Mapping, transformation ou migration, puis validation cible.</p></div>
+            <div><strong class="capability-label">Livrables</strong><p class="format-list">XML cible · mapping · rejets</p><a href="services.html#transformation">Voir la transformation</a></div>
           </article>
           <article class="capability-row">
             <span class="service-num">04</span>
-            <div><h3>Exploiter et publier</h3><p>Extraire les données utiles ou produire des publications lisibles à partir d’une source structurée.</p></div>
-            <span class="format-list">XLSX · JSON · SQL · PDF · HTML</span>
-            <a href="services.html#extraction">Voir les livrables</a>
+            <div><h3>Données à exploiter ou publier</h3><p>XML et contenus structurés à consolider, transmettre ou rendre lisibles.</p></div>
+            <div><strong class="capability-label">Traitement</strong><p>Extraction, normalisation ou génération documentaire.</p></div>
+            <div><strong class="capability-label">Livrables</strong><p class="format-list">XLSX · CSV · JSON · SQL · PDF / HTML</p><a href="services.html#extraction">Voir les livrables</a></div>
           </article>
         </div>
       </div>
@@ -127,7 +128,7 @@
           <p class="lead">Un parcours fictif illustre l’analyse d’un contenu non structuré, sa structuration XML, son contrôle puis sa publication.</p>
         </div>
         <figure class="demo-diagram-figure">
-          <img src="assets/diagrams/generated/documentation-structuree.svg" width="780" height="67" alt="Chaîne de structuration documentaire : document source (DOCX, PDF ou contenus) → analyse → structuration XML → contrôle → publication PDF ou HTML.">
+          <img src="assets/diagrams/generated/documentation-structuree.svg" width="844" height="69" alt="Chaîne de structuration documentaire : document source (DOCX, PDF ou contenus) → analyse → structuration XML → contrôle → publication PDF ou HTML.">
           <figcaption>Document source → analyse → structuration XML → contrôle → publication PDF/HTML.</figcaption>
         </figure>
         <div class="demo-actions">
@@ -137,34 +138,13 @@
       </div>
     </section>
 
-    <section class="section-tight deliverables-section">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Résultats et livrables</p>
-            <h2>Des sorties claires, vérifiables et réutilisables</h2>
-          </div>
-        </div>
-        <div class="deliverable-grid">
-          <div><strong>Rapport d’audit</strong><span>PDF</span></div>
-          <div><strong>Liste d’anomalies</strong><span>XLSX / CSV</span></div>
-          <div><strong>Extraction</strong><span>XLSX / CSV / JSON</span></div>
-          <div><strong>Données exploitables</strong><span>SQL / JSON</span></div>
-          <div><strong>Mapping</strong><span>source → cible</span></div>
-          <div><strong>Corpus traité</strong><span>XML</span></div>
-          <div><strong>Publication</strong><span>PDF / HTML</span></div>
-          <div><strong>Journal de traitement</strong><span>CSV / XLSX</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section s1000d-section">
+    <section class="section-tight s1000d-section">
       <div class="container s1000d-layout">
         <p class="eyebrow">Spécialisation</p>
-        <h2>Documentation structurée et S1000D</h2>
+        <h2>S1000D, parmi les corpus structurés</h2>
         <div>
-          <p>Les traitements XML peuvent s’appliquer à des corpus documentaires structurés. S1000D est une spécialisation importante : précontrôle, schémas, références, BREX et analyse de modules.</p>
-          <div class="cta-row"><a class="btn" href="services.html#s1000d">Voir les prestations associées</a><a class="btn btn-text" href="blog.html">Lire le Blog S1000D</a></div>
+          <p>Précontrôle de modules, schémas, références et règles BREX lorsque le référentiel est disponible.</p>
+          <a href="services.html#s1000d">Voir la spécialisation S1000D →</a>
         </div>
       </div>
     </section>

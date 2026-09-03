@@ -2,13 +2,37 @@
   {
     "name": "atelier-documentaire",
     "output": "assets\\diagrams\\generated\\atelier-documentaire.svg",
-    "width": 255,
-    "height": 370
+    "width": 977,
+    "height": 86
+  },
+  {
+    "name": "demo-audit",
+    "output": "assets\\diagrams\\generated\\demo-audit.svg",
+    "width": 1235,
+    "height": 69
+  },
+  {
+    "name": "demo-extraction",
+    "output": "assets\\diagrams\\generated\\demo-extraction.svg",
+    "width": 760,
+    "height": 221
+  },
+  {
+    "name": "demo-publication",
+    "output": "assets\\diagrams\\generated\\demo-publication.svg",
+    "width": 1015,
+    "height": 136
+  },
+  {
+    "name": "demo-transformation",
+    "output": "assets\\diagrams\\generated\\demo-transformation.svg",
+    "width": 1123,
+    "height": 182
   },
   {
     "name": "documentation-structuree",
     "output": "assets\\diagrams\\generated\\documentation-structuree.svg",
-    "width": 780,
-    "height": 67
+    "width": 844,
+    "height": 69
   }
 ]

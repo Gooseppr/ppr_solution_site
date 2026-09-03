@@ -66,9 +66,11 @@ function addHeadingIds(html) {
 }
 
 function enhanceArticleTables(html) {
-  return html.replace(/<table class="mapping-table">([\s\S]*?)<\/table>/gi, (match, tableContent) =>
-    `<div class="table-wrap"><table class="mapping-table"><caption class="sr-only">Correspondances entre la source et la cible</caption>${tableContent}</table></div>`
-  );
+  const unwrapped = html.replace(/<div class="table-wrap">\s*(<table class="mapping-table">[\s\S]*?<\/table>)\s*<\/div>/gi, "$1");
+  return unwrapped.replace(/<table class="mapping-table">([\s\S]*?)<\/table>/gi, (match, tableContent) => {
+    const caption = /<caption(?:\s[^>]*)?>/i.test(tableContent) ? "" : '<caption class="sr-only">Correspondances entre la source et la cible</caption>';
+    return `<div class="table-wrap"><table class="mapping-table">${caption}${tableContent}</table></div>`;
+  });
 }
 
 function renderToc(headings) {
@@ -78,25 +80,15 @@ function renderToc(headings) {
 }
 
 function postDataAttributes(post) {
-  return `data-blog-post data-slug="${escapeHtml(post.slug)}" data-title="${escapeHtml(post.title)}" data-description="${escapeHtml(post.description)}" data-category="${escapeHtml(post.category || "Blog")}" data-tags="${escapeHtml((post.tags || []).join("|"))}" data-date="${escapeHtml(post.date)}" data-reading-time="${escapeHtml(post.reading_time || "Lecture")}" data-preview="${escapeHtml(JSON.stringify(post.preview || {}))}"`;
+  return `data-blog-post data-slug="${escapeHtml(post.slug)}" data-title="${escapeHtml(post.title)}" data-description="${escapeHtml(post.description)}" data-category="${escapeHtml(post.category || "Blog")}" data-tags="${escapeHtml((post.tags || []).join("|"))}" data-date="${escapeHtml(post.date)}" data-reading-time="${escapeHtml(post.reading_time || "Lecture")}"`;
 }
 
 function renderTags(tags = []) {
   return `<ul class="blog-tag-list" aria-label="Sujets">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>`;
 }
 
-function renderPostPreview(preview = {}) {
-  const label = escapeHtml(preview.label || "Aperçu technique");
-  if (["mapping", "table"].includes(preview.kind)) {
-    const rows = preview.items.map((item) => `<li><code>${escapeHtml(item.from)}</code><span aria-hidden="true">→</span><code>${escapeHtml(item.to)}</code></li>`).join("");
-    return `<div class="blog-technical-preview blog-preview-${preview.kind}"><p>${label}</p><ul>${rows}</ul></div>`;
-  }
-  const steps = preview.items.map((item) => `<li><code>${escapeHtml(item)}</code></li>`).join("");
-  return `<div class="blog-technical-preview blog-preview-flow"><p>${label}</p><ol>${steps}</ol></div>`;
-}
-
 function renderPostCard(post) {
-  return `<article class="blog-card" ${postDataAttributes(post)}><a class="article-card-link" href="blog/${escapeHtml(post.slug)}/"><p class="meta">${escapeHtml(post.category || "Blog")} · <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time> · ${escapeHtml(post.reading_time || "Lecture")}</p><h3>${escapeHtml(post.title)}</h3><p>${escapeHtml(post.description)}</p>${renderPostPreview(post.preview)}${renderTags(post.tags)}<span class="blog-read-label">Lire l’article →</span></a></article>`;
+  return `<article class="blog-card" ${postDataAttributes(post)}><a class="article-card-link" href="blog/${escapeHtml(post.slug)}/"><p class="meta">${escapeHtml(post.category || "Blog")} · <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time> · ${escapeHtml(post.reading_time || "Lecture")}</p><h3>${escapeHtml(post.title)}</h3><p>${escapeHtml(post.description)}</p>${renderTags(post.tags)}<span class="blog-read-label">Lire l’article →</span></a></article>`;
 }
 
 function usefulValues(posts, key) {
@@ -178,9 +170,6 @@ function validatePosts(posts) {
     ["service_url", "service_label", "demo_url", "demo_label"].forEach((field) => {
       if (!post[field]) throw new Error(`Article ${post.slug} : association ${field} manquante.`);
     });
-    if (!post.preview || !["flow", "mapping", "table"].includes(post.preview.kind) || !post.preview.label || !Array.isArray(post.preview.items) || !post.preview.items.length) {
-      throw new Error(`Article ${post.slug} : aperçu technique invalide.`);
-    }
     slugs.add(post.slug);
   });
 }

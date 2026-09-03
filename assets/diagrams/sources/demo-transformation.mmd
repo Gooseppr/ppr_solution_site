@@ -1,0 +1,22 @@
+flowchart LR
+    accTitle: Traitement de la transformation XML
+    accDescr: Le XML source est contrôlé, mis en correspondance avec le modèle cible, transformé, puis validé. Les cas sans règle sont isolés dans les rejets.
+
+    A["`**XML source**
+    4 pièces`"]:::terminal --> B["`**Contrôle source**
+    XSD`"]:::action
+    B --> C["`**Mapping**
+    source → cible`"]:::structure
+    C --> D["`**Transformation**
+    règles appliquées`"]:::action
+    D --> E{"`**Validation cible**`"}:::warning
+    E -->|conforme| F["`**XML cible**
+    3 éléments`"]:::terminal
+    E -->|sans identifiant| G["`**Rejet tracé**
+    1 pièce`"]:::error
+
+    classDef terminal fill:#124c8c,stroke:#0a3b70,stroke-width:2px,color:#ffffff,font-weight:700;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:2.25px,color:#132435,font-weight:500;
+    classDef error fill:#fff0ef,stroke:#b42318,stroke-width:1.75px,color:#132435,font-weight:500;

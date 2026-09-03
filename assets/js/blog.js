@@ -15,7 +15,7 @@ function initBlogLibrary() {
 
   if (!controls || !results || !grid || !searchInput || !sortSelect || !countNode || !resetButton || !emptyState || !emptyReset || !dataStatus || !pagination) return;
 
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 3;
 
   const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
     day: "2-digit",
@@ -41,29 +41,8 @@ function initBlogLibrary() {
       tags: (element.dataset.tags || "").split("|").filter(Boolean),
       date: element.dataset.date,
       reading_time: element.dataset.readingTime,
-      preview: parsePreview(element.dataset.preview),
       _index: index
     }));
-  }
-
-  function parsePreview(value) {
-    try {
-      return normalizePreview(JSON.parse(value || "{}"));
-    } catch (_error) {
-      return { kind: "flow", label: "Aperçu technique", items: [] };
-    }
-  }
-
-  function normalizePreview(preview) {
-    const kind = preview && ["mapping", "table"].includes(preview.kind) ? preview.kind : "flow";
-    const items = Array.isArray(preview?.items) ? preview.items.slice(0, 3) : [];
-    return {
-      kind,
-      label: String(preview?.label || "Aperçu technique"),
-      items: ["mapping", "table"].includes(kind)
-        ? items.map((item) => ({ from: String(item?.from || ""), to: String(item?.to || "") })).filter((item) => item.from && item.to)
-        : items.map((item) => String(item || "")).filter(Boolean)
-    };
   }
 
   function normalizePosts(payload) {
@@ -80,7 +59,6 @@ function initBlogLibrary() {
         tags: post.tags.map((tag) => String(tag)),
         date: String(post.date),
         reading_time: String(post.reading_time || "Lecture"),
-        preview: normalizePreview(post.preview),
         _index: index
       };
     });
@@ -96,36 +74,6 @@ function initBlogLibrary() {
       list.append(item);
     });
     return list;
-  }
-
-  function createPreview(preview) {
-    const container = document.createElement("div");
-    container.className = `blog-technical-preview blog-preview-${preview.kind}`;
-    const label = document.createElement("p");
-    label.textContent = preview.label;
-    container.append(label);
-
-    const list = document.createElement(["mapping", "table"].includes(preview.kind) ? "ul" : "ol");
-    preview.items.forEach((item) => {
-      const row = document.createElement("li");
-      if (["mapping", "table"].includes(preview.kind)) {
-        const source = document.createElement("code");
-        const arrow = document.createElement("span");
-        const target = document.createElement("code");
-        source.textContent = item.from;
-        arrow.textContent = "→";
-        arrow.setAttribute("aria-hidden", "true");
-        target.textContent = item.to;
-        row.append(source, arrow, target);
-      } else {
-        const code = document.createElement("code");
-        code.textContent = item;
-        row.append(code);
-      }
-      list.append(row);
-    });
-    container.append(list);
-    return container;
   }
 
   function createPost(post) {
@@ -152,7 +100,7 @@ function initBlogLibrary() {
     readLabel.className = "blog-read-label";
     readLabel.textContent = "Lire l’article →";
 
-    link.append(meta, heading, description, createPreview(post.preview), createTagList(post.tags), readLabel);
+    link.append(meta, heading, description, createTagList(post.tags), readLabel);
     article.append(link);
     return article;
   }

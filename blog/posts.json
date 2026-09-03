@@ -18,11 +18,6 @@
     "service_label": "Contrôle et qualification XML",
     "demo_url": "demonstrations.html#audit-xml",
     "demo_label": "Audit XML multi-erreurs",
-    "preview": {
-      "kind": "flow",
-      "label": "Chaîne de validation",
-      "items": ["CORPUS XML", "VALIDATION XSD", "CLASSIFICATION"]
-    },
     "content_html": "<p class=\"lead\">Valider un fichier XML isolé est une opération simple. Valider plusieurs milliers de fichiers demande une méthode : inventaire, parsing, validation, classification et restitution.</p><h2>Commencer par l’inventaire</h2><p>Avant la validation, il faut connaître le périmètre réel : extensions, encodages, tailles, doublons, fichiers vides et familles de schémas attendues.</p><div class=\"pipeline\"><span>CORPUS XML</span><span>INVENTAIRE</span><span>PARSING</span><span>VALIDATION XSD</span><span>CLASSIFICATION</span><span>RAPPORT</span></div><h2>Classer les erreurs</h2><p>Un rapport utile distingue les erreurs bloquantes, les warnings et les décisions métier. Un XML non well-formed ne se traite pas comme une valeur invalide ou une référence manquante.</p><h2>Livrables utiles</h2><ul><li>rapport de synthèse ;</li><li>CSV/XLSX des anomalies ;</li><li>liste des fichiers valides ;</li><li>liste des rejets ;</li><li>journal de traitement.</li></ul><div class=\"note\"><strong>À retenir</strong><p>La validation n’est pas seulement un oui/non. Pour un corpus, la valeur vient de la classification et de la traçabilité.</p></div>"
   },
   {
@@ -44,14 +39,6 @@
     "service_label": "Transformation et conversion XML",
     "demo_url": "demonstrations.html#transformation-xml",
     "demo_label": "Transformation XML A vers XML B",
-    "preview": {
-      "kind": "mapping",
-      "label": "Mapping source → cible",
-      "items": [
-        {"from": "part/@id", "to": "item/code"},
-        {"from": "part/state", "to": "item/status"}
-      ]
-    },
     "content_html": "<p class=\"lead\">Une transformation XML fiable commence par le mapping. Le script n’est que l’exécution d’une décision de correspondance entre source et cible.</p><h2>Définir le mapping</h2><table class=\"mapping-table\"><tbody><tr><td><code>part/@id</code></td><td>→</td><td><code>item/code</code></td></tr><tr><td><code>part/label</code></td><td>→</td><td><code>item/name</code></td></tr><tr><td><code>part/state</code></td><td>→</td><td><code>item/status</code></td></tr></tbody></table><h2>Valider la cible</h2><p>Un XML cible généré doit être validé contre son propre schéma. Les rejets doivent être visibles, jamais absorbés silencieusement.</p><div class=\"pipeline\"><span>SOURCE.XML + SOURCE.XSD</span><span>MAPPING</span><span>TRANSFORMATION</span><span>TARGET.XML + TARGET.XSD</span><span>VALIDATION</span></div><h2>Livrables</h2><p>Les livrables utiles sont le XML cible, le mapping, le rapport de transformation et la liste des cas non convertis automatiquement.</p>"
   },
   {
@@ -73,14 +60,6 @@
     "service_label": "Extraction et exploitation des données",
     "demo_url": "demonstrations.html#extraction-xml",
     "demo_label": "Extraction XML vers Excel et CSV",
-    "preview": {
-      "kind": "table",
-      "label": "XPath → colonne",
-      "items": [
-        {"from": "/product/id", "to": "product_id"},
-        {"from": "/product/status", "to": "status"}
-      ]
-    },
     "content_html": "<p class=\"lead\">L’extraction transforme un corpus XML en données exploitables ailleurs. Elle exige un mapping explicite et un contrôle des valeurs absentes ou ambiguës.</p><h2>Identifier les chemins XPath</h2><p>Chaque colonne attendue doit correspondre à un chemin source ou à une règle calculée.</p><table class=\"mapping-table\"><tbody><tr><td><code>/product/id</code></td><td>→</td><td><code>product_id</code></td></tr><tr><td><code>/product/manufacturer</code></td><td>→</td><td><code>manufacturer</code></td></tr><tr><td><code>/product/status</code></td><td>→</td><td><code>status</code></td></tr></tbody></table><h2>Contrôler la consolidation</h2><p>Les valeurs manquantes, les doublons et les différences de namespace doivent être signalés dans le rapport d’extraction.</p><h2>Formats de sortie</h2><ul><li>XLSX pour lecture humaine ;</li><li>CSV pour import ;</li><li>JSON pour intégration ;</li><li>SQL lorsque la structure cible est définie.</li></ul>"
   },
   {
@@ -102,11 +81,48 @@
     "service_label": "Documentation structurée et S1000D",
     "demo_url": "validateur.html",
     "demo_label": "Validateur S1000D secondaire",
-    "preview": {
-      "kind": "flow",
-      "label": "Contrôles complémentaires",
-      "items": ["VALIDATION XSD", "RÈGLES BREX", "RÉFÉRENCES"]
-    },
     "content_html": "<p class=\"lead\">Dans S1000D, le XSD vérifie la structure XML. Le BREX ajoute des règles propres au programme, au client ou à l’organisation documentaire.</p><h2>XSD et BREX ne contrôlent pas la même chose</h2><p>Un module peut être valide au sens XSD et rester non conforme à une règle métier : structure autorisée, valeur interdite, référence absente ou pratique documentaire non acceptée.</p><div class=\"pipeline\"><span>DATA MODULE</span><span>VALIDATION XSD</span><span>RÈGLES BREX</span><span>RÉFÉRENCES</span><span>SYNTHÈSE</span></div><h2>Ne pas parler de certification</h2><p>Un précontrôle technique peut signaler des anomalies et aider à préparer une livraison. Il ne remplace pas une certification officielle ni une validation métier complète.</p>"
+  },
+  {
+    "slug": "xml-documentation-technique",
+    "title": "XML : à quoi sert-il dans la documentation technique ?",
+    "description": "Comprendre comment XML sépare le contenu de sa présentation pour contrôler, réutiliser et publier une documentation technique.",
+    "meta_description": "À quoi sert XML en documentation technique : structure sémantique, validation, réutilisation, publication multicanale et limites pratiques.",
+    "date": "2026-09-03",
+    "updated": "2026-09-03",
+    "category": "Documentation structurée",
+    "tags": [
+      "XML",
+      "Documentation",
+      "Publication",
+      "Validation"
+    ],
+    "reading_time": "7 min",
+    "service_url": "services.html#structuration",
+    "service_label": "Structuration d’une documentation",
+    "demo_url": "demonstrations.html#publication-xml",
+    "demo_label": "Publication XML vers PDF et HTML",
+    "content_html": "<p class=\"lead\">Dans une documentation technique, XML ne sert pas à mettre un titre en bleu ou à choisir une police. Il sert d’abord à dire ce qu’est chaque information : un titre, une étape, un avertissement, une référence, une valeur ou une illustration.</p><h2>Décrire le rôle de l’information</h2><p>XML est un langage de balisage extensible. Ses balises peuvent représenter le vocabulaire d’un produit, d’un métier ou d’un modèle documentaire. Une procédure peut ainsi contenir des étapes identifiables, des conditions et des avertissements, sans dépendre de la mise en page finale.</p><p>Cette structure explicite rend le contenu interprétable par plusieurs outils. Un moteur de publication peut produire une page HTML, un PDF ou une vue spécialisée à partir de la même source. Un traitement peut aussi retrouver toutes les références d’un corpus sans parcourir visuellement chaque document.</p><h2>Séparer le contenu de la présentation</h2><p>Dans un document bureautique, la forme porte souvent une partie du sens : une phrase en gras ressemble à un titre, une couleur signale peut-être un avertissement. Cette convention reste fragile si elle n’est pas formalisée. En XML, le rôle est inscrit dans la structure ; la présentation vient ensuite.</p><p>Cette séparation facilite la réutilisation. Un même bloc peut être publié dans plusieurs supports, filtré selon une variante produit ou agrégé dans un autre document. Elle permet aussi de faire évoluer la charte de publication sans reprendre manuellement chaque contenu.</p><h2>Contrôler la cohérence</h2><p>Un schéma XSD ou une DTD peut décrire les éléments autorisés, leur ordre, leurs attributs et certains types de valeurs. Schematron ou des règles complémentaires peuvent exprimer des contrôles plus contextuels. La validation ne garantit pas que l’information métier est vraie, mais elle vérifie qu’elle respecte la structure convenue.</p><p>À l’échelle d’un corpus, ce contrôle devient un outil de qualification : fichiers bien formés, documents valides, anomalies récurrentes, références manquantes et cas à arbitrer peuvent être classés dans un rapport traçable.</p><h2>Quand XML est pertinent</h2><p>XML est particulièrement adapté lorsque le contenu possède une hiérarchie riche, mélange texte et données, doit durer longtemps ou alimenter plusieurs publications. Il est aussi utile lorsqu’un standard sectoriel ou un partenaire impose déjà un schéma.</p><p>Il n’est pas automatiquement le meilleur choix pour chaque échange. Une donnée simple destinée à une API peut être plus directe en JSON. Le coût réel dépend surtout de la stabilité du modèle, des contrôles attendus, des outils existants et de la durée de vie du contenu.</p><h2>Passer à une documentation structurée</h2><p>La première étape n’est pas de convertir tout un fonds. Un échantillon représentatif permet d’identifier les structures récurrentes, les exceptions et les décisions métier manquantes. Le modèle cible peut ensuite être fourni ou défini avec le client, puis testé sur un lot limité avant industrialisation.</p><div class=\"note\"><strong>À retenir</strong><p>XML devient utile quand la structure doit être explicite, contrôlable et réutilisable. La qualité du résultat dépend moins du nombre de balises que de la clarté du modèle et des règles de traitement.</p></div><h2>Source de référence</h2><p>La présentation générale d’XML et de ses usages documentaires s’appuie notamment sur la page officielle <a href=\"https://aws.amazon.com/what-is/xml/\">« What is XML? » d’AWS</a>. L’analyse et les recommandations ci-dessus sont propres à PPR-Solution.</p>"
+  },
+  {
+    "slug": "xml-ou-json",
+    "title": "XML ou JSON : lequel choisir pour vos données et vos documents ?",
+    "description": "Comparer XML et JSON à partir du contenu, des règles de validation, des outils existants et des usages de publication.",
+    "meta_description": "XML ou JSON : critères pratiques pour choisir un format selon les données, les documents, la validation, les échanges et la publication.",
+    "date": "2026-09-02",
+    "updated": "2026-09-03",
+    "category": "Formats et interopérabilité",
+    "tags": [
+      "XML",
+      "JSON",
+      "Données",
+      "Interopérabilité"
+    ],
+    "reading_time": "8 min",
+    "service_url": "services.html#transformation",
+    "service_label": "Transformation et conversion",
+    "demo_url": "demonstrations.html#extraction-xml",
+    "demo_label": "Extraction XML vers des données tabulaires",
+    "content_html": "<p class=\"lead\">XML et JSON représentent tous deux des informations structurées et facilitent leur échange entre systèmes. Le bon choix ne se résume pourtant pas à la taille d’un fichier : il dépend du contenu, des contrôles attendus et des usages futurs.</p><h2>Deux formats pour représenter une structure</h2><p>JSON organise les données avec des objets, des tableaux et des types simples. Sa syntaxe compacte et sa proximité avec les environnements JavaScript expliquent son usage fréquent dans les API et les applications web.</p><p>XML organise l’information avec des éléments, des attributs et une hiérarchie. Il sait représenter des données, mais aussi des contenus mixtes où du texte, des références et des sous-structures se succèdent. Ses espaces de noms permettent de combiner des vocabulaires distincts.</p><h2>Choisir JSON pour des échanges applicatifs directs</h2><p>JSON convient souvent lorsque les producteurs et consommateurs partagent une structure de données simple : paramètres d’API, objets métier, événements ou configurations. Les tableaux et les nombres y sont représentés naturellement, et de nombreux langages proposent une sérialisation directe.</p><p>Ce choix est particulièrement lisible quand l’ordre éditorial, les commentaires et le texte enrichi ne sont pas centraux. Il faut néanmoins définir le contrat de données, gérer les versions et valider les valeurs ; la concision du format ne remplace pas ces décisions.</p><h2>Choisir XML pour des documents structurés</h2><p>XML prend l’avantage lorsque le contenu est documentaire : paragraphes, étapes, avertissements, tableaux, références croisées ou variantes. Il conserve l’ordre des blocs et peut distinguer précisément leur rôle sans confondre structure et présentation.</p><p>Les schémas XSD, DTD ou les règles Schematron offrent un écosystème mature pour contrôler la structure et certaines contraintes. XSLT permet de transformer le contenu, tandis que des chaînes de publication peuvent produire HTML ou PDF à partir d’une même source.</p><h2>Comparer selon le besoin réel</h2><div class=\"table-wrap\"><table class=\"mapping-table\"><caption>Critères de choix entre XML et JSON</caption><thead><tr><th scope=\"col\">Critère</th><th scope=\"col\">XML</th><th scope=\"col\">JSON</th></tr></thead><tbody><tr><th scope=\"row\">Contenu éditorial riche</th><td>Très adapté au texte mixte et ordonné</td><td>Possible, mais souvent moins naturel</td></tr><tr><th scope=\"row\">Échange API simple</th><td>Adapté si le contrat ou l’existant l’impose</td><td>Souvent plus direct</td></tr><tr><th scope=\"row\">Validation</th><td>Schémas et règles documentaires matures</td><td>Schéma JSON et contrôles applicatifs</td></tr><tr><th scope=\"row\">Publication</th><td>Écosystème de transformation documentaire</td><td>Nécessite généralement une couche de rendu dédiée</td></tr><tr><th scope=\"row\">Héritage et standards</th><td>Très présent dans les référentiels documentaires</td><td>Très présent dans les services web récents</td></tr></tbody></table></div><h2>Éviter le faux choix unique</h2><p>Un système peut utiliser XML comme source documentaire de référence et JSON pour exposer une sélection de données à une application. L’inverse est également possible si des données JSON alimentent une publication. La question devient alors celle de la transformation, du mapping et de la responsabilité de chaque format.</p><p>Ce découpage hybride est cohérent si une source d’autorité est clairement identifiée, si les conversions sont testées et si les pertes possibles sont visibles. Sans cela, deux formats créent surtout deux versions concurrentes de la même information.</p><h2>Une grille de décision pragmatique</h2><ol><li>Décrire les contenus réels, y compris les exceptions et le texte long.</li><li>Identifier les systèmes producteurs, consommateurs et leurs formats natifs.</li><li>Lister les validations, transformations et publications attendues.</li><li>Mesurer la durée de vie des données et les obligations d’archivage.</li><li>Tester un échantillon dans les deux formats si le choix reste ouvert.</li></ol><div class=\"note\"><strong>À retenir</strong><p>JSON favorise souvent l’échange applicatif concis ; XML reste puissant pour les documents riches, la validation et la publication. Le meilleur format est celui qui réduit les ambiguïtés sur toute la chaîne, pas seulement à l’entrée.</p></div><h2>Source de référence</h2><p>La comparaison générale s’appuie notamment sur la page officielle <a href=\"https://aws.amazon.com/compare/the-difference-between-json-xml/\">« JSON vs XML » d’AWS</a>. La grille de décision et les recommandations ci-dessus sont propres à PPR-Solution.</p>"
   }
 ]
