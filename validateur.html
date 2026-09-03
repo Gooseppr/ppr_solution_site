@@ -3,12 +3,12 @@
   <section class="validator-section"><div class="container validator-workspace">
     <article class="tool-panel validator-upload-panel">
       <h2>Analyser un module</h2>
-      <p class="form-helper validator-privacy"><svg class="icon" aria-hidden="true"><use href="assets/icons/lucide-sprite.svg#shield-check"></use></svg><span><strong>Confidentialité :</strong> le fichier est envoyé au service de démonstration. N’utilisez pas ce validateur public pour des documents confidentiels ; un canal adapté peut être convenu pour une mission réelle.</span></p>
+      <p class="form-helper validator-privacy"><svg class="icon" aria-hidden="true"><use href="assets/icons/lucide-sprite.svg#shield-check"></use></svg><span><strong>Confidentialité :</strong> ce démonstrateur public envoie le fichier au service d’analyse. Pour un document confidentiel, convenons d’un canal adapté.</span></p>
       <form id="validator-form" class="form" novalidate>
         <div class="form-field file-drop">
           <label for="xml-file">Module S1000D XML <span class="muted">(max. 10 Mo)</span></label>
-          <div class="file-input-control"><input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="xml-file-name file-help xml-file-error"><div class="file-input-visual"><span class="file-input-button" aria-hidden="true">Sélectionner un fichier XML</span><span id="xml-file-name" data-file-name aria-live="polite">Aucun fichier sélectionné</span></div></div>
-          <p id="file-help" class="form-helper">Issue 6.0 prise en charge ; le schéma est sélectionné lorsque le module peut être identifié.</p>
+          <div class="file-input-control"><input type="file" id="xml-file" name="xml-file" accept=".xml" required aria-describedby="file-help xml-file-error xml-file-status"><div class="file-input-visual"><span class="file-input-button" aria-hidden="true">Sélectionner un fichier XML</span><span id="xml-file-name" data-file-name aria-hidden="true" title="Aucun fichier sélectionné">Aucun fichier sélectionné</span></div><span class="sr-only" id="xml-file-status" data-file-status role="status" aria-live="polite" aria-atomic="true">Aucun fichier sélectionné</span></div>
+          <p id="file-help" class="form-helper">Issue 6.0 ; le schéma est sélectionné si le module est identifiable.</p>
           <p id="xml-file-error" class="form-helper field-error" role="alert"></p>
         </div>
         <button type="submit" class="btn btn-primary">Analyser le module</button>

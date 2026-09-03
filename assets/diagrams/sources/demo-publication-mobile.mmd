@@ -1,0 +1,15 @@
+flowchart TB
+    accTitle: Traitement mobile de la publication XML
+    accDescr: Le module XML est contrôlé puis transformé avec XSLT. Les sorties PDF et HTML sont regroupées avant le contrôle final des rendus.
+
+    A["`**Module XML**
+    6 types de blocs`"]:::terminal --> B["`**Contrôle**
+    structure · contenus`"]:::warning
+    B --> C["`**Transformation XSLT**`"]:::structure
+    C --> D["`**Publications**
+    PDF · HTML`"]:::terminal
+    D --> E["`**Contrôle des rendus**`"]:::warning
+
+    classDef terminal fill:#124c8c,stroke:#0a3b70,stroke-width:2px,color:#ffffff,font-weight:700;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:2.25px,color:#132435,font-weight:500;

@@ -1,0 +1,20 @@
+flowchart TB
+    accTitle: Traitement mobile de la transformation XML
+    accDescr: Le XML source est contrôlé et mis en correspondance avec le modèle cible, puis transformé et validé. Trois sorties sont conformes et un rejet est tracé.
+
+    A["`**XML source**
+    4 pièces`"]:::terminal --> B["`**Contrôle et mapping**
+    XSD · source vers cible`"]:::structure
+    B --> C["`**Transformation**
+    règles appliquées`"]:::action
+    C --> D{"`**Validation cible**`"}:::warning
+    D -->|conforme| E["`**XML cible**
+    3 sorties`"]:::terminal
+    D -->|sans identifiant| F["`**Rejet tracé**
+    1 pièce`"]:::error
+
+    classDef terminal fill:#124c8c,stroke:#0a3b70,stroke-width:2px,color:#ffffff,font-weight:700;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:2.25px,color:#132435,font-weight:500;
+    classDef error fill:#fff0ef,stroke:#b42318,stroke-width:1.75px,color:#132435,font-weight:500;

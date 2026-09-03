@@ -6,10 +6,22 @@
     "height": 86
   },
   {
+    "name": "demo-audit-mobile",
+    "output": "assets\\diagrams\\generated\\demo-audit-mobile.svg",
+    "width": 209,
+    "height": 479
+  },
+  {
     "name": "demo-audit",
     "output": "assets\\diagrams\\generated\\demo-audit.svg",
     "width": 1235,
     "height": 69
+  },
+  {
+    "name": "demo-extraction-mobile",
+    "output": "assets\\diagrams\\generated\\demo-extraction-mobile.svg",
+    "width": 157,
+    "height": 479
   },
   {
     "name": "demo-extraction",
@@ -18,10 +30,22 @@
     "height": 221
   },
   {
+    "name": "demo-publication-mobile",
+    "output": "assets\\diagrams\\generated\\demo-publication-mobile.svg",
+    "width": 188,
+    "height": 444
+  },
+  {
     "name": "demo-publication",
     "output": "assets\\diagrams\\generated\\demo-publication.svg",
     "width": 1015,
     "height": 136
+  },
+  {
+    "name": "demo-transformation-mobile",
+    "output": "assets\\diagrams\\generated\\demo-transformation-mobile.svg",
+    "width": 256,
+    "height": 613
   },
   {
     "name": "demo-transformation",
@@ -30,9 +54,15 @@
     "height": 182
   },
   {
+    "name": "documentation-structuree-mobile",
+    "output": "assets\\diagrams\\generated\\documentation-structuree-mobile.svg",
+    "width": 323,
+    "height": 552
+  },
+  {
     "name": "documentation-structuree",
     "output": "assets\\diagrams\\generated\\documentation-structuree.svg",
-    "width": 844,
-    "height": 69
+    "width": 1073,
+    "height": 189
   }
 ]

@@ -85,10 +85,15 @@ function initBlogLibrary() {
 
     const meta = document.createElement("p");
     meta.className = "meta";
+    const category = document.createElement("span");
+    category.className = "blog-card-category";
+    category.textContent = post.category;
+    const details = document.createElement("span");
     const time = document.createElement("time");
     time.dateTime = post.date;
     time.textContent = dateFormatter.format(new Date(`${post.date}T00:00:00Z`));
-    meta.append(document.createTextNode(`${post.category} · `), time, document.createTextNode(` · ${post.reading_time}`));
+    details.append(time, document.createTextNode(` · ${post.reading_time}`));
+    meta.append(category, details);
 
     const heading = document.createElement("h3");
     heading.textContent = post.title;

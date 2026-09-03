@@ -1,0 +1,18 @@
+flowchart TB
+    accTitle: Chaîne de structuration documentaire sur petit écran
+    accDescr: Un document source est analysé et structuré selon un modèle et des règles. Les contrôles séparent les contenus conformes des exceptions traitées et tracées avant publication.
+
+    A["`**Document source**
+    DOCX · PDF · contenus`"]:::terminal --> B["`**Analyse et modélisation**`"]:::action
+    B --> C["`**Structuration XML**
+    modèle · règles`"]:::structure
+    C --> D{"`**Contrôles**`"}:::warning
+    D -->|conforme| E["`**Publication**
+    PDF · HTML`"]:::terminal
+    D -->|exception| X["`**Traitement tracé**`"]:::warning
+    X -. retour .-> C
+
+    classDef terminal fill:#124c8c,stroke:#0a3b70,stroke-width:2px,color:#ffffff,font-weight:700;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:2.25px,color:#132435,font-weight:500;

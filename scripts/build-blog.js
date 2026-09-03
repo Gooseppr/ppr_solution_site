@@ -88,7 +88,7 @@ function renderTags(tags = []) {
 }
 
 function renderPostCard(post) {
-  return `<article class="blog-card" ${postDataAttributes(post)}><a class="article-card-link" href="blog/${escapeHtml(post.slug)}/"><p class="meta">${escapeHtml(post.category || "Blog")} · <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time> · ${escapeHtml(post.reading_time || "Lecture")}</p><h3>${escapeHtml(post.title)}</h3><p>${escapeHtml(post.description)}</p>${renderTags(post.tags)}<span class="blog-read-label">Lire l’article →</span></a></article>`;
+  return `<article class="blog-card" ${postDataAttributes(post)}><a class="article-card-link" href="blog/${escapeHtml(post.slug)}/"><p class="meta"><span class="blog-card-category">${escapeHtml(post.category || "Blog")}</span><span><time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time><span aria-hidden="true"> · </span>${escapeHtml(post.reading_time || "Lecture")}</span></p><h3>${escapeHtml(post.title)}</h3><p>${escapeHtml(post.description)}</p>${renderTags(post.tags)}<span class="blog-read-label">Lire l’article →</span></a></article>`;
 }
 
 function usefulValues(posts, key) {

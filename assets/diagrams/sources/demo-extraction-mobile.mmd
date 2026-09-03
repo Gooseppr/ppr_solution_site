@@ -1,0 +1,18 @@
+flowchart TB
+    accTitle: Traitement mobile de l'extraction XML
+    accDescr: Trois fichiers XML sont parcourus par six chemins XPath. Les valeurs sont normalisées et consolidées en quatre lignes, puis exportées en XLSX, CSV et JSON.
+
+    A["`**Corpus XML**
+    3 fichiers`"]:::terminal --> B["`**Sélection XPath**
+    6 champs`"]:::structure
+    B --> C["`**Normalisation**
+    valeurs absentes`"]:::warning
+    C --> D["`**Consolidation**
+    4 lignes`"]:::action
+    D --> E["`**Exports**
+    XLSX · CSV · JSON`"]:::terminal
+
+    classDef terminal fill:#124c8c,stroke:#0a3b70,stroke-width:2px,color:#ffffff,font-weight:700;
+    classDef action fill:#eaf1f8,stroke:#124c8c,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef structure fill:#f1ecf6,stroke:#6b4f8a,stroke-width:1.75px,color:#132435,font-weight:500;
+    classDef warning fill:#fbf3e7,stroke:#9a6410,stroke-width:2.25px,color:#132435,font-weight:500;

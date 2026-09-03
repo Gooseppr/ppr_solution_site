@@ -9,13 +9,21 @@ const submitButton = formElement?.querySelector('button[type="submit"]');
 const submitButtonDefaultLabel = submitButton ? submitButton.textContent : "";
 const fileInput = formElement?.querySelector('input[type="file"]');
 const fileNameNode = document.querySelector("[data-file-name]");
+const fileStatusNode = document.querySelector("[data-file-status]");
 
 let isValidating = false;
 
 function updateFileName() {
   if (!fileNameNode) return;
   const selectedFile = fileInput?.files?.[0];
-  fileNameNode.textContent = selectedFile ? selectedFile.name : "Aucun fichier sélectionné";
+  const visibleLabel = selectedFile ? selectedFile.name : "Aucun fichier sélectionné";
+  fileNameNode.textContent = visibleLabel;
+  fileNameNode.title = visibleLabel;
+  if (fileStatusNode) {
+    fileStatusNode.textContent = selectedFile
+      ? `Fichier sélectionné : ${selectedFile.name}`
+      : "Aucun fichier sélectionné";
+  }
 }
 
 function escapeHtml(value) {
