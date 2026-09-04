@@ -124,7 +124,9 @@ function renderArticle(post, previous, next) {
   const serviceLabel = post.service_label || "Prestations XML";
   const demoUrl = post.demo_url || "demonstrations.html";
   const demoLabel = post.demo_label || "Démonstrations techniques";
-  const connections = `<hr class="rule"><section class="article-connections" aria-labelledby="pour-aller-plus-loin"><h2 id="pour-aller-plus-loin">Pour aller plus loin</h2><div class="article-connection-grid"><div><p class="eyebrow">Prestation associée</p><h3><a href="../../${escapeHtml(serviceUrl)}">${escapeHtml(serviceLabel)}</a></h3></div><div><p class="eyebrow">Démonstration associée</p><h3><a href="../../${escapeHtml(demoUrl)}">${escapeHtml(demoLabel)}</a></h3></div></div></section>`;
+  const contactLabel = post.contact_label;
+  const contactContext = post.contact_context;
+  const connections = `<hr class="rule"><section class="article-connections" aria-labelledby="pour-aller-plus-loin"><h2 id="pour-aller-plus-loin">Pour aller plus loin</h2><div class="article-connection-grid"><div><p class="eyebrow">Prestation associée</p><h3><a href="../../${escapeHtml(serviceUrl)}">${escapeHtml(serviceLabel)}</a></h3></div><div><p class="eyebrow">Démonstration associée</p><h3><a href="../../${escapeHtml(demoUrl)}">${escapeHtml(demoLabel)}</a></h3></div></div><div class="article-conversion"><p>${escapeHtml(contactContext)}</p><a class="btn btn-primary" href="../../contact.html">${escapeHtml(contactLabel)}</a></div></section>`;
   const relatedSection = related ? `<section class="article-related" aria-labelledby="articles-lies"><h2 id="articles-lies">Articles liés</h2><ul>${related}</ul></section>` : "";
   const enhanced = addHeadingIds(`${enhanceArticleTables(post.content_html)}${connections}${relatedSection}`);
   const toc = renderToc(enhanced.headings);
@@ -167,7 +169,7 @@ function validatePosts(posts) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(post.date) || Number.isNaN(Date.parse(`${post.date}T00:00:00Z`))) {
       throw new Error(`Date invalide : ${post.slug}`);
     }
-    ["service_url", "service_label", "demo_url", "demo_label"].forEach((field) => {
+    ["service_url", "service_label", "demo_url", "demo_label", "contact_label", "contact_context"].forEach((field) => {
       if (!post[field]) throw new Error(`Article ${post.slug} : association ${field} manquante.`);
     });
     slugs.add(post.slug);

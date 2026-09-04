@@ -466,6 +466,9 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
 .article-connection-grid > div { min-width: 0; padding: var(--space-5) 0; border-bottom: 1px solid var(--border); }
 .article-connection-grid > div + div { padding-left: var(--space-5); border-left: 1px solid var(--border); }
 .article-connection-grid h3 { margin: var(--space-2) 0 0; font-size: 1.1rem; }
+.article-conversion { display: flex; justify-content: space-between; align-items: center; gap: var(--space-6); padding-top: var(--space-5); }
+.article-conversion p { max-width: var(--measure-narrow); margin: 0; }
+.article-conversion .btn { flex: 0 0 auto; }
 .article-related ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border-strong); }
 .article-related li { padding: var(--space-3) 0; border-bottom: 1px solid var(--border); }
 @media (min-width: 1025px) {
@@ -525,6 +528,7 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
 .validator-workspace .tool-panel { padding: var(--space-5); }
 .validator-upload-panel .form { gap: var(--space-4); }
 .validator-upload-panel .file-drop { padding: var(--space-4); }
+.validator-next-step { border-top: 1px solid var(--border); background: var(--surface); }
 .file-input-control { position: relative; min-width: 0; }
 .file-input-control input[type="file"] { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; margin: 0; padding: 0; opacity: 0; cursor: pointer; }
 .file-input-visual { min-height: 52px; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--space-3); padding: var(--space-2); border: 2px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); }
@@ -625,6 +629,7 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
   .article-toc ol { columns: 1; }
   .article-connection-grid { grid-template-columns: 1fr; }
   .article-connection-grid > div + div { padding-left: 0; border-left: 0; }
+  .article-conversion { align-items: flex-start; flex-direction: column; }
   .about-sections, .about-method-map, .workshop-process, .publication-source-layout, .validator-workspace { grid-template-columns: 1fr; }
   .about-section-wide { grid-column: 1; }
   .about-method-map li + li { border-left: 0; }

@@ -1,7 +1,25 @@
 const API_BASE_URL = "https://s1000d-api.vercel.app";
 const API_VALIDATE_ENDPOINT = "/validate";
-
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 Mo
+const VALIDATION_TIMEOUT_MS = 20000;
+
+const VALIDATOR_MESSAGES = {
+  network: "La requête n’a pas pu atteindre le service de validation. Vérifiez votre connexion et réessayez.",
+  timeout: "Le service de validation n’a pas répondu dans le délai prévu. Aucun résultat n’a été produit.",
+  validation: "Le service n’a pas pu valider ce fichier. Vérifiez qu’il s’agit d’un module XML S1000D Issue 6.0 exploitable.",
+  service: "Le service de validation est momentanément indisponible. Aucun résultat fiable n’a pu être produit. Réessayez plus tard.",
+  invalidResponse: "La réponse du service de validation est inexploitable. Aucun résultat fiable n’a pu être produit.",
+  type: "Le service a refusé le type de fichier transmis. Sélectionnez un fichier portant l’extension .xml.",
+  size: "Le service a refusé le fichier en raison de sa taille. La limite est de 10 Mo."
+};
+
+class ValidationRequestError extends Error {
+  constructor(code) {
+    super(code);
+    this.name = "ValidationRequestError";
+    this.code = code;
+  }
+}
 
 const formElement = document.querySelector("#validator-form");
 const resultPanel = document.querySelector(".result-panel");
@@ -26,14 +44,11 @@ function updateFileName() {
   }
 }
 
-function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[char]));
+function createTextElement(tagName, text, className = "") {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  element.textContent = text;
+  return element;
 }
 
 function setSubmitting(submitting) {
@@ -55,23 +70,16 @@ function setFileError(message) {
 }
 
 function focusResults() {
-  const heading = document.querySelector("#validator-results-title");
-  if (heading) heading.focus();
-}
-
-function renderIdle() {
-  if (!resultPanel) return;
-  resultPanel.dataset.resultState = "idle";
-  resultPanel.innerHTML = `<p class="muted">Déposez un fichier pour afficher le rapport de contrôle.</p>`;
+  document.querySelector("#validator-results-title")?.focus();
 }
 
 function renderLoading() {
   if (!resultPanel) return;
   resultPanel.dataset.resultState = "loading";
-  resultPanel.innerHTML = `<p class="muted">Analyse en cours…</p>`;
+  resultPanel.replaceChildren(createTextElement("p", "Analyse en cours…", "muted"));
 }
 
-function renderSummary(summary = {}) {
+function renderSummary(summary) {
   const entries = [
     { label: "Total", key: "total" },
     { label: "OK", key: "ok" },
@@ -79,78 +87,90 @@ function renderSummary(summary = {}) {
     { label: "Sans schéma", key: "no_schema" },
     { label: "XML invalide", key: "not_well_formed" }
   ];
+  const fragment = document.createDocumentFragment();
+  const grid = document.createElement("div");
+  grid.className = "summary-grid";
 
-  const durationInfo =
-    typeof summary.duration_ms === "number"
-      ? `<p class="muted">Durée : ${summary.duration_ms} ms</p>`
-      : "";
+  entries.forEach(({ label, key }) => {
+    const item = document.createElement("div");
+    item.className = "summary-item";
+    item.append(
+      createTextElement("span", label, "summary-label"),
+      createTextElement("span", String(summary[key] ?? 0), "summary-value")
+    );
+    grid.append(item);
+  });
 
-  return `
-    <div class="summary-grid">
-      ${entries
-        .map(
-          ({ label, key }) => `
-            <div class="summary-item">
-              <span class="summary-label">${escapeHtml(label)}</span>
-              <span class="summary-value">${escapeHtml(summary[key] ?? 0)}</span>
-            </div>
-          `
-        )
-        .join("")}
-    </div>
-    ${durationInfo}
-  `;
+  fragment.append(grid);
+  if (typeof summary.duration_ms === "number") {
+    fragment.append(createTextElement("p", `Durée : ${summary.duration_ms} ms`, "muted"));
+  }
+  return fragment;
+}
+
+function normalizePayload(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    throw new ValidationRequestError("invalidResponse");
+  }
+  if (!payload.summary || typeof payload.summary !== "object" || Array.isArray(payload.summary)) {
+    throw new ValidationRequestError("invalidResponse");
+  }
+  if (!Array.isArray(payload.results) || payload.results.some((item) => !item || typeof item !== "object" || Array.isArray(item))) {
+    throw new ValidationRequestError("invalidResponse");
+  }
+  return payload;
 }
 
 function renderResult(payload) {
   if (!resultPanel) return;
+  const normalizedPayload = normalizePayload(payload);
+  const stack = document.createElement("div");
+  stack.className = "result-stack";
 
-  const files = Array.isArray(payload.results) ? payload.results : [];
-  const summaryBlock = renderSummary(payload.summary || {});
+  if (normalizedPayload.results.length === 0) {
+    stack.append(createTextElement("p", "Aucun résultat à afficher.", "muted"));
+  } else {
+    normalizedPayload.results.forEach((item) => {
+      const card = document.createElement("article");
+      const rawStatus = String(item.status || "INFO");
+      const normalizedStatus = rawStatus.toLowerCase().replace(/[^a-z0-9_-]/g, "-");
+      card.className = "result-card";
+      card.dataset.status = normalizedStatus;
 
-  const cards =
-    files.length > 0
-      ? files
-        .map((item) => {
-          const status = escapeHtml((item.status || "INFO").toLowerCase());
-          const filename = escapeHtml(item.filename || "Fichier analysé");
-          const errors =
-            Array.isArray(item.errors) && item.errors.length > 0
-              ? `<ul class="list-bullet">${item.errors.map((err) => `<li>${escapeHtml(err)}</li>`).join("")}</ul>`
-              : `<p class="muted">Aucune erreur signalée.</p>`;
+      const header = document.createElement("header");
+      const filename = String(item.filename || "Fichier analysé");
+      const heading = createTextElement("h3", filename);
+      heading.title = filename;
+      header.append(heading, createTextElement("span", rawStatus, "badge"));
+      card.append(header);
 
-          return `
-            <article class="result-card" data-status="${status}">
-              <header>
-                <h3 title="${filename}">${filename}</h3>
-                <span class="badge">${escapeHtml(item.status || "N/A")}</span>
-              </header>
-              ${
-                item.schema_used
-                  ? `<p class="muted">Schéma utilisé : ${escapeHtml(item.schema_used)}</p>`
-                  : ""
-              }
-              ${errors}
-            </article>
-          `;
-        })
-          .join("")
-      : `<p class="muted">Aucun résultat à afficher.</p>`;
+      if (item.schema_used) {
+        card.append(createTextElement("p", `Schéma utilisé : ${String(item.schema_used)}`, "muted"));
+      }
+
+      if (Array.isArray(item.errors) && item.errors.length > 0) {
+        const list = document.createElement("ul");
+        list.className = "list-bullet";
+        item.errors.forEach((error) => list.append(createTextElement("li", String(error))));
+        card.append(list);
+      } else {
+        card.append(createTextElement("p", "Aucune erreur signalée.", "muted"));
+      }
+      stack.append(card);
+    });
+  }
 
   resultPanel.dataset.resultState = "success";
-  resultPanel.innerHTML = `
-    ${summaryBlock}
-    <div class="result-stack">
-      ${cards}
-    </div>
-  `;
+  resultPanel.replaceChildren(renderSummary(normalizedPayload.summary), stack);
   focusResults();
 }
 
 function renderError(message) {
   if (!resultPanel) return;
+  const status = createTextElement("p", message, "form-status");
+  status.dataset.status = "error";
   resultPanel.dataset.resultState = "error";
-  resultPanel.innerHTML = `<p class="form-status" data-status="error">${escapeHtml(message)}</p>`;
+  resultPanel.replaceChildren(status);
   focusResults();
 }
 
@@ -160,44 +180,76 @@ function buildFormData(file) {
   return formData;
 }
 
-async function callValidationAPI(formData) {
-  const response = await fetch(`${API_BASE_URL}${API_VALIDATE_ENDPOINT}`, {
-    method: "POST",
-    body: formData
-  });
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Erreur API ${response.status} · ${text}`);
+function publicValidationMessage(error) {
+  if (error instanceof ValidationRequestError && VALIDATOR_MESSAGES[error.code]) {
+    return VALIDATOR_MESSAGES[error.code];
   }
+  return VALIDATOR_MESSAGES.network;
+}
 
-  return response.json();
+async function callValidationAPI(formData) {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), VALIDATION_TIMEOUT_MS);
+
+  try {
+    let response;
+    try {
+      response = await fetch(`${API_BASE_URL}${API_VALIDATE_ENDPOINT}`, {
+        method: "POST",
+        body: formData,
+        signal: controller.signal
+      });
+    } catch (error) {
+      if (error?.name === "AbortError") throw new ValidationRequestError("timeout");
+      throw new ValidationRequestError("network");
+    }
+
+    if (!response.ok) {
+      if (response.status === 400 || response.status === 422) throw new ValidationRequestError("validation");
+      if (response.status === 413) throw new ValidationRequestError("size");
+      if (response.status === 415) throw new ValidationRequestError("type");
+      throw new ValidationRequestError(response.status >= 500 ? "service" : "network");
+    }
+
+    let payload;
+    try {
+      payload = await response.json();
+    } catch (_error) {
+      throw new ValidationRequestError("invalidResponse");
+    }
+    return normalizePayload(payload);
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
 }
 
 async function handleUpload(event) {
   event.preventDefault();
   if (!formElement || isValidating) return;
 
-  const fileInput = formElement.querySelector('input[type="file"]');
+  const currentFileInput = formElement.querySelector('input[type="file"]');
   setFileError("");
 
-  if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+  if (!currentFileInput?.files?.length) {
     setFileError("Ajoutez un fichier XML avant de lancer la validation.");
-    fileInput?.focus();
+    currentFileInput?.focus();
     return;
   }
 
-  const file = fileInput.files[0];
-
+  const file = currentFileInput.files[0];
+  if (file.size === 0) {
+    setFileError("Le fichier sélectionné est vide.");
+    currentFileInput.focus();
+    return;
+  }
   if (file.size > MAX_FILE_SIZE) {
     setFileError("Le fichier dépasse la limite de 10 Mo.");
-    fileInput.focus();
+    currentFileInput.focus();
     return;
   }
-
   if (!file.name.toLowerCase().endsWith(".xml")) {
     setFileError("Seuls les fichiers .xml sont acceptés.");
-    fileInput.focus();
+    currentFileInput.focus();
     return;
   }
 
@@ -208,7 +260,7 @@ async function handleUpload(event) {
     const payload = await callValidationAPI(buildFormData(file));
     renderResult(payload);
   } catch (error) {
-    renderError(`Une erreur est survenue : ${error.message}`);
+    renderError(publicValidationMessage(error));
   } finally {
     setSubmitting(false);
   }

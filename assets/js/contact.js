@@ -3,6 +3,22 @@
 // ajouter une protection anti-abus (rate limiting) sur cet endpoint.
 const GAS_CONTACT_URL =
   "https://script.google.com/macros/s/AKfycbxF8eVCMlGEck31E88W8FXm_qfdWAm0YPYdAO8k2EGKqXKNt1rFoAss7y06GliI1PDeyg/exec";
+const CONTACT_TIMEOUT_MS = 12000;
+
+const CONTACT_MESSAGES = {
+  network: "La connexion au service de contact a échoué. Vérifiez votre accès au réseau et réessayez.",
+  timeout: "Le service de contact n’a pas répondu dans le délai prévu. Votre message n’est pas considéré comme envoyé.",
+  server: "Le service de contact est momentanément indisponible. Votre message n’a pas pu être confirmé. Réessayez plus tard.",
+  invalidResponse: "La réponse du service de contact n’a pas pu être vérifiée. Votre message n’est pas considéré comme envoyé."
+};
+
+class ContactSubmissionError extends Error {
+  constructor(code) {
+    super(code);
+    this.name = "ContactSubmissionError";
+    this.code = code;
+  }
+}
 
 const contactForm = document.querySelector("#contact-form-element");
 const statusNode = document.querySelector(".form-status");
@@ -22,6 +38,10 @@ function setStatus(message, type = "") {
   } else {
     statusNode.removeAttribute("data-status");
   }
+}
+
+function focusStatus() {
+  statusNode?.focus({ preventScroll: true });
 }
 
 function setFieldError(fieldId, errorId, message) {
@@ -74,27 +94,50 @@ async function submitToScript(data) {
     body.append(key, value ?? "");
   });
 
-  const response = await fetch(GAS_CONTACT_URL, {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-    },
-    body
-  });
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), CONTACT_TIMEOUT_MS);
 
-  if (!response.ok) {
-    throw new Error(`Erreur ${response.status}`);
-  }
+  try {
+    let response;
+    try {
+      response = await fetch(GAS_CONTACT_URL, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body,
+        signal: controller.signal
+      });
+    } catch (error) {
+      if (error?.name === "AbortError") throw new ContactSubmissionError("timeout");
+      throw new ContactSubmissionError("network");
+    }
 
-  const json = await response.json().catch(() => ({}));
-  if (json && json.ok) {
+    if (!response.ok) throw new ContactSubmissionError("server");
+
+    let json;
+    try {
+      json = await response.json();
+    } catch (_error) {
+      throw new ContactSubmissionError("invalidResponse");
+    }
+
+    if (!json || typeof json !== "object" || json.ok !== true) {
+      throw new ContactSubmissionError(json?.error ? "server" : "invalidResponse");
+    }
+
     return json;
+  } finally {
+    window.clearTimeout(timeoutId);
   }
-  if (json && json.error) {
-    throw new Error(json.error);
+}
+
+function getContactErrorMessage(error) {
+  if (error instanceof ContactSubmissionError && CONTACT_MESSAGES[error.code]) {
+    return CONTACT_MESSAGES[error.code];
   }
-  return json;
+  return CONTACT_MESSAGES.network;
 }
 
 async function submitContact(event) {
@@ -137,8 +180,9 @@ async function submitContact(event) {
     setStatus("Message envoyé. Nous revenons vers vous rapidement.", "success");
     contactForm.reset();
     clearFieldErrors();
-  } catch (err) {
-    setStatus("Impossible d’envoyer le message pour le moment. Vérifiez votre connexion et réessayez.", "error");
+    focusStatus();
+  } catch (error) {
+    setStatus(getContactErrorMessage(error), "error");
   } finally {
     setSubmitting(false);
   }

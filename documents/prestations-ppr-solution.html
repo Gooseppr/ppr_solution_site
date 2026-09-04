@@ -25,8 +25,11 @@
     .service .number { display:block; margin-block-end:2mm; color:var(--blue); font:700 8pt "Courier New", monospace; }
     dl { display:grid; grid-template-columns:25mm 1fr; gap:1.5mm 3mm; margin:0; }
     dd { margin:0; }
-    .specialty, .limits { break-inside:avoid; padding:5mm; background:var(--soft); border-inline-start:3px solid var(--blue); }
+    .specialty, .limits, .contact { break-inside:avoid; padding:5mm; background:var(--soft); border-inline-start:3px solid var(--blue); }
     .limits { border-color:var(--amber); }
+    .contact { margin-block-start:8mm; }
+    .contact h2 { margin-block-start:0; }
+    .contact a { display:inline-block; margin-block-start:2mm; font-weight:700; }
     footer { margin-block-start:10mm; padding-block-start:4mm; border-block-start:1px solid var(--line); color:#445b72; font-size:8pt; }
     a { color:var(--blue); }
   </style>
@@ -36,7 +39,7 @@
     <p class="eyebrow">PPR-Solution · Atelier documentaire technique</p>
     <h1>Structurer, transformer et publier des contenus techniques</h1>
     <p class="lead">Transformer des contenus et données hétérogènes en documentation structurée, contrôlée et exploitable.</p>
-    <p class="meta">Version 1.0 · 3 septembre 2026</p>
+    <p class="meta">Version 1.1 · 4 septembre 2026</p>
   </header>
   <main>
     <h2>Une chaîne de traitement documentée</h2>
@@ -57,6 +60,7 @@
     <section class="specialty"><p>S1000D est traité comme une spécialisation documentaire XML : inventaire de modules, schémas, références, DMC, ICN, PMC, DML et règles BREX lorsqu’elles sont disponibles.</p><p><strong>Positionnement :</strong> précontrôle ou audit technique, jamais certification officielle.</p></section>
     <h2>Cadre et limites</h2>
     <section class="limits"><p>Chaque intervention est cadrée sur un échantillon, les règles réellement disponibles et les livrables attendus. L’automatisation traite le volume ; le contrôle humain qualifie les exceptions, les rejets et les décisions. PPR-Solution ne se substitue pas à une validation juridique, réglementaire ou métier.</p></section>
+    <section class="contact"><p class="eyebrow">Prochaine étape</p><h2>Présenter votre contexte</h2><p>Vous n’avez pas besoin d’identifier la prestation exacte. Quelques sources représentatives, le résultat attendu et les règles disponibles suffisent pour préparer un premier échange.</p><a href="https://gooseppr.github.io/ppr_solution_site/contact.html">Accéder au formulaire de contact PPR-Solution</a></section>
   </main>
   <footer><strong>PPR-Solution</strong> · Documentation structurée et données exploitables · <a href="https://gooseppr.github.io/ppr_solution_site/">gooseppr.github.io/ppr_solution_site</a></footer>
 </body>
