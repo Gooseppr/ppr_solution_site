@@ -15,7 +15,8 @@ function initBlogLibrary() {
 
   if (!controls || !results || !grid || !searchInput || !sortSelect || !countNode || !resetButton || !emptyState || !emptyReset || !dataStatus || !pagination) return;
 
-  const PAGE_SIZE = 3;
+  const configuredPageSize = Number.parseInt(results.dataset.blogPageSize || "3", 10);
+  const pageSize = Number.isInteger(configuredPageSize) && configuredPageSize > 0 ? configuredPageSize : 3;
 
   const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
     day: "2-digit",
@@ -45,10 +46,18 @@ function initBlogLibrary() {
     }));
   }
 
+  function readingTimeLabel(html) {
+    const template = document.createElement("template");
+    template.innerHTML = String(html || "");
+    template.content.querySelectorAll("script, style").forEach((node) => node.remove());
+    const words = (template.content.textContent.match(/[\p{L}\p{N}]+(?:[’'-][\p{L}\p{N}]+)*/gu) || []).length;
+    return `${Math.max(1, Math.ceil(words / 220))} min`;
+  }
+
   function normalizePosts(payload) {
     if (!Array.isArray(payload) || !payload.length) throw new Error("Données du blog invalides.");
     return payload.map((post, index) => {
-      if (!post || !/^[a-z0-9][a-z0-9-]*$/.test(String(post.slug || "")) || !post.title || !post.description || !post.date || !Array.isArray(post.tags)) {
+      if (!post || !/^[a-z0-9][a-z0-9-]*$/.test(String(post.slug || "")) || !post.title || !post.description || !post.date || !post.content_html || !Array.isArray(post.tags)) {
         throw new Error("Un article ne possède pas les métadonnées attendues.");
       }
       return {
@@ -58,7 +67,7 @@ function initBlogLibrary() {
         category: String(post.category || "Blog"),
         tags: post.tags.map((tag) => String(tag)),
         date: String(post.date),
-        reading_time: String(post.reading_time || "Lecture"),
+        reading_time: readingTimeLabel(post.content_html),
         _index: index
       };
     });
@@ -95,7 +104,7 @@ function initBlogLibrary() {
     details.append(time, document.createTextNode(` · ${post.reading_time}`));
     meta.append(category, details);
 
-    const heading = document.createElement("h3");
+    const heading = document.createElement("h2");
     heading.textContent = post.title;
 
     const description = document.createElement("p");
@@ -187,9 +196,9 @@ function initBlogLibrary() {
     pagination.hidden = true;
     if (!visiblePosts.length) return;
 
-    const pageCount = Math.ceil(visiblePosts.length / PAGE_SIZE);
+    const pageCount = Math.ceil(visiblePosts.length / pageSize);
     currentPage = Math.min(currentPage, pageCount);
-    const pagePosts = visiblePosts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+    const pagePosts = visiblePosts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
     pagePosts.forEach((post) => grid.append(createPost(post)));
 
     if (pageCount > 1) {

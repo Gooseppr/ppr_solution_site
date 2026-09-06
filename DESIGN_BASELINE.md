@@ -33,7 +33,7 @@ Document de référence pour toute intervention future sur le site. Il fige ce q
 ## 3. Fonctionnalités à ne pas casser
 
 - Filtres, compteur, reset et état vide des démonstrations et du blog.
-- Recherche, tri (4 options), catégories, sujets et **pagination à 6 articles** du blog.
+- Recherche, tri (4 options), catégories, sujets et **pagination à 3 articles** du blog.
 - Fallback statique du blog sans JavaScript (les `data-blog-post` restent des articles indépendants et lisibles).
 - Contrat du formulaire de contact avec Google Apps Script : noms `name`/`email`/`company`/`need`/`format`/`schemas`/`deadline`/`message`/`marketing`, endpoint `GAS_CONTACT_URL`, champ anti-spam `website` (honeypot), consentement marketing, focus sur la première erreur, protection anti-double-soumission, états d'envoi (« Envoi en cours… », succès, échec réseau).
 - Validateur : endpoint `s1000d-api.vercel.app`, limite 10 Mo, avertissement de confidentialité, aucun appel réseau tant qu'aucun fichier valide n'est sélectionné.
@@ -45,7 +45,7 @@ Document de référence pour toute intervention future sur le site. Il fige ce q
 - Suppression des grilles à deux colonnes qui ne faisaient que placer un titre à gauche et un paragraphe à droite (voir §7).
 - H1 utilisant la largeur utile du conteneur plutôt qu'une colonne étroite, avec des tailles différenciées par page (voir §5 du brief / rapport final).
 - Démonstration phare de l'accueil recomposée en une seule colonne, diagramme en pleine largeur entre le texte et les CTA.
-- Suppression complète du concept d'article « mis en avant » sur le blog : une seule grille, cartes à égalité, pagination à 6 articles.
+- Suppression complète du concept d'article « mis en avant » sur le blog : une seule grille, cartes à égalité, pagination à 3 articles.
 - Remplacement de deux pipelines CSS improvisés par de véritables diagrammes Mermaid (accueil, méthode de l'atelier À propos) lorsqu'un diagramme apporte réellement plus qu'une suite de boîtes stylées.
 - Intégration de 4 icônes Lucide strictement sélectionnées (voir `assets/icons/ICONS.md`).
 
@@ -103,7 +103,7 @@ Avant toute publication d'une modification future :
 3. Aucune grille « titre / paragraphe » sans relation de contenu réelle (voir §7) sur les pages principales.
 4. Le H1 de chaque page utilise la largeur utile du conteneur (pas de retour à la ligne artificiel dû à un `max-width` en `ch`).
 5. Aucun débordement horizontal racine à 320/375/768/1024/1440px.
-6. Blog : aucun article traité différemment des autres, pagination fonctionnelle au-delà de 6 articles, recherche/tri/filtres/reset/état vide/fallback JSON intacts.
+6. Blog : aucun article traité différemment des autres, pagination fonctionnelle au-delà de 3 articles, recherche/tri/filtres/reset/état vide/fallback JSON intacts.
 7. Contact et validateur : aucune régression fonctionnelle (voir §3), aucun envoi réel pendant les tests.
 8. Icônes : toutes `aria-hidden="true"`, jamais seules sans libellé visible, sprite local à jour avec la liste dans `ICONS.md`.
 9. Diagrammes : `accTitle`/`accDescr` présents dans chaque source, `alt` complet et légende visible sur chaque `<img>` de diagramme publié.

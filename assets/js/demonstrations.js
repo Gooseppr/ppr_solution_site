@@ -27,6 +27,13 @@ function initDemoExplorer() {
     tabList.setAttribute("role", "tablist");
     tabList.setAttribute("aria-orientation", "horizontal");
 
+    function revealTab(tab) {
+      const listRect = tabList.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
+      if (tabRect.left < listRect.left) tabList.scrollLeft += tabRect.left - listRect.left;
+      else if (tabRect.right > listRect.right) tabList.scrollLeft += tabRect.right - listRect.right;
+    }
+
     function activate(tab, options = {}) {
       const panelId = tab.getAttribute("href").slice(1);
       tabs.forEach((item) => {
@@ -37,6 +44,8 @@ function initDemoExplorer() {
       panels.forEach((panel) => {
         panel.hidden = panel.id !== panelId;
       });
+      revealTab(tab);
+      requestAnimationFrame(() => revealTab(tab));
       if (options.focus) tab.focus();
       if (options.updateHash) history.replaceState(null, "", `#${panelId}`);
     }

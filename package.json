@@ -6,7 +6,8 @@
   "scripts": {
     "build:blog": "node scripts/build-blog.js",
     "build:diagrams": "node scripts/build-diagrams.js",
-    "build:icons": "node scripts/build-icons.js"
+    "build:icons": "node scripts/build-icons.js",
+    "test": "node --test tests"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "10.9.1",

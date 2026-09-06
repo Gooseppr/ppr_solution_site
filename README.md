@@ -38,7 +38,9 @@ node scripts/build-blog.js
 
 Chaque article doit contenir au minimum : `slug`, `title`, `description`, `meta_description`, `date`, `updated`, `category`, `tags`, `reading_time` et `content_html`. Les pages générées incluent canonical, Open Graph, Twitter Card, JSON-LD Article et fil d'Ariane.
 
-L'index conserve tous les articles dans son HTML pour rester lisible sans JavaScript. Avec JavaScript, six articles sont affichés par page et une pagination clavier est ajoutée lorsque le volume le nécessite. Ce compromis conserve l'URL et le générateur actuels ; une pagination statique pourra être introduite quand le catalogue justifiera plusieurs pages indexables.
+L'index conserve tous les articles dans son HTML pour rester lisible sans JavaScript. Avec JavaScript, trois articles sont affichés par page et une pagination clavier est ajoutée lorsque le volume le nécessite. Ce compromis conserve l'URL et le générateur actuels ; une pagination statique pourra être introduite quand le catalogue justifiera plusieurs pages indexables.
+
+Le temps de lecture est calculé au build depuis le contenu HTML principal de chaque article, à raison de 220 mots par minute avec un minimum d’une minute. Navigation, pied de page, sommaire et CTA sont ajoutés après ce calcul et ne sont donc pas comptés.
 
 ## Présentation PDF et mesure du téléchargement
 

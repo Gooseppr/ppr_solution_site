@@ -1,8 +1,8 @@
 {
   "name": "PPR-Solution",
   "short_name": "PPR-Solution",
-  "description": "Prestations XML, données structurées et documentation technique.",
-  "start_url": "./index.html",
+  "description": "Documentation structurée, transformation de contenus et données exploitables.",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#F7F9FC",
   "theme_color": "#124C8C",

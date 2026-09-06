@@ -6,6 +6,8 @@ const SITE_ROOT = path.join(__dirname, "..");
 const POSTS_PATH = path.join(SITE_ROOT, "blog", "posts.json");
 const BASE_URL = "https://gooseppr.github.io/ppr_solution_site";
 const SOCIAL_IMAGE = `${BASE_URL}/assets/img/og-default.jpg`;
+const READING_WORDS_PER_MINUTE = 220;
+const BLOG_PAGE_SIZE = 3;
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
@@ -15,8 +17,27 @@ function formatDateFr(dateString) {
   return new Intl.DateTimeFormat("fr-FR", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${dateString}T00:00:00Z`));
 }
 
+function countReadableWords(html) {
+  const text = decodeEntities(String(html || "")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " "));
+  return (text.match(/[\p{L}\p{N}]+(?:[’'-][\p{L}\p{N}]+)*/gu) || []).length;
+}
+
+function readingTimeMinutes(html, wordsPerMinute = READING_WORDS_PER_MINUTE) {
+  return Math.max(1, Math.ceil(countReadableWords(html) / wordsPerMinute));
+}
+
+function preparePost(post) {
+  const wordCount = countReadableWords(post.content_html);
+  const readingMinutes = readingTimeMinutes(post.content_html);
+  return { ...post, word_count: wordCount, reading_minutes: readingMinutes, reading_time: `${readingMinutes} min` };
+}
+
 function nav(prefix = "") {
-  return `<header class="navbar"><div class="container nav-inner"><a class="brand" href="${prefix}index.html"><span class="brand-mark">PPR</span><span>PPR-Solution</span></a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Ouvrir le menu</span><span class="nav-icon"></span></button><nav class="primary-nav" id="primary-navigation" data-nav-menu><a data-nav-link href="${prefix}services.html">Prestations</a><a data-nav-link href="${prefix}demonstrations.html">Démonstrations</a><a data-nav-link href="${prefix}blog.html">Blog</a><a data-nav-link href="${prefix}a-propos.html">À propos</a><a class="btn btn-primary nav-cta" href="${prefix}contact.html">Contact</a></nav></div></header>`;
+  const homeHref = prefix || "./";
+  return `<header class="navbar"><div class="container nav-inner"><a class="brand" href="${homeHref}"><span class="brand-mark">PPR</span><span>PPR-Solution</span></a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Ouvrir le menu</span><span class="nav-icon"></span></button><nav class="primary-nav" id="primary-navigation" data-nav-menu><a data-nav-link href="${prefix}services.html">Prestations</a><a data-nav-link href="${prefix}demonstrations.html">Démonstrations</a><a data-nav-link href="${prefix}blog.html">Blog</a><a data-nav-link href="${prefix}a-propos.html">À propos</a><a class="btn btn-primary nav-cta" href="${prefix}contact.html">Contact</a></nav></div></header>`;
 }
 
 function footer(prefix = "") {
@@ -88,7 +109,7 @@ function renderTags(tags = []) {
 }
 
 function renderPostCard(post) {
-  return `<article class="blog-card" ${postDataAttributes(post)}><a class="article-card-link" href="blog/${escapeHtml(post.slug)}/"><p class="meta"><span class="blog-card-category">${escapeHtml(post.category || "Blog")}</span><span><time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time><span aria-hidden="true"> · </span>${escapeHtml(post.reading_time || "Lecture")}</span></p><h3>${escapeHtml(post.title)}</h3><p>${escapeHtml(post.description)}</p>${renderTags(post.tags)}<span class="blog-read-label">Lire l’article →</span></a></article>`;
+  return `<article class="blog-card" ${postDataAttributes(post)}><a class="article-card-link" href="blog/${escapeHtml(post.slug)}/"><p class="meta"><span class="blog-card-category">${escapeHtml(post.category || "Blog")}</span><span><time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time><span aria-hidden="true"> · </span>${escapeHtml(post.reading_time)}</span></p><h2>${escapeHtml(post.title)}</h2><p>${escapeHtml(post.description)}</p>${renderTags(post.tags)}<span class="blog-read-label">Lire l’article →</span></a></article>`;
 }
 
 function usefulValues(posts, key) {
@@ -117,7 +138,7 @@ function renderArticle(post, previous, next) {
       { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog.html` },
       { "@type": "ListItem", position: 3, name: post.title, item: canonical }
     ]},
-    { "@type": "Article", headline: post.title, description: post.meta_description || post.description, image: SOCIAL_IMAGE, author: { "@type": "Organization", name: "PPR-Solution" }, publisher: { "@type": "Organization", name: "PPR-Solution", logo: { "@type": "ImageObject", url: SOCIAL_IMAGE } }, datePublished: post.date, dateModified: post.updated || post.date, mainEntityOfPage: canonical }
+    { "@type": "BlogPosting", headline: post.title, description: post.meta_description || post.description, image: SOCIAL_IMAGE, author: { "@id": `${BASE_URL}/#organization` }, publisher: { "@id": `${BASE_URL}/#organization` }, datePublished: post.date, dateModified: post.updated || post.date, timeRequired: `PT${post.reading_minutes}M`, mainEntityOfPage: canonical }
   ]};
   const related = [previous, next].filter(Boolean).map((item) => `<li><a href="../${escapeHtml(item.slug)}/">${escapeHtml(item.title)}</a></li>`).join("");
   const serviceUrl = post.service_url || "services.html";
@@ -132,7 +153,7 @@ function renderArticle(post, previous, next) {
   const toc = renderToc(enhanced.headings);
   const safeSchema = JSON.stringify(schema, null, 2).replace(/</g, "\\u003c");
 
-  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: `${post.title} · Blog PPR-Solution`, description: post.meta_description || post.description, canonical, prefix: "../../", published: post.date, updated: post.updated || post.date })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("../../")}<main id="main-content"><header class="article-header"><div class="container article-header-inner"><p class="breadcrumbs"><a href="../../index.html">Accueil</a> · <a href="../../blog.html">Blog</a> · <span aria-current="page">${escapeHtml(post.title)}</span></p><p class="eyebrow">${escapeHtml(post.category || (post.tags || ["Blog"])[0])}</p><h1>${escapeHtml(post.title)}</h1><p class="lead">${escapeHtml(post.description)}</p><p class="meta"><span>Publié le <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time></span><span>Mis à jour le <time datetime="${escapeHtml(post.updated || post.date)}">${formatDateFr(post.updated || post.date)}</time></span><span>${escapeHtml(post.reading_time || "Lecture")}</span></p></div></header><section class="article-content-section"><div class="container article-main-layout"><aside class="article-sidebar">${toc}<div class="article-tags"><p class="eyebrow">Sujets</p>${renderTags(post.tags)}</div></aside><article class="article-body">${enhanced.content}</article></div></section></main>${footer("../../")}<script src="../../assets/js/main.js" defer></script></body></html>`;
+  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: `${post.title} · Blog PPR-Solution`, description: post.meta_description || post.description, canonical, prefix: "../../", published: post.date, updated: post.updated || post.date })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("../../")}<main id="main-content"><header class="article-header"><div class="container article-header-inner"><p class="breadcrumbs"><a href="../../">Accueil</a> · <a href="../../blog.html">Blog</a> · <span aria-current="page">${escapeHtml(post.title)}</span></p><p class="eyebrow">${escapeHtml(post.category || (post.tags || ["Blog"])[0])}</p><h1>${escapeHtml(post.title)}</h1><p class="lead">${escapeHtml(post.description)}</p><p class="meta"><span>Publié le <time datetime="${escapeHtml(post.date)}">${formatDateFr(post.date)}</time></span><span>Mis à jour le <time datetime="${escapeHtml(post.updated || post.date)}">${formatDateFr(post.updated || post.date)}</time></span><span>${escapeHtml(post.reading_time)}</span></p></div></header><section class="article-content-section"><div class="container article-main-layout"><aside class="article-sidebar">${toc}<div class="article-tags"><p class="eyebrow">Sujets</p>${renderTags(post.tags)}</div></aside><article class="article-body">${enhanced.content}</article></div></section></main>${footer("../../")}<script src="../../assets/js/main.js" defer></script></body></html>`;
 }
 
 function renderBlog(posts) {
@@ -147,11 +168,11 @@ function renderBlog(posts) {
   const searchIcon = `<svg class="icon" aria-hidden="true"><use href="assets/icons/lucide-sprite.svg#search"></use></svg>`;
   const filterIcon = `<svg class="icon" aria-hidden="true"><use href="assets/icons/lucide-sprite.svg#sliders-horizontal"></use></svg>`;
 
-  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: "Ressources documentation, données et technologies · PPR-Solution", description: "Méthodes et analyses autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA appliquée.", canonical: `${BASE_URL}/blog.html`, prefix: "", type: "website" })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("")}<main id="main-content"><section class="section-tight blog-library-section" id="blog-library" aria-labelledby="blog-library-title"><div class="container"><header class="blog-library-intro"><p class="eyebrow">Ressources &amp; veille</p><h1 id="blog-library-title">Documentation, données et technologies</h1><p class="lead">Méthodes, analyses et actualités autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA.</p></header><form class="blog-controls" data-blog-controls hidden><div class="blog-control-primary"><div class="blog-control-field blog-search-field"><label for="blog-search">${searchIcon}Rechercher</label><input id="blog-search" type="search" placeholder="Documentation, XML, automatisation…" autocomplete="off" data-blog-search></div><div class="blog-control-field blog-sort-field"><label for="blog-sort">Trier</label><select id="blog-sort" data-blog-sort><option value="newest">Plus récent</option><option value="oldest">Plus ancien</option><option value="title-asc">Titre A–Z</option><option value="title-desc">Titre Z–A</option></select></div></div><details class="blog-filter-details"><summary>${filterIcon}Filtres <span>Catégorie et sujet</span></summary><div class="blog-filter-grid">${categoryControl}${tagControl}</div></details><div class="blog-control-status"><p id="blog-result-count" role="status" aria-live="polite"><strong>${posts.length}</strong> articles</p><button class="btn btn-text" type="button" data-blog-reset hidden>Réinitialiser</button></div></form><p class="blog-data-status" data-blog-data-status role="status" hidden></p><div class="blog-empty-state" data-blog-empty role="status" hidden><p class="eyebrow">Aucun résultat</p><h2>Aucun article ne correspond à cette recherche.</h2><p>Modifiez les critères ou affichez toute la bibliothèque.</p><button class="btn" type="button" data-blog-empty-reset>Afficher tous les articles</button></div><div data-blog-results><div class="blog-card-grid" data-blog-grid>${cards}</div><nav class="blog-pagination" aria-label="Pagination des articles" data-blog-pagination hidden></nav></div></div></section></main>${footer("")}<script src="assets/js/main.js" defer></script><script src="assets/js/blog.js" defer></script></body></html>`;
+  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: "Ressources documentation, données et technologies · PPR-Solution", description: "Méthodes et analyses autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA appliquée.", canonical: `${BASE_URL}/blog.html`, prefix: "", type: "website" })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("")}<main id="main-content"><section class="section-tight blog-library-section" id="blog-library" aria-labelledby="blog-library-title"><div class="container"><header class="blog-library-intro"><p class="eyebrow">Ressources &amp; veille</p><h1 id="blog-library-title">Documentation, données et technologies</h1><p class="lead">Méthodes, analyses et actualités autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA.</p></header><form class="blog-controls" data-blog-controls hidden><div class="blog-control-primary"><div class="blog-control-field blog-search-field"><label for="blog-search">${searchIcon}Rechercher</label><input id="blog-search" type="search" placeholder="Documentation, XML, automatisation…" autocomplete="off" data-blog-search></div><div class="blog-control-field blog-sort-field"><label for="blog-sort">Trier</label><select id="blog-sort" data-blog-sort><option value="newest">Plus récent</option><option value="oldest">Plus ancien</option><option value="title-asc">Titre A–Z</option><option value="title-desc">Titre Z–A</option></select></div></div><details class="blog-filter-details"><summary>${filterIcon}Filtres <span>Catégorie et sujet</span></summary><div class="blog-filter-grid">${categoryControl}${tagControl}</div></details><div class="blog-control-status"><p id="blog-result-count" role="status" aria-live="polite"><strong>${posts.length}</strong> articles</p><button class="btn btn-text" type="button" data-blog-reset hidden>Réinitialiser</button></div></form><p class="blog-data-status" data-blog-data-status role="status" hidden></p><div class="blog-empty-state" data-blog-empty role="status" hidden><p class="eyebrow">Aucun résultat</p><h2>Aucun article ne correspond à cette recherche.</h2><p>Modifiez les critères ou affichez toute la bibliothèque.</p><button class="btn" type="button" data-blog-empty-reset>Afficher tous les articles</button></div><div data-blog-results data-blog-page-size="${BLOG_PAGE_SIZE}"><div class="blog-card-grid" data-blog-grid>${cards}</div><nav class="blog-pagination" aria-label="Pagination des articles" data-blog-pagination hidden></nav></div></div></section></main>${footer("")}<script src="assets/js/main.js" defer></script><script src="assets/js/blog.js" defer></script></body></html>`;
 }
 
 function renderSitemap(posts) {
-  const urls = ["index.html", "services.html", "demonstrations.html", "blog.html", "a-propos.html", "contact.html", "validateur.html", "charte-ethique.html", "mentions-legales.html", "confidentialite.html"].map((url) => `${BASE_URL}/${url}`);
+  const urls = ["", "services.html", "demonstrations.html", "blog.html", "a-propos.html", "contact.html", "validateur.html", "charte-ethique.html", "mentions-legales.html", "confidentialite.html"].map((url) => `${BASE_URL}/${url}`);
   posts.forEach((post) => urls.push(`${BASE_URL}/blog/${post.slug}/`));
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n")}\n</urlset>\n`;
 }
@@ -160,7 +181,7 @@ function validatePosts(posts) {
   if (!Array.isArray(posts) || !posts.length) throw new Error("blog/posts.json doit contenir au moins un article.");
   const slugs = new Set();
   posts.forEach((post, index) => {
-    ["slug", "title", "description", "meta_description", "date", "category", "reading_time", "content_html"].forEach((field) => {
+    ["slug", "title", "description", "meta_description", "date", "category", "content_html"].forEach((field) => {
       if (!post[field]) throw new Error(`Article ${index + 1} : champ ${field} manquant.`);
     });
     if (!/^[a-z0-9][a-z0-9-]*$/.test(post.slug)) throw new Error(`Slug invalide : ${post.slug}`);
@@ -177,7 +198,7 @@ function validatePosts(posts) {
 }
 
 function main() {
-  const posts = JSON.parse(fs.readFileSync(POSTS_PATH, "utf8"));
+  const posts = JSON.parse(fs.readFileSync(POSTS_PATH, "utf8")).map(preparePost);
   validatePosts(posts);
   posts.forEach((post, index) => {
     const directory = path.join(SITE_ROOT, "blog", post.slug);
@@ -190,4 +211,6 @@ function main() {
   console.log(`${posts.length} article(s), blog.html et sitemap.xml générés.`);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { BLOG_PAGE_SIZE, READING_WORDS_PER_MINUTE, countReadableWords, readingTimeMinutes, preparePost, headingSlug, addHeadingIds };
