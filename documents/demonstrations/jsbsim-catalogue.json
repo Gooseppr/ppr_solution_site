@@ -1,0 +1,2881 @@
+[
+  {
+    "id": "737",
+    "name": "737",
+    "category": "aircraft",
+    "description": "Models a Boeing 737.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 108.78946,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 28.86456,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 3.752088,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 32.330258,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 27.592203,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 37648.16671,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 761969.6879,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 1997119.84035,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 2567919.1973,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 16.2306,
+        "y": 0.0,
+        "z": -1.016
+      }
+    },
+    "propulsion": {
+      "engineCount": 2,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "CFM56",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CFM56.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "CFM56",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CFM56.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 3,
+      "totalCapacityKg": 16057.17,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": "JET-A",
+          "capacityKg": 4626.642174,
+          "contentsKg": 4535.9237
+        },
+        {
+          "index": 1,
+          "fuelType": "JET-A",
+          "capacityKg": 4626.642174,
+          "contentsKg": 4535.9237
+        },
+        {
+          "index": 2,
+          "fuelType": "JET-A",
+          "capacityKg": 6803.88555,
+          "contentsKg": 1814.36948
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "Nose Gear",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "Left Main Gear",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "Right Main Gear",
+        "type": "BOGEY",
+        "retractable": true
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: 737",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 29,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/737/737.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "A320",
+    "name": "A320-200",
+    "category": "aircraft",
+    "description": "Airbus A320",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 122.353304,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 33.92424,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 4.29768,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 30.992454,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 21.488473,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 50348.75307,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 1278369.561242,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 3781267.797114,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 4877649.982382,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 17.0688,
+        "y": 0.0,
+        "z": -1.016
+      }
+    },
+    "propulsion": {
+      "engineCount": 2,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "CFM56_5",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CFM56_5.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "CFM56_5",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CFM56_5.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 2,
+      "totalCapacityKg": 21718.003,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 10859.001338,
+          "contentsKg": 6803.88555
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 10859.001338,
+          "contentsKg": 6803.88555
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "TAIL_1",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "ENG_1",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "ENG_2",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "WING_TIP_1",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "WING_TIP_2",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "NOSE_TIP",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "NOSE_TOP",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "TAIL_TOP",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "TAIL_TIP",
+        "type": "BOGEY",
+        "retractable": false
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: A320",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 22,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/A320/A320.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "C130",
+    "name": "C130",
+    "category": "aircraft",
+    "description": "Models a Lockheed C-130 Hercules.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 285.229055,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 40.386,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 7.062216,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 45.63676,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 51.341007,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 47627.19885,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 4967594.945184,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 3234330.836084,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 8090030.125855,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 14.8971,
+        "y": 0.0,
+        "z": -0.74422
+      }
+    },
+    "propulsion": {
+      "engineCount": 4,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "t56",
+          "type": "turbine",
+          "thruster": {
+            "type": "propeller",
+            "model": "t56_prop"
+          },
+          "sourceFile": "engine/t56.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "t56",
+          "type": "turbine",
+          "thruster": {
+            "type": "propeller",
+            "model": "t56_prop"
+          },
+          "sourceFile": "engine/t56.xml"
+        },
+        {
+          "mountId": "engine-2",
+          "model": "t56",
+          "type": "turbine",
+          "thruster": {
+            "type": "propeller",
+            "model": "t56_prop"
+          },
+          "sourceFile": "engine/t56.xml"
+        },
+        {
+          "mountId": "engine-3",
+          "model": "t56",
+          "type": "turbine",
+          "thruster": {
+            "type": "propeller",
+            "model": "t56_prop"
+          },
+          "sourceFile": "engine/t56.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 5,
+      "totalCapacityKg": 4409.825,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 881.965004,
+          "contentsKg": 440.982502
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 881.965004,
+          "contentsKg": 440.982502
+        },
+        {
+          "index": 2,
+          "fuelType": null,
+          "capacityKg": 881.965004,
+          "contentsKg": 440.982502
+        },
+        {
+          "index": 3,
+          "fuelType": null,
+          "capacityKg": 881.965004,
+          "contentsKg": 440.982502
+        },
+        {
+          "index": 4,
+          "fuelType": null,
+          "capacityKg": 881.965004,
+          "contentsKg": 440.982502
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: C130",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 26,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/C130/C130.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "Concorde",
+    "name": "Aerospatiale/BAC Concorde",
+    "category": "aircraft",
+    "description": "Aerospatiale/British Aerospace Concorde",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 358.234122,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 25.551384,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 27.6606,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 0.0,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 33.90961,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 78698.276195,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 1941531.3044,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 25806638.8603,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 13693761.295,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 33.00476,
+        "y": 0.0,
+        "z": -0.8255
+      }
+    },
+    "propulsion": {
+      "engineCount": 4,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "Olympus593Mrk610",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/Olympus593Mrk610.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "Olympus593Mrk610",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/Olympus593Mrk610.xml"
+        },
+        {
+          "mountId": "engine-2",
+          "model": "Olympus593Mrk610",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/Olympus593Mrk610.xml"
+        },
+        {
+          "mountId": "engine-3",
+          "model": "Olympus593Mrk610",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/Olympus593Mrk610.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 17,
+      "totalCapacityKg": 94553.47,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 4198.00192,
+          "contentsKg": 4198.00192
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 4570.002095,
+          "contentsKg": 4570.002095
+        },
+        {
+          "index": 2,
+          "fuelType": null,
+          "capacityKg": 4570.002095,
+          "contentsKg": 4570.002095
+        },
+        {
+          "index": 3,
+          "fuelType": null,
+          "capacityKg": 4198.00192,
+          "contentsKg": 4198.00192
+        },
+        {
+          "index": 4,
+          "fuelType": null,
+          "capacityKg": 7199.998695,
+          "contentsKg": 7199.998695
+        },
+        {
+          "index": 5,
+          "fuelType": null,
+          "capacityKg": 11586.998948,
+          "contentsKg": 11586.998948
+        },
+        {
+          "index": 6,
+          "fuelType": null,
+          "capacityKg": 7404.999766,
+          "contentsKg": 7404.999766
+        },
+        {
+          "index": 7,
+          "fuelType": null,
+          "capacityKg": 12838.002168,
+          "contentsKg": 12838.002168
+        },
+        {
+          "index": 8,
+          "fuelType": null,
+          "capacityKg": 11095.998815,
+          "contentsKg": 11095.998815
+        },
+        {
+          "index": 9,
+          "fuelType": null,
+          "capacityKg": 11943.00092,
+          "contentsKg": 11943.00092
+        },
+        {
+          "index": 10,
+          "fuelType": null,
+          "capacityKg": 10414.997911,
+          "contentsKg": 8951.786036
+        },
+        {
+          "index": 11,
+          "fuelType": null,
+          "capacityKg": 2225.002117,
+          "contentsKg": 2225.002117
+        },
+        {
+          "index": 12,
+          "fuelType": null,
+          "capacityKg": 2225.002117,
+          "contentsKg": 2225.002117
+        },
+        {
+          "index": 13,
+          "fuelType": null,
+          "capacityKg": 20.865249,
+          "contentsKg": 20.865249
+        },
+        {
+          "index": 14,
+          "fuelType": null,
+          "capacityKg": 20.865249,
+          "contentsKg": 20.865249
+        },
+        {
+          "index": 15,
+          "fuelType": null,
+          "capacityKg": 20.865249,
+          "contentsKg": 20.865249
+        },
+        {
+          "index": 16,
+          "fuelType": null,
+          "capacityKg": 20.865249,
+          "contentsKg": 20.865249
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_FWD",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_REAR",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_FWD",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_REAR",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "TAIL",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "NOSE_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "LEFT_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "TAIL_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "Nose Wheel Steering",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "Tractor",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "Concorde",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 28,
+      "alphaLimitsRad": {
+        "min": -0.095993,
+        "max": 0.287979
+      }
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/Concorde/Concorde.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "F450",
+    "name": "F450",
+    "category": "unmanned",
+    "description": "",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 0.016129,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 0.127,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 0.127,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": null,
+      "verticalTailAreaM2": null
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 1.4,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 0.019,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 0.019,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 0.0252,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "propulsion": {
+      "engineCount": 4,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "DJI_E305",
+          "type": "electric",
+          "thruster": {
+            "type": "propeller",
+            "model": "DJI_9450"
+          },
+          "sourceFile": "engine/DJI_E305.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "DJI_E305",
+          "type": "electric",
+          "thruster": {
+            "type": "propeller",
+            "model": "DJI_9450"
+          },
+          "sourceFile": "engine/DJI_E305.xml"
+        },
+        {
+          "mountId": "engine-2",
+          "model": "DJI_E305",
+          "type": "electric",
+          "thruster": {
+            "type": "propeller",
+            "model": "DJI_9450"
+          },
+          "sourceFile": "engine/DJI_E305.xml"
+        },
+        {
+          "mountId": "engine-3",
+          "model": "DJI_E305",
+          "type": "electric",
+          "thruster": {
+            "type": "propeller",
+            "model": "DJI_9450"
+          },
+          "sourceFile": "engine/DJI_E305.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 0,
+      "totalCapacityKg": null,
+      "tanks": []
+    },
+    "contactPoints": [
+      {
+        "name": "Front_Center",
+        "type": "BOGEY",
+        "retractable": null
+      },
+      {
+        "name": "Aft_Left",
+        "type": "BOGEY",
+        "retractable": null
+      },
+      {
+        "name": "Aft_Right",
+        "type": "BOGEY",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "Effectors.xml"
+      },
+      {
+        "name": "",
+        "kind": "flight_control",
+        "sourceFile": "FlightControl.xml"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "SensorImu.xml"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "SensorBaro.xml"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "SensorGps.xml"
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 22,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/F450/F450.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "MD11",
+    "name": "MD11",
+    "category": "aircraft",
+    "description": "McDonnell Douglas MD-11",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 338.91029,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 51.6636,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 6.559296,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 84.727572,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 67.782058,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 171593.993571,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 17876459.67075,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 52038462.22972,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 75400696.907965,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 33.6677,
+        "y": 0.0,
+        "z": -1.52908
+      }
+    },
+    "propulsion": {
+      "engineCount": 3,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "CF6-80C2",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CF6-80C2.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "CF6-80C2",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CF6-80C2.xml"
+        },
+        {
+          "mountId": "engine-2",
+          "model": "CF6-80C2",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/CF6-80C2.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 4,
+      "totalCapacityKg": 17874.442,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 4468.610592,
+          "contentsKg": 2234.305296
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 4468.610592,
+          "contentsKg": 2234.305296
+        },
+        {
+          "index": 2,
+          "fuelType": null,
+          "capacityKg": 4468.610592,
+          "contentsKg": 2234.305296
+        },
+        {
+          "index": 3,
+          "fuelType": null,
+          "capacityKg": 4468.610592,
+          "contentsKg": 2234.305296
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: MD11",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 26,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/MD11/MD11.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "Submarine_Scout",
+    "name": "SubmarineScout",
+    "category": "lighter-than-air",
+    "description": "Submarine Scout Zero class airship for JSBSim.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 65.0,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 9.1,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 43.7,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 25.27,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 12.64,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 733.5,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 14853.0,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 124160.0,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 124160.0,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 21.85,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "eng_RRhawk",
+          "type": "piston",
+          "thruster": {
+            "type": "propeller",
+            "model": "prop_SSZ"
+          },
+          "sourceFile": "engine/eng_RRhawk.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 2,
+      "totalCapacityKg": 392.78,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 196.39,
+          "contentsKg": 196.39
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 196.39,
+          "contentsKg": 196.39
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "CAR_KEEL_FRONT",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "CAR_KEEL_MIDDLE",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "CAR_KEEL_AFT",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "NOSE",
+        "type": "STRUCTURE",
+        "retractable": false
+      },
+      {
+        "name": "TAIL",
+        "type": "STRUCTURE",
+        "retractable": false
+      },
+      {
+        "name": "TAIL_FIN",
+        "type": "STRUCTURE",
+        "retractable": false
+      },
+      {
+        "name": "CAR_FRONT",
+        "type": "BOGEY",
+        "retractable": false
+      }
+    ],
+    "systems": [
+      {
+        "name": "Instrumentation",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "Submarine_Scout_crew_ap"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "air-and-gas-control"
+      },
+      {
+        "name": "Aerodynamic controls",
+        "kind": "flight_control",
+        "sourceFile": null
+      },
+      {
+        "name": "Weigh_Off",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "visual-reference-point-extensions"
+      },
+      {
+        "name": "landing-party",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "Aerodynamic constants",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "airship_added_mass"
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 31,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/Submarine_Scout/Submarine_Scout.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "XB-70",
+    "name": "XB-70",
+    "category": "aircraft",
+    "description": "XB-70 bomber flight model approximation",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 585.103346,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 32.004,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 23.9268,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 38.610503,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 43.478623,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 136077.711,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 1816796.053,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 21693087.2,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 22777741.56,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 40.4622,
+        "y": 0.0,
+        "z": -1.47066
+      }
+    },
+    "propulsion": {
+      "engineCount": 6,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "YJ93-GE-3",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/YJ93-GE-3.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "YJ93-GE-3",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/YJ93-GE-3.xml"
+        },
+        {
+          "mountId": "engine-2",
+          "model": "YJ93-GE-3",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/YJ93-GE-3.xml"
+        },
+        {
+          "mountId": "engine-3",
+          "model": "YJ93-GE-3",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/YJ93-GE-3.xml"
+        },
+        {
+          "mountId": "engine-4",
+          "model": "YJ93-GE-3",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/YJ93-GE-3.xml"
+        },
+        {
+          "mountId": "engine-5",
+          "model": "YJ93-GE-3",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/YJ93-GE-3.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 7,
+      "totalCapacityKg": 14174.807,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        },
+        {
+          "index": 2,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        },
+        {
+          "index": 3,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        },
+        {
+          "index": 4,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        },
+        {
+          "index": 5,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        },
+        {
+          "index": 6,
+          "fuelType": null,
+          "capacityKg": 2024.972417,
+          "contentsKg": 1012.463529
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: XB-70",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 26,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/XB-70/XB-70.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "ah1s",
+    "name": "ah1s-jsbsim",
+    "category": "rotorcraft",
+    "description": "Models a Bell209/AH1S helicopter.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 1.54219,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 3.2766,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 0.469392,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 1.114836,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 1.658319,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 3855.535145,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 3515.635944,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 19415.313044,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 16717.235324,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 4.3688,
+        "y": 0.0,
+        "z": 1.905
+      }
+    },
+    "propulsion": {
+      "engineCount": 2,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "electric_1500hp",
+          "type": "electric",
+          "thruster": {
+            "type": "rotor",
+            "model": "ah1s_rotor"
+          },
+          "sourceFile": "aircraft/ah1s/Engines/electric_1500hp.xml"
+        },
+        {
+          "mountId": "engine-1",
+          "model": "electric_1hp_dummy",
+          "type": "electric",
+          "thruster": {
+            "type": "rotor",
+            "model": "ah1s_tail_rotor"
+          },
+          "sourceFile": "aircraft/ah1s/Engines/electric_1hp_dummy.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 2,
+      "totalCapacityKg": 807.394,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": "JP-5",
+          "capacityKg": 403.697209,
+          "contentsKg": 0.0
+        },
+        {
+          "index": 1,
+          "fuelType": "JP-5",
+          "capacityKg": 403.697209,
+          "contentsKg": 0.0
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "skid_front_left",
+        "type": "BOGEY",
+        "retractable": null
+      },
+      {
+        "name": "skid_front_right",
+        "type": "BOGEY",
+        "retractable": null
+      },
+      {
+        "name": "skid_rear_left",
+        "type": "BOGEY",
+        "retractable": null
+      },
+      {
+        "name": "skid_rear_right",
+        "type": "BOGEY",
+        "retractable": null
+      },
+      {
+        "name": "bumper_rear",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "rpm_governor"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "rotor_control"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "afcs"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "steady_flight_data"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "trim_control"
+      },
+      {
+        "name": "misc support",
+        "kind": "system",
+        "sourceFile": null
+      },
+      {
+        "name": "ah1s fcs",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 5,
+      "functionCount": 55,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/ah1s/ah1s.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "c172p",
+    "name": "c172",
+    "category": "aircraft",
+    "description": "Cessna C-172",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 16.165129,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 10.91184,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 1.49352,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 2.034577,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 1.5329,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 680.388555,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 1285.315417,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 1824.930961,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 2666.893908,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 1.0414,
+        "y": 0.0,
+        "z": 0.9271
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "eng_io320",
+          "type": "piston",
+          "thruster": {
+            "type": "propeller",
+            "model": "prop_75in2f"
+          },
+          "sourceFile": "engine/eng_io320.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 2,
+      "totalCapacityKg": 167.829,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 83.914588,
+          "contentsKg": 45.359237
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 83.914588,
+          "contentsKg": 45.359237
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "LEFT_MAIN",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "RIGHT_MAIN",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "NOSE_SKID",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "TAIL_SKID",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "LEFT_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: c172",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 35,
+      "alphaLimitsRad": {
+        "min": -0.087,
+        "max": 0.28
+      }
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/c172p/c172p.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "dr1",
+    "name": "Fokker Dr.1",
+    "category": "aircraft",
+    "description": "Models a Fokker Dr.1.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 18.702311,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 7.199376,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 2.596896,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 2.992407,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 1.870138,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 405.965171,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 499.686705,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 708.062366,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 991.604574,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -0.144272
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "Oberursel-UrII",
+          "type": "piston",
+          "thruster": {
+            "type": "propeller",
+            "model": "Dr1_propeller"
+          },
+          "sourceFile": "engine/Oberursel-UrII.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 1,
+      "totalCapacityKg": 56.699,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 56.699046,
+          "contentsKg": 22.679619
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "LEFT_MAIN",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "RIGHT_MAIN",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "TAIL_SKID",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "TAIL",
+        "type": "STRUCTURE",
+        "retractable": false
+      },
+      {
+        "name": "RUDDER_TOP",
+        "type": "STRUCTURE",
+        "retractable": false
+      },
+      {
+        "name": "LEFT_UPPER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_UPPER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "LEFT_LOWER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_LOWER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "pushback"
+      },
+      {
+        "name": "FCS: Fokker Dr.1",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 27,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/dr1/dr1.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "f16",
+    "name": "General Dynamics F-16A",
+    "category": "aircraft",
+    "description": "Models an F-16A Block-32 (Basic US configuration)",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 27.870912,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 9.144,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 3.450336,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 5.917924,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 5.086441,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 7892.507238,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 12874.847253,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 75673.623061,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 85552.112645,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": -4.9022,
+        "y": 0.0,
+        "z": -0.12954
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "F100-PW-229",
+          "type": "turbine",
+          "thruster": {
+            "type": "direct",
+            "model": "direct"
+          },
+          "sourceFile": "engine/F100-PW-229.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 4,
+      "totalCapacityKg": 5875.836,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 1581.223002,
+          "contentsKg": 680.388555
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 1581.223002,
+          "contentsKg": 680.388555
+        },
+        {
+          "index": 2,
+          "fuelType": null,
+          "capacityKg": 1356.694779,
+          "contentsKg": 0.0
+        },
+        {
+          "index": 3,
+          "fuelType": null,
+          "capacityKg": 1356.694779,
+          "contentsKg": 0.0
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_WT",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_WT",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "TOP_VS",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "LEFT_VFT",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_VFT",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "INTAKE",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RADOME",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "pushback"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "hook"
+      },
+      {
+        "name": "F-16 FC",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 41,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/f16/f16.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "p51d",
+    "name": "P-51D (JSBSim)",
+    "category": "aircraft",
+    "description": "Advanced model of P-51D fighter (Beta)",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 21.832214,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 11.30808,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 2.01168,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 3.809025,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 1.858061,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 3231.845636,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 10888.573956,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 12573.855668,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 19723.083719,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 2.4511,
+        "y": 0.0,
+        "z": -0.2286
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "Packard-V-1650-7",
+          "type": "piston",
+          "thruster": {
+            "type": "propeller",
+            "model": "P51prop"
+          },
+          "sourceFile": "aircraft/p51d/Engines/Packard-V-1650-7.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 5,
+      "totalCapacityKg": 1254.373,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 275.425823,
+          "contentsKg": 179.622579
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 275.425823,
+          "contentsKg": 179.622579
+        },
+        {
+          "index": 2,
+          "fuelType": null,
+          "capacityKg": 254.46532,
+          "contentsKg": 0.0
+        },
+        {
+          "index": 3,
+          "fuelType": null,
+          "capacityKg": 224.528223,
+          "contentsKg": 0.0
+        },
+        {
+          "index": 4,
+          "fuelType": null,
+          "capacityKg": 224.528223,
+          "contentsKg": 0.0
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "LEFT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_MLG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "TAIL_LG",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_WING_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_WING_TIP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "TAIL_BOTTOM",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "TAIL_TOP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "NOSE_BOTTOM",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "NOSE_TOP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "CANOPY",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "BELLY",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "DOG_HOUSE",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "PROP_BOTTOM",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "PROP_TOP",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "PROP_LEFT",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "PROP_RIGHT",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "propulsion"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "autothrottle"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "mixture-control"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "alpha-buffet"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "crash-detect"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "electrical"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "compressability"
+      },
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "weapons-weight"
+      },
+      {
+        "name": "FCS: P51D",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 33,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/p51d/p51d.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "paraglider",
+    "name": "paraglider",
+    "category": "aircraft",
+    "description": "(Powered) Paraglider",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 20.438669,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 8.8392,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 2.1336,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 0.092903,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 0.092903,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 4.535924,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 2.308958,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 2.573342,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 1.843912,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "Polini_THOR80",
+          "type": "piston",
+          "thruster": {
+            "type": "propeller",
+            "model": "DT_Propeller"
+          },
+          "sourceFile": "aircraft/paraglider/Engines/Polini_THOR80.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 1,
+      "totalCapacityKg": 1.588,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 1.587573,
+          "contentsKg": 0.453592
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "LMLG",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "RMLG",
+        "type": "BOGEY",
+        "retractable": false
+      }
+    ],
+    "systems": [
+      {
+        "name": "",
+        "kind": "system",
+        "sourceFile": "Controls.xml"
+      },
+      {
+        "name": "FCS: paraglider_FCS",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 22,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/paraglider/paraglider.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "weather-balloon",
+    "name": "Weather Balloon",
+    "category": "lighter-than-air",
+    "description": "Models a 6-foot weather balloon.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 0.91045,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 1.88976,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 1.88976,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 0.0,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 0.0,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 0.8,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 1.355818,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 1.355818,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 1.355818,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "propulsion": {
+      "engineCount": 0,
+      "engines": []
+    },
+    "fuelStorage": {
+      "tankCount": 0,
+      "totalCapacityKg": null,
+      "tanks": []
+    },
+    "contactPoints": [
+      {
+        "name": "Default",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: Sounding Balloon",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 4,
+      "functionCount": 12,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/weather-balloon/weather-balloon.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "wrightFlyer1903",
+    "name": "wrightFlyer1903",
+    "category": "aircraft",
+    "description": "Models the 1903 Wright Flyer.",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 47.38055,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 12.292584,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 1.88976,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 4.459346,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 1.858061,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 197.312681,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 1786.968058,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 367.426664,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 1820.863507,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -0.5842
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "wright1903_engine",
+          "type": "piston",
+          "thruster": {
+            "type": "propeller",
+            "model": "wright1903_propellers"
+          },
+          "sourceFile": "engine/wright1903_engine.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 1,
+      "totalCapacityKg": 0.624,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 0.62369,
+          "contentsKg": 0.453592
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "LEFT_FRONT_MAIN",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_FRONT_MAIN",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_REAR_MAIN",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "RIGHT_REAR_MAIN",
+        "type": "BOGEY",
+        "retractable": true
+      },
+      {
+        "name": "LEFT_SKID",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_SKID",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "NOSE",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "TAIL",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "LEFT_UPPER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_UPPER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "LEFT_LOWER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      },
+      {
+        "name": "RIGHT_LOWER_WING",
+        "type": "STRUCTURE",
+        "retractable": null
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: unnamed",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 21,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/wrightFlyer1903/wrightFlyer1903.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  },
+  {
+    "id": "x24b",
+    "name": "X-24B",
+    "category": "spacecraft",
+    "description": "X-24B research aircraft",
+    "dimensions": {
+      "wingAreaM2": {
+        "value": 30.704455,
+        "unit": "M2"
+      },
+      "wingSpanM": {
+        "value": 5.7912,
+        "unit": "M"
+      },
+      "chordM": {
+        "value": 11.43,
+        "unit": "M"
+      },
+      "horizontalTailAreaM2": {
+        "value": 0.0,
+        "unit": "M2"
+      },
+      "verticalTailAreaM2": {
+        "value": 0.0,
+        "unit": "M2"
+      }
+    },
+    "mass": {
+      "emptyWeightKg": {
+        "value": 3855.535145,
+        "unit": "KG"
+      },
+      "inertia": {
+        "ixxKgM2": {
+          "value": 3592.917568,
+          "unit": "KG*M2"
+        },
+        "iyyKgM2": {
+          "value": 32146.443595,
+          "unit": "KG*M2"
+        },
+        "izzKgM2": {
+          "value": 32702.328954,
+          "unit": "KG*M2"
+        }
+      },
+      "centerOfGravityM": {
+        "x": 7.3152,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "propulsion": {
+      "engineCount": 1,
+      "engines": [
+        {
+          "mountId": "engine-0",
+          "model": "XLR99",
+          "type": "rocket",
+          "thruster": {
+            "type": "nozzle",
+            "model": "xlr99_nozzle"
+          },
+          "sourceFile": "engine/XLR99.xml"
+        }
+      ]
+    },
+    "fuelStorage": {
+      "tankCount": 2,
+      "totalCapacityKg": 2404.04,
+      "tanks": [
+        {
+          "index": 0,
+          "fuelType": null,
+          "capacityKg": 1270.058636,
+          "contentsKg": 1270.058636
+        },
+        {
+          "index": 1,
+          "fuelType": null,
+          "capacityKg": 1133.980925,
+          "contentsKg": 1133.980925
+        }
+      ]
+    },
+    "contactPoints": [
+      {
+        "name": "NOSE",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "LEFT_SKID",
+        "type": "BOGEY",
+        "retractable": false
+      },
+      {
+        "name": "RIGHT_SKID",
+        "type": "BOGEY",
+        "retractable": false
+      }
+    ],
+    "systems": [
+      {
+        "name": "FCS: X-15 SAS",
+        "kind": "flight_control",
+        "sourceFile": null
+      }
+    ],
+    "performance": {
+      "hasAerodynamicsModel": true,
+      "axisCount": 6,
+      "functionCount": 20,
+      "alphaLimitsRad": null
+    },
+    "sourceMetadata": {
+      "sourceRepository": "https://github.com/JSBSim-Team/jsbsim",
+      "sourceCommit": "506773ad3790a5a621445631613faf51a15284e7",
+      "sourceMasterFile": "aircraft/x24b/x24b.xml",
+      "license": "LGPL-2.1 (depot JSBSim) ; donnees de simulation, non certifiees constructeur ; voir datasets/jsbsim_reference/README.md",
+      "resolutionStatus": "complete",
+      "extractedAt": "2026-09-12T22:28:57+00:00"
+    }
+  }
+]

@@ -1,74 +1,74 @@
 {
-  "purpose": "Client-facing real-source demonstrations; explicit one-module Bike export requested by site owner.",
+  "purpose": "Client-facing real-source deliveries; explicit one-module Bike export requested by site owner.",
   "odoo": {
     "upstream": "https://github.com/odoo/odoo/tree/1a13ceeaee12fe5cc50f287c31f217d4be2a2eaf/addons/account/data",
-    "records": 21,
-    "models": 7,
-    "source_kind": "Official configuration, no client accounting data",
-    "csv_xlsx": "Presentation exports from fresh P03 extraction; all 21 rows retained",
-    "json": "Fresh P04 execution; exact ground-truth match"
+    "files": [
+      "addons/account/data/account_data.xml",
+      "addons/account/data/account_incoterms_data.xml",
+      "addons/account/data/account_reports_data.xml",
+      "addons/account/data/account_tour.xml",
+      "addons/account/data/digest_data.xml",
+      "addons/account/data/ir_config_parameter_data.xml",
+      "addons/account/data/ir_sequence.xml",
+      "addons/account/data/mail_template_data.xml",
+      "addons/account/data/onboarding_data.xml",
+      "addons/account/data/res_country_group.xml",
+      "addons/account/data/service_cron.xml",
+      "addons/account/data/template/account.account-generic_coa.csv",
+      "addons/account/data/template/account.fiscal.position-generic_coa.csv",
+      "addons/account/data/template/account.tax-generic_coa.csv",
+      "addons/account/data/template/account.tax.group-generic_coa.csv"
+    ],
+    "records": 118,
+    "checks": "118 record identities and values match the frozen lab baseline; tax/account links resolved."
   },
   "jsbsim": {
-    "upstream": "https://github.com/JSBSim-Team/jsbsim/blob/506773ad3790a5a621445631613faf51a15284e7/aircraft/C130/C130.xml",
-    "json": "Fresh P04 execution; exact ground-truth match",
-    "notice": "Simulation model for educational and entertainment purposes; not manufacturer endorsed; model not for sale."
+    "upstream": "https://github.com/JSBSim-Team/jsbsim/tree/506773ad3790a5a621445631613faf51a15284e7",
+    "vehicles": 17,
+    "source_xml_files": 78,
+    "resolved_reference_occurrences": 102,
+    "traceability_rows": 1299,
+    "checks": "17 canonical records validated against target XSD; graph references resolved.",
+    "notice": "Simulation models, not manufacturer-certified data. Educational examples supplied free of charge."
+  },
+  "database": {
+    "tables": {
+      "vehicules": 17,
+      "modeles_moteur": 17,
+      "installations_moteur": 35
+    },
+    "checks": "SQLite integrity, foreign keys and SQL reload checked. F450 has 4 installations; weather-balloon has 0."
   },
   "bike": {
     "upstream": "https://users.s1000d.org/ProductDescription.aspx?ProductID=35",
     "source": "DMC-S1000DBIKE-AAA-DA0-10-20-00AA-921A-A_010-00_EN-US.XML",
-    "renders": {
-      "v2": {
-        "profile": "proced-a4-v2",
-        "pdf": {
-          "bytes": 27255,
-          "pdf_signature": true,
-          "page_count": 5,
-          "bookmark_count": 5,
-          "unresolved_bookmark_count": 0,
-          "blank_page_count": 0,
-          "text_characters": 5031,
-          "contains_end_of_data_module": true,
-          "contains_references": true,
-          "contains_procedure": true,
-          "contains_preliminary_requirements": true,
-          "contains_dmc_identity": true
-        },
-        "preview_page": 5,
-        "quality_status": "failed",
-        "logs": {
-          "warning_count": 0,
-          "error_count": 0,
-          "warning_samples": [],
-          "error_samples": []
-        }
+    "source_sha256": "5b7de0ff2468bbb46d5c5d5745c66515bdcdc04bdd634dabb30c533411fb99ed",
+    "render": {
+      "profile": "proced-a4-v3",
+      "pdf": {
+        "bytes": 28566,
+        "pdf_signature": true,
+        "page_count": 6,
+        "bookmark_count": 5,
+        "unresolved_bookmark_count": 0,
+        "blank_page_count": 0,
+        "text_characters": 5058,
+        "contains_end_of_data_module": true,
+        "contains_references": true,
+        "contains_procedure": true,
+        "contains_preliminary_requirements": true,
+        "contains_dmc_identity": true
       },
-      "v3": {
-        "profile": "proced-a4-v3",
-        "pdf": {
-          "bytes": 28566,
-          "pdf_signature": true,
-          "page_count": 6,
-          "bookmark_count": 5,
-          "unresolved_bookmark_count": 0,
-          "blank_page_count": 0,
-          "text_characters": 5058,
-          "contains_end_of_data_module": true,
-          "contains_references": true,
-          "contains_procedure": true,
-          "contains_preliminary_requirements": true,
-          "contains_dmc_identity": true
-        },
-        "preview_page": 4,
-        "quality_status": "failed",
-        "logs": {
-          "warning_count": 0,
-          "error_count": 0,
-          "warning_samples": [],
-          "error_samples": []
-        }
+      "preview_page": 4,
+      "quality_status": "failed",
+      "logs": {
+        "warning_count": 0,
+        "error_count": 0,
+        "warning_samples": [],
+        "error_samples": []
       }
     },
-    "contextual_findings_from_demo_harness_02": [
+    "contextual_findings": [
       {
         "automatic_conclusion": true,
         "check_type": "publication",
@@ -94,6 +94,14 @@
         "severity": "warning"
       }
     ],
-    "export_scope": "One procedural DM as v2/v3 PDF and a short source preview; official source attribution retained. This request-specific export is not a general redistribution license."
+    "export_scope": "One procedural DM as PDF and short source preview. Request-specific export, not a general redistribution license."
+  },
+  "audit": {
+    "files": 9,
+    "validator_messages": 40,
+    "numeric_messages_for_one_injected_value": 3,
+    "pdf_pages": 14,
+    "scope": "Validation de 9 fichiers maîtres contre le XSD JSBSim livré; dépendances non validées dans cet audit.",
+    "injected_case": "c172-rev2.xml: copie contrôlée de c172p.xml, surface alaire remplacée par un texte non numérique."
   }
 }

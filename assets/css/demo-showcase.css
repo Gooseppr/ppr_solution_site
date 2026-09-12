@@ -9,6 +9,7 @@
   background: var(--surface-subtle);
 }
 .showcase-card-pdf { object-position: center 38%; }
+.showcase-card-schema { object-fit: contain; object-position: center; }
 .showcase-before-after {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -31,7 +32,19 @@
 .demo-panel code { overflow-wrap: anywhere; }
 .demo-panel .xml-code { max-height: 620px; overflow: auto; }
 .demo-panel .xml-code code { overflow-wrap: normal; }
+.showcase-schema { margin: 1.5rem 0; }
+.schema-entities { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1.3fr) auto minmax(0,1fr); align-items: center; gap: .8rem; }
+.schema-entities > div { padding: 1rem; border: 1px solid var(--border); border-top: 3px solid var(--accent, #124c8c); background: var(--surface-subtle); min-width: 0; overflow-wrap: anywhere; }
+.schema-entities strong { color: var(--accent, #124c8c); }
+.schema-entities p { font-size: .88rem; line-height: 1.8; margin-bottom: 0; }
+.schema-relation { font-weight: 700; white-space: nowrap; color: var(--accent, #124c8c); }
+.showcase-schema figcaption { margin-top: 1rem; }
+.showcase-report-preview { max-width: 680px; margin: 1.5rem 0; }
+.showcase-report-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--border); }
+.showcase-report-preview figcaption { margin-top: 1rem; }
 @media (max-width: 700px) {
+  .schema-entities { grid-template-columns: minmax(0, 1fr); }
+  .schema-relation { transform: rotate(90deg); justify-self: center; margin: .4rem; }
   .showcase-before-after { grid-template-columns: minmax(0, 1fr); }
   .showcase-card-preview { height: 165px; }
   .showcase-actions .btn { max-width: 100%; white-space: normal; text-align: center; }

@@ -1,0 +1,5 @@
+﻿Taxe;Libellé;Taux (%);Usage;Groupe;Comptes;Lignes de répartition;Source;Position
+sale_tax_template;15%;15.0;sale;tax_group_15;2510 — Tax Received;4;addons/account/data/template/account.tax-generic_coa.csv;rows-2-5
+purchase_tax_template;15%;15.0;purchase;tax_group_15;1310 — Tax Paid;4;addons/account/data/template/account.tax-generic_coa.csv;rows-6-9
+sale_export_tax_template;0% Exports;0.0;sale;tax_group_0;Non renseigné dans ce modèle;4;addons/account/data/template/account.tax-generic_coa.csv;rows-10-13
+purchase_import_tax_template;0% Imports;0.0;purchase;tax_group_0;Non renseigné dans ce modèle;4;addons/account/data/template/account.tax-generic_coa.csv;rows-14-17
