@@ -1,0 +1,99 @@
+{
+  "purpose": "Client-facing real-source demonstrations; explicit one-module Bike export requested by site owner.",
+  "odoo": {
+    "upstream": "https://github.com/odoo/odoo/tree/1a13ceeaee12fe5cc50f287c31f217d4be2a2eaf/addons/account/data",
+    "records": 21,
+    "models": 7,
+    "source_kind": "Official configuration, no client accounting data",
+    "csv_xlsx": "Presentation exports from fresh P03 extraction; all 21 rows retained",
+    "json": "Fresh P04 execution; exact ground-truth match"
+  },
+  "jsbsim": {
+    "upstream": "https://github.com/JSBSim-Team/jsbsim/blob/506773ad3790a5a621445631613faf51a15284e7/aircraft/C130/C130.xml",
+    "json": "Fresh P04 execution; exact ground-truth match",
+    "notice": "Simulation model for educational and entertainment purposes; not manufacturer endorsed; model not for sale."
+  },
+  "bike": {
+    "upstream": "https://users.s1000d.org/ProductDescription.aspx?ProductID=35",
+    "source": "DMC-S1000DBIKE-AAA-DA0-10-20-00AA-921A-A_010-00_EN-US.XML",
+    "renders": {
+      "v2": {
+        "profile": "proced-a4-v2",
+        "pdf": {
+          "bytes": 27255,
+          "pdf_signature": true,
+          "page_count": 5,
+          "bookmark_count": 5,
+          "unresolved_bookmark_count": 0,
+          "blank_page_count": 0,
+          "text_characters": 5031,
+          "contains_end_of_data_module": true,
+          "contains_references": true,
+          "contains_procedure": true,
+          "contains_preliminary_requirements": true,
+          "contains_dmc_identity": true
+        },
+        "preview_page": 5,
+        "quality_status": "failed",
+        "logs": {
+          "warning_count": 0,
+          "error_count": 0,
+          "warning_samples": [],
+          "error_samples": []
+        }
+      },
+      "v3": {
+        "profile": "proced-a4-v3",
+        "pdf": {
+          "bytes": 28566,
+          "pdf_signature": true,
+          "page_count": 6,
+          "bookmark_count": 5,
+          "unresolved_bookmark_count": 0,
+          "blank_page_count": 0,
+          "text_characters": 5058,
+          "contains_end_of_data_module": true,
+          "contains_references": true,
+          "contains_procedure": true,
+          "contains_preliminary_requirements": true,
+          "contains_dmc_identity": true
+        },
+        "preview_page": 4,
+        "quality_status": "failed",
+        "logs": {
+          "warning_count": 0,
+          "error_count": 0,
+          "warning_samples": [],
+          "error_samples": []
+        }
+      }
+    },
+    "contextual_findings_from_demo_harness_02": [
+      {
+        "automatic_conclusion": true,
+        "check_type": "publication",
+        "column": null,
+        "layer": null,
+        "line": null,
+        "location": null,
+        "message": "Rapport XSD contextuel (xsd-report-quality) : summary.cardinality_violations == 0 : obtenu 1",
+        "rule_id": "XSD-CONTEXT-NO_CARDINALITY_VIOLATION",
+        "rule_origin": null,
+        "severity": "error"
+      },
+      {
+        "automatic_conclusion": true,
+        "check_type": "publication",
+        "column": null,
+        "layer": null,
+        "line": null,
+        "location": null,
+        "message": "Rapport XSD contextuel (xsd-report-quality) : summary.choice_violations == 0 : obtenu 3",
+        "rule_id": "XSD-CONTEXT-NO_CHOICE_VIOLATION",
+        "rule_origin": null,
+        "severity": "warning"
+      }
+    ],
+    "export_scope": "One procedural DM as v2/v3 PDF and a short source preview; official source attribution retained. This request-specific export is not a general redistribution license."
+  }
+}

@@ -1,0 +1,38 @@
+/* Concrete laboratory examples; uses the site's existing visual vocabulary. */
+.showcase-card-preview {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  object-position: top left;
+  border: 1px solid var(--border);
+  background: var(--surface-subtle);
+}
+.showcase-card-pdf { object-position: center 38%; }
+.showcase-before-after {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.5rem 0;
+}
+.showcase-before-after figure { margin: 0; min-width: 0; }
+.showcase-before-after img { display: block; width: 100%; height: auto; border: 1px solid var(--border); background: white; }
+.showcase-before-after figcaption { margin-top: .75rem; line-height: 1.65; }
+.showcase-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.showcase-downloads { list-style: none; padding: 0; margin: 1rem 0; }
+.showcase-downloads li { display: grid; gap: .35rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.showcase-downloads a { font-weight: 600; overflow-wrap: anywhere; }
+.showcase-downloads span, .showcase-source { color: var(--text-muted, #526478); font-size: .93rem; }
+.showcase-note { padding: 1rem; border-left: 3px solid var(--warning); background: var(--surface-subtle); }
+.showcase-steps { padding-left: 1.5rem; }
+.showcase-steps li { padding: .6rem 0; }
+.showcase-error-case { border-style: dashed; }
+.demo-panel code { overflow-wrap: anywhere; }
+.demo-panel .xml-code { max-height: 620px; overflow: auto; }
+.demo-panel .xml-code code { overflow-wrap: normal; }
+@media (max-width: 700px) {
+  .showcase-before-after { grid-template-columns: minmax(0, 1fr); }
+  .showcase-card-preview { height: 165px; }
+  .showcase-actions .btn { max-width: 100%; white-space: normal; text-align: center; }
+}
