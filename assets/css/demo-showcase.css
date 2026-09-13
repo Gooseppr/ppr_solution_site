@@ -44,7 +44,7 @@
 .showcase-report-preview figcaption { margin-top: 1rem; }
 .showcase-db-table { margin: 2rem 0; }
 .showcase-db-table h4 { margin-bottom: .5rem; }
-.showcase-db-table .table-wrap { max-height: 340px; overflow: auto; border: 1px solid var(--border); }
+.showcase-db-table .table-wrap { max-height: 260px; overflow: auto; border: 1px solid var(--border); }
 .showcase-db-table table { margin: 0; font-size: .85rem; }
 .showcase-db-table th { position: sticky; top: 0; background: var(--surface-subtle); z-index: 1; }
 .showcase-db-table td { min-width: 8rem; max-width: 24rem; overflow-wrap: anywhere; }
@@ -61,7 +61,15 @@ html.showcase-preview-open { overflow: hidden; }
 .showcase-lightbox-image { padding: 12px; }
 .showcase-lightbox-image img { display: block; width: auto; height: auto; max-width: min(1200px, calc(100vw - 60px)); max-height: calc(100dvh - 180px); object-fit: contain; margin: auto; }
 .showcase-lightbox-error { padding: 1rem; }
+.showcase-overview-facts, .showcase-domains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.showcase-overview-facts > div, .showcase-domains > div { border-top: 2px solid var(--border); padding-top: .75rem; }
+.showcase-overview-facts dt, .showcase-domains dt { font-weight: 600; color: var(--primary); }
+.showcase-overview-facts dd, .showcase-domains dd { margin: .5rem 0 0; }
+.showcase-domains { font-size: .9rem; }
+.showcase-delivery-context { padding: 1rem; border-left: 3px solid var(--primary); background: var(--surface-subtle); margin-bottom: 1.5rem; }
+.showcase-delivery-context p:last-child { margin-bottom: 0; }
 @media (max-width: 700px) {
+  .showcase-overview-facts, .showcase-domains { grid-template-columns: minmax(0, 1fr); }
   .schema-entities { grid-template-columns: minmax(0, 1fr); }
   .schema-relation { transform: rotate(90deg); justify-self: center; margin: .4rem; }
   .showcase-before-after { grid-template-columns: minmax(0, 1fr); }
