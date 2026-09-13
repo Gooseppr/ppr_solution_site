@@ -42,6 +42,25 @@
 .showcase-report-preview { max-width: 680px; margin: 1.5rem 0; }
 .showcase-report-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--border); }
 .showcase-report-preview figcaption { margin-top: 1rem; }
+.showcase-db-table { margin: 2rem 0; }
+.showcase-db-table h4 { margin-bottom: .5rem; }
+.showcase-db-table .table-wrap { max-height: 340px; overflow: auto; border: 1px solid var(--border); }
+.showcase-db-table table { margin: 0; font-size: .85rem; }
+.showcase-db-table th { position: sticky; top: 0; background: var(--surface-subtle); z-index: 1; }
+.showcase-db-table td { min-width: 8rem; max-width: 24rem; overflow-wrap: anywhere; }
+.showcase-db-table caption { padding: .75rem; text-align: left; }
+.showcase-preview { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.showcase-preview-link { border: 0; padding: 0; background: none; color: var(--primary); text-decoration: underline; font: inherit; cursor: zoom-in; }
+.showcase-preview:focus-visible, .showcase-preview-link:focus-visible, .showcase-lightbox-close:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+html.showcase-preview-open { overflow: hidden; }
+.showcase-lightbox { width: fit-content; max-width: calc(100vw - 32px); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 1px solid var(--border); border-radius: 4px; background: white; color: var(--text); }
+.showcase-lightbox::backdrop { background: rgba(13, 27, 44, .8); }
+.showcase-lightbox-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; border-bottom: 1px solid var(--border); }
+.showcase-lightbox-toolbar p { margin: 0; font-size: .9rem; }
+.showcase-lightbox-close { flex: 0 0 44px; width: 44px; height: 44px; font-size: 2rem; line-height: 1; color: var(--primary); background: white; border: 1px solid var(--border); cursor: pointer; }
+.showcase-lightbox-image { padding: 12px; }
+.showcase-lightbox-image img { display: block; width: auto; height: auto; max-width: min(1200px, calc(100vw - 60px)); max-height: calc(100dvh - 180px); object-fit: contain; margin: auto; }
+.showcase-lightbox-error { padding: 1rem; }
 @media (max-width: 700px) {
   .schema-entities { grid-template-columns: minmax(0, 1fr); }
   .schema-relation { transform: rotate(90deg); justify-self: center; margin: .4rem; }
