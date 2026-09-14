@@ -67,7 +67,7 @@ function initBlogLibrary() {
         category: String(post.category || "Blog"),
         tags: post.tags.map((tag) => String(tag)),
         date: String(post.date),
-        reading_time: readingTimeLabel(post.content_html),
+        reading_time: /^\d+ min$/.test(post.reading_time || "") ? post.reading_time : readingTimeLabel(post.content_html),
         _index: index
       };
     });

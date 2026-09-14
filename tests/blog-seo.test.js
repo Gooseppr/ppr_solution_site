@@ -123,7 +123,7 @@ test("les données structurées sont du JSON valide et reflètent les pages", ()
 
 test("chaque page publique conserve un H1 unique et une hiérarchie principale sans saut", () => {
   for (const relativePath of [...indexablePaths, "404.html"]) {
-    const headings = [...mainHtml(read(relativePath)).matchAll(/<h([1-3])\b[^>]*>/gi)].map((match) => Number(match[1]));
+    const headings = [...mainHtml(read(relativePath)).matchAll(/<h([1-6])\b[^>]*>/gi)].map((match) => Number(match[1]));
     assert.equal(headings.filter((level) => level === 1).length, 1, `${relativePath}: H1`);
     for (let index = 1; index < headings.length; index += 1) {
       assert.ok(headings[index] <= headings[index - 1] + 1, `${relativePath}: saut H${headings[index - 1]} vers H${headings[index]}`);
@@ -131,12 +131,15 @@ test("chaque page publique conserve un H1 unique et une hiérarchie principale s
   }
 });
 
-test("les sommaires sont générés depuis les vrais H2 avec des identifiants uniques", () => {
+test("les sommaires suivent les vrais H2/H3 éditoriaux et les connexions H2", () => {
   const duplicate = addHeadingIds("<h2>État</h2><h2>Etat</h2><h2>État</h2>");
   assert.deepEqual(duplicate.headings.map((heading) => heading.id), ["etat", "etat-2", "etat-3"]);
   for (const relativePath of articlePaths) {
     const html = read(relativePath);
-    const ids = [...mainHtml(html).matchAll(/<h2\s+id="([^"]+)"/gi)].map((match) => match[1]);
+    const body = html.match(/<article class="article-body">([\s\S]*?)<\/article>/)[1];
+    const connectionsStart = body.indexOf('<hr class="rule">');
+    const ids = [...body.matchAll(/<h([23])\s+id="([^"]+)"/gi)]
+      .filter(match => match[1] === "2" || match.index < connectionsStart).map(match => match[2]);
     const toc = html.match(/<nav class="article-toc"[\s\S]*?<\/nav>/i)?.[0] || "";
     const links = [...toc.matchAll(/href="#([^"]+)"/gi)].map((match) => match[1]);
     assert.deepEqual(links, ids, `${relativePath}: sommaire désynchronisé`);

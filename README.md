@@ -2,7 +2,7 @@
 
 Site vitrine statique pour une activité indépendante de structuration documentaire : contenus hétérogènes vers documentation structurée, contrôle, transformation, extraction, migration, publication et exploitation de données. S1000D reste une spécialisation, pas l'identité principale du site.
 
-Technologies : HTML5, CSS3 vanilla, JavaScript léger, et un générateur Node.js sans dépendance pour produire les pages statiques du blog.
+Technologies : HTML5, CSS3 vanilla, JavaScript léger, et un générateur Node.js avec Markdown-it et YAML au build seulement pour produire les pages statiques du blog.
 
 ## Lancer en local
 
@@ -20,7 +20,8 @@ Puis ouvrir `http://localhost:8000`. Le site fonctionne aussi directement en `fi
 - `services.html` : catalogue synthétique par besoin, sources, intervention et livrables.
 - `demonstrations.html` : cas techniques fictifs et inspectables, dont le validateur S1000D secondaire.
 - `blog.html` : bibliothèque éditoriale statique sur la documentation, les données et les technologies, enrichie par recherche, filtres et pagination progressive via `assets/js/blog.js`.
-- `blog/<slug>/index.html` : articles indexables générés depuis `blog/posts.json`.
+- `content/blog/*.md` : source éditoriale unique des articles (Markdown et frontmatter YAML).
+- `blog/<slug>/index.html` et `blog/posts.json` : articles indexables et données de navigation générés, jamais édités manuellement.
 - `a-propos.html` : activité indépendante, méthode, confidentialité et limites assumées.
 - `contact.html` : formulaire de cadrage branché sur `assets/js/contact.js`.
 - `validateur.html` : démonstrateur secondaire du validateur XML S1000D.
@@ -30,13 +31,17 @@ La page Ressources, la page S1000D dédiée et l’ancien template dynamique ont
 
 ## Blog statique
 
-Le contenu vit dans `blog/posts.json`. Après modification, générer les articles, l'index et le sitemap :
+Le contenu vit dans `content/blog/*.md`. Le [guide de rédaction et publication](BLOG_AUTHORING.md) décrit le contrat complet, les composants et les contrôles SEO. Après modification, générer les articles, le JSON de compatibilité, l'index et le sitemap :
 
 ```bash
-node scripts/build-blog.js
+npm ci
+npm run build:blog
+npm test
 ```
 
-Chaque article doit contenir au minimum : `slug`, `title`, `description`, `meta_description`, `date`, `updated`, `category`, `tags`, `reading_time` et `content_html`. Les pages générées incluent canonical, Open Graph, Twitter Card, JSON-LD Article et fil d'Ariane.
+Chaque frontmatter doit contenir : `slug`, `title`, `description`, `meta_description`, `date`, `category` et `tags`. Le corps est du Markdown sans H1 ni HTML brut. Le titre génère le H1 ; le temps de lecture et le sommaire sont calculés. Les pages incluent canonical, Open Graph, Twitter Card, JSON-LD BlogPosting, Organization et BreadcrumbList.
+
+**Générés — ne pas modifier manuellement :** `blog/posts.json`, `blog/*/index.html`, `blog.html` et `sitemap.xml`. Les templates restent dans `scripts/build-blog.js` ; la lecture et la validation Markdown dans `scripts/blog-markdown.js`. Le build n’utilise aucune API IA et le navigateur ne charge aucun parseur Markdown.
 
 L'index conserve tous les articles dans son HTML pour rester lisible sans JavaScript. Avec JavaScript, trois articles sont affichés par page et une pagination clavier est ajoutée lorsque le volume le nécessite. Ce compromis conserve l'URL et le générateur actuels ; une pagination statique pourra être introduite quand le catalogue justifiera plusieurs pages indexables.
 

@@ -448,7 +448,11 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
 .article-body p, .article-body li { max-width: 68ch; }
 .article-body ul, .article-body ol { padding-left: var(--space-6); }
 .article-body li + li { margin-top: var(--space-2); }
-.article-body pre { margin: var(--space-6) 0; }
+.article-body pre { margin: var(--space-6) 0; max-width: 100%; overflow-x: auto; padding: var(--space-5); background: var(--surface-subtle); border: 1px solid var(--border); }
+.article-body blockquote { margin-inline: 0; padding-left: var(--space-5); border-left: 4px solid var(--border-strong); }
+.article-body h3, .article-body h4 { scroll-margin-top: calc(var(--header-height) + var(--space-6)); }
+.article-body p, .article-body li, .article-body td, .article-body th { overflow-wrap: anywhere; }
+.article-toc .article-toc-subsection { padding-left: var(--space-4); font-size: 0.9em; }
 .article-body table { max-width: 100%; margin-block: var(--space-6); }
 .article-body figcaption { padding-top: var(--space-2); color: var(--text-muted); font-size: 0.9rem; }
 .article-sidebar { grid-column: 2; grid-row: 1; min-width: 0; }

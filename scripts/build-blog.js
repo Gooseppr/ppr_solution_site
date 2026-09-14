@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
+const { loadPosts, checkTarget } = require("./blog-markdown");
 
 const SITE_ROOT = path.join(__dirname, "..");
-const POSTS_PATH = path.join(SITE_ROOT, "blog", "posts.json");
 const BASE_URL = "https://gooseppr.github.io/ppr_solution_site";
 const SOCIAL_IMAGE = `${BASE_URL}/assets/img/og-default.jpg`;
 const READING_WORDS_PER_MINUTE = 220;
@@ -71,17 +71,21 @@ function headingSlug(value) {
     .replace(/^-+|-+$/g, "") || "section";
 }
 
-function addHeadingIds(html) {
-  const used = new Map();
+function addHeadingIds(html, bodyEnd = html.length) {
+  const used = new Set(["main-content", "primary-navigation", "footer-year", ...[...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1])]);
   const headings = [];
-  const content = html.replace(/<h2(?:\s[^>]*)?>([\s\S]*?)<\/h2>/gi, (match, labelHtml) => {
+  const content = html.replace(/<h([2-4])([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, level, attributes, labelHtml, offset) => {
     const base = headingSlug(labelHtml);
-    const count = (used.get(base) || 0) + 1;
-    used.set(base, count);
-    const id = count === 1 ? base : `${base}-${count}`;
+    const explicit = attributes.match(/\bid="([^"]+)"/)?.[1];
+    let id = explicit || base;
+    if (!explicit) {
+      let count = 2;
+      while (used.has(id)) id = `${base}-${count++}`;
+      used.add(id);
+    }
     const label = decodeEntities(String(labelHtml).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
-    headings.push({ id, label });
-    return `<h2 id="${id}">${labelHtml}</h2>`;
+    if (level === "2" || (level === "3" && offset < bodyEnd)) headings.push({ id, label, level: Number(level) });
+    return `<h${level} id="${id}">${labelHtml}</h${level}>`;
   });
   return { content, headings };
 }
@@ -96,7 +100,7 @@ function enhanceArticleTables(html) {
 
 function renderToc(headings) {
   if (headings.length < 2) return "";
-  const items = headings.map((heading) => `<li><a href="#${heading.id}">${escapeHtml(heading.label)}</a></li>`).join("");
+  const items = headings.map((heading) => `<li${heading.level === 3 ? ' class="article-toc-subsection"' : ""}><a href="#${heading.id}">${escapeHtml(heading.label)}</a></li>`).join("");
   return `<nav class="article-toc" aria-label="Sommaire de l’article"><p class="eyebrow">Dans cet article</p><ol>${items}</ol></nav>`;
 }
 
@@ -147,9 +151,11 @@ function renderArticle(post, previous, next) {
   const demoLabel = post.demo_label || "Démonstrations techniques";
   const contactLabel = post.contact_label;
   const contactContext = post.contact_context;
-  const connections = `<hr class="rule"><section class="article-connections" aria-labelledby="pour-aller-plus-loin"><h2 id="pour-aller-plus-loin">Pour aller plus loin</h2><div class="article-connection-grid"><div><p class="eyebrow">Prestation associée</p><h3><a href="../../${escapeHtml(serviceUrl)}">${escapeHtml(serviceLabel)}</a></h3></div><div><p class="eyebrow">Démonstration associée</p><h3><a href="../../${escapeHtml(demoUrl)}">${escapeHtml(demoLabel)}</a></h3></div></div><div class="article-conversion"><p>${escapeHtml(contactContext)}</p><a class="btn btn-primary" href="../../contact.html">${escapeHtml(contactLabel)}</a></div></section>`;
+  const contactBlock = contactLabel && contactContext ? `<div class="article-conversion"><p>${escapeHtml(contactContext)}</p><a class="btn btn-primary" href="../../contact.html">${escapeHtml(contactLabel)}</a></div>` : "";
+  const connections = `<hr class="rule"><section class="article-connections" aria-labelledby="pour-aller-plus-loin"><h2 id="pour-aller-plus-loin">Pour aller plus loin</h2><div class="article-connection-grid"><div><p class="eyebrow">Prestation associée</p><h3><a href="../../${escapeHtml(serviceUrl)}">${escapeHtml(serviceLabel)}</a></h3></div><div><p class="eyebrow">Démonstration associée</p><h3><a href="../../${escapeHtml(demoUrl)}">${escapeHtml(demoLabel)}</a></h3></div></div>${contactBlock}</section>`;
   const relatedSection = related ? `<section class="article-related" aria-labelledby="articles-lies"><h2 id="articles-lies">Articles liés</h2><ul>${related}</ul></section>` : "";
-  const enhanced = addHeadingIds(`${enhanceArticleTables(post.content_html)}${connections}${relatedSection}`);
+  const body = enhanceArticleTables(post.content_html);
+  const enhanced = addHeadingIds(`${body}${connections}${relatedSection}`, body.length);
   const toc = renderToc(enhanced.headings);
   const safeSchema = JSON.stringify(schema, null, 2).replace(/</g, "\\u003c");
 
@@ -161,14 +167,14 @@ function renderBlog(posts) {
   const categories = [...new Set(posts.map((post) => post.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
   const tags = usefulValues(posts, "tags");
   const cards = sorted.map((post) => renderPostCard(post)).join("");
-  const blogSchema = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Ressources documentation, données et technologies · PPR-Solution", url: `${BASE_URL}/blog.html`, mainEntity: { "@type": "ItemList", itemListElement: sorted.map((post, index) => ({ "@type": "ListItem", position: index + 1, url: `${BASE_URL}/blog/${post.slug}/`, name: post.title })) } };
+  const blogSchema = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Blog documentation, données et technologies · PPR-Solution", url: `${BASE_URL}/blog.html`, mainEntity: { "@type": "ItemList", itemListElement: sorted.map((post, index) => ({ "@type": "ListItem", position: index + 1, url: `${BASE_URL}/blog/${post.slug}/`, name: post.title })) } };
   const safeSchema = JSON.stringify(blogSchema).replace(/</g, "\\u003c");
   const categoryControl = renderSelect({ id: "blog-category", label: "Catégorie", dataAttribute: "data-blog-category", allLabel: "Toutes les catégories", values: categories });
   const tagControl = renderSelect({ id: "blog-tag", label: "Sujet", dataAttribute: "data-blog-tag", allLabel: "Tous les sujets", values: tags });
   const searchIcon = `<svg class="icon" aria-hidden="true"><use href="assets/icons/lucide-sprite.svg#search"></use></svg>`;
   const filterIcon = `<svg class="icon" aria-hidden="true"><use href="assets/icons/lucide-sprite.svg#sliders-horizontal"></use></svg>`;
 
-  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: "Ressources documentation, données et technologies · PPR-Solution", description: "Méthodes et analyses autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA appliquée.", canonical: `${BASE_URL}/blog.html`, prefix: "", type: "website" })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("")}<main id="main-content"><section class="section-tight blog-library-section" id="blog-library" aria-labelledby="blog-library-title"><div class="container"><header class="blog-library-intro"><p class="eyebrow">Ressources &amp; veille</p><h1 id="blog-library-title">Documentation, données et technologies</h1><p class="lead">Méthodes, analyses et actualités autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA.</p></header><form class="blog-controls" data-blog-controls hidden><div class="blog-control-primary"><div class="blog-control-field blog-search-field"><label for="blog-search">${searchIcon}Rechercher</label><input id="blog-search" type="search" placeholder="Documentation, XML, automatisation…" autocomplete="off" data-blog-search></div><div class="blog-control-field blog-sort-field"><label for="blog-sort">Trier</label><select id="blog-sort" data-blog-sort><option value="newest">Plus récent</option><option value="oldest">Plus ancien</option><option value="title-asc">Titre A–Z</option><option value="title-desc">Titre Z–A</option></select></div></div><details class="blog-filter-details"><summary>${filterIcon}Filtres <span>Catégorie et sujet</span></summary><div class="blog-filter-grid">${categoryControl}${tagControl}</div></details><div class="blog-control-status"><p id="blog-result-count" role="status" aria-live="polite"><strong>${posts.length}</strong> articles</p><button class="btn btn-text" type="button" data-blog-reset hidden>Réinitialiser</button></div></form><p class="blog-data-status" data-blog-data-status role="status" hidden></p><div class="blog-empty-state" data-blog-empty role="status" hidden><p class="eyebrow">Aucun résultat</p><h2>Aucun article ne correspond à cette recherche.</h2><p>Modifiez les critères ou affichez toute la bibliothèque.</p><button class="btn" type="button" data-blog-empty-reset>Afficher tous les articles</button></div><div data-blog-results data-blog-page-size="${BLOG_PAGE_SIZE}"><div class="blog-card-grid" data-blog-grid>${cards}</div><nav class="blog-pagination" aria-label="Pagination des articles" data-blog-pagination hidden></nav></div></div></section></main>${footer("")}<script src="assets/js/main.js" defer></script><script src="assets/js/blog.js" defer></script></body></html>`;
+  return `<!DOCTYPE html><html lang="fr"><head>${head({ title: "Blog documentation, données et technologies · PPR-Solution", description: "Méthodes et analyses autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA appliquée.", canonical: `${BASE_URL}/blog.html`, prefix: "", type: "website" })}<script type="application/ld+json">${safeSchema}</script></head><body><a class="skip-link" href="#main-content">Aller au contenu</a>${nav("")}<main id="main-content"><section class="section-tight blog-library-section" id="blog-library" aria-labelledby="blog-library-title"><div class="container"><header class="blog-library-intro"><p class="eyebrow">Blog</p><h1 id="blog-library-title">Documentation, données et technologies</h1><p class="lead">Méthodes, analyses et actualités autour de la documentation structurée, des formats techniques, de l’automatisation et de l’IA.</p></header><form class="blog-controls" data-blog-controls hidden><div class="blog-control-primary"><div class="blog-control-field blog-search-field"><label for="blog-search">${searchIcon}Rechercher</label><input id="blog-search" type="search" placeholder="Documentation, XML, automatisation…" autocomplete="off" data-blog-search></div><div class="blog-control-field blog-sort-field"><label for="blog-sort">Trier</label><select id="blog-sort" data-blog-sort><option value="newest">Plus récent</option><option value="oldest">Plus ancien</option><option value="title-asc">Titre A–Z</option><option value="title-desc">Titre Z–A</option></select></div></div><details class="blog-filter-details"><summary>${filterIcon}Filtres <span>Catégorie et sujet</span></summary><div class="blog-filter-grid">${categoryControl}${tagControl}</div></details><div class="blog-control-status"><p id="blog-result-count" role="status" aria-live="polite"><strong>${posts.length}</strong> articles</p><button class="btn btn-text" type="button" data-blog-reset hidden>Réinitialiser</button></div></form><p class="blog-data-status" data-blog-data-status role="status" hidden></p><div class="blog-empty-state" data-blog-empty role="status" hidden><p class="eyebrow">Aucun résultat</p><h2>Aucun article ne correspond à cette recherche.</h2><p>Modifiez les critères ou affichez toute la bibliothèque.</p><button class="btn" type="button" data-blog-empty-reset>Afficher tous les articles</button></div><div data-blog-results data-blog-page-size="${BLOG_PAGE_SIZE}"><div class="blog-card-grid" data-blog-grid>${cards}</div><nav class="blog-pagination" aria-label="Pagination des articles" data-blog-pagination hidden></nav></div></div></section></main>${footer("")}<script src="assets/js/main.js" defer></script><script src="assets/js/blog.js" defer></script></body></html>`;
 }
 
 function renderSitemap(posts) {
@@ -177,40 +183,41 @@ function renderSitemap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n")}\n</urlset>\n`;
 }
 
-function validatePosts(posts) {
-  if (!Array.isArray(posts) || !posts.length) throw new Error("blog/posts.json doit contenir au moins un article.");
-  const slugs = new Set();
+function build(siteRoot = SITE_ROOT) {
+  const sources = loadPosts(siteRoot, preparePost);
+  const posts = sources.map(source => source.post);
+  const outputs = new Map();
   posts.forEach((post, index) => {
-    ["slug", "title", "description", "meta_description", "date", "category", "content_html"].forEach((field) => {
-      if (!post[field]) throw new Error(`Article ${index + 1} : champ ${field} manquant.`);
-    });
-    if (!/^[a-z0-9][a-z0-9-]*$/.test(post.slug)) throw new Error(`Slug invalide : ${post.slug}`);
-    if (slugs.has(post.slug)) throw new Error(`Slug dupliqué : ${post.slug}`);
-    if (!Array.isArray(post.tags) || !post.tags.length) throw new Error(`Tags invalides : ${post.slug}`);
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(post.date) || Number.isNaN(Date.parse(`${post.date}T00:00:00Z`))) {
-      throw new Error(`Date invalide : ${post.slug}`);
-    }
-    ["service_url", "service_label", "demo_url", "demo_label", "contact_label", "contact_context"].forEach((field) => {
-      if (!post[field]) throw new Error(`Article ${post.slug} : association ${field} manquante.`);
-    });
-    slugs.add(post.slug);
+    outputs.set("blog/" + post.slug + "/index.html", renderArticle(post, posts[index - 1], posts[index + 1]));
   });
+  outputs.set("blog/posts.json", JSON.stringify(posts, null, 2) + "\n");
+  outputs.set("blog.html", renderBlog(posts));
+  outputs.set("sitemap.xml", renderSitemap(posts));
+  // Validate all authored body links after rendering, including links to new articles
+  // and heading fragments. No partial publication on editorial validation failure.
+  for (const source of sources) {
+    for (const link of source.links) {
+      checkTarget(link, source.filename, siteRoot, outputs, "blog/" + source.post.slug + "/index.html");
+    }
+  }
+  for (const [relative, content] of outputs) {
+    const target = path.join(siteRoot, relative);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, content, "utf8");
+  }
+  return outputs;
 }
 
 function main() {
-  const posts = JSON.parse(fs.readFileSync(POSTS_PATH, "utf8")).map(preparePost);
-  validatePosts(posts);
-  posts.forEach((post, index) => {
-    const directory = path.join(SITE_ROOT, "blog", post.slug);
-    fs.mkdirSync(directory, { recursive: true });
-    fs.writeFileSync(path.join(directory, "index.html"), renderArticle(post, posts[index - 1], posts[index + 1]), "utf8");
-    console.log(`Généré : blog/${post.slug}/index.html`);
-  });
-  fs.writeFileSync(path.join(SITE_ROOT, "blog.html"), renderBlog(posts), "utf8");
-  fs.writeFileSync(path.join(SITE_ROOT, "sitemap.xml"), renderSitemap(posts), "utf8");
-  console.log(`${posts.length} article(s), blog.html et sitemap.xml générés.`);
+  try {
+    const outputs = build();
+    console.log((outputs.size - 3) + " article(s), blog/posts.json, blog.html et sitemap.xml générés depuis content/blog/*.md.");
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
 }
 
 if (require.main === module) main();
 
-module.exports = { BLOG_PAGE_SIZE, READING_WORDS_PER_MINUTE, countReadableWords, readingTimeMinutes, preparePost, headingSlug, addHeadingIds };
+module.exports = { BLOG_PAGE_SIZE, READING_WORDS_PER_MINUTE, countReadableWords, readingTimeMinutes, preparePost, headingSlug, addHeadingIds, renderArticle, renderBlog, renderSitemap, build };
