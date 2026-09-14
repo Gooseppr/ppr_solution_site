@@ -8,6 +8,10 @@ const { parseSource, renderMarkdown, loadPosts, checkTarget } = require("../scri
 const { build, preparePost, addHeadingIds, renderArticle, renderBlog, renderSitemap } = require("../scripts/build-blog");
 const root = path.join(__dirname, "..");
 const base = "https://gooseppr.github.io/ppr_solution_site/";
+test("GitHub Pages ne reconvertit pas les sources Markdown en pages concurrentes", () => {
+  assert.ok(fs.existsSync(path.join(root, ".nojekyll")), "Le marqueur .nojekyll doit être commité à la racine.");
+});
+
 const metadata = {
   title: "Comprendre le XML", slug: "test-xml", description: "Un exemple de description.",
   meta_description: "Description pour les moteurs.", date: "2026-09-01",

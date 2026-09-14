@@ -134,6 +134,8 @@ Exemple d’échec : `ERROR article "xml-ou-json.md": missing required field: me
 
 ## Publication
 
+Le fichier racine `.nojekyll` est obligatoire : GitHub Pages doit servir les fichiers HTML déjà générés, sans convertir une seconde fois `content/blog/*.md` en pages HTML concurrentes. Ne pas le supprimer. Voir la [documentation GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+
 ```bash
 npm ci
 npm run build:blog
